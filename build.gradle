@@ -73,6 +73,7 @@ allprojects {
             exclude group: "junit", module: "junit"
         }
         testCompile "org.testfx:openjfx-monocle:$monocleVersion"
+        compile fileTree(dir: 'externalJar', include: '*.jar')
     }
 
     sourceSets {
