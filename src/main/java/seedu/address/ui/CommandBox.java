@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -8,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.logic.ListElementPointer;
