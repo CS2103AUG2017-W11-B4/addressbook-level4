@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
+import java.io.File;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.io.File;
 
 /**
  * Lists all persons in the address book to the user.
