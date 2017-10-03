@@ -15,12 +15,12 @@ public class TextToSpeech {
             Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.ENGLISH));
             synth.allocate();
             synth.resume();
-            synth.speakPlainText(message,null);
+            synth.speakPlainText(message, null);
             synth.waitEngineState(Synthesizer.QUEUE_EMPTY);
             synth.deallocate();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-	}
+    }
 }
