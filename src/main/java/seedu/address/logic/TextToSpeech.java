@@ -6,17 +6,17 @@ import javax.speech.Central;
 import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
 
+/**
+ * The Text to Speech Component
+ */
 public class TextToSpeech {
-	public TextToSpeech (String message){
-	    try {
-		    //Create a synthesizer for English
+    public TextToSpeech (String message) {
+        try {
             Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.ENGLISH));
             synth.allocate();
             synth.resume();
-            //Get it ready to speak
             synth.speakPlainText(message,null);
             synth.waitEngineState(Synthesizer.QUEUE_EMPTY);
-            //Clean up
             synth.deallocate();
 
         } catch (Exception e) {
