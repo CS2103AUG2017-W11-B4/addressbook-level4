@@ -1,15 +1,6 @@
 package seedu.address.logic;
 import javafx.scene.control.TextField;
-import seedu.address.logic.commands.Command;
-import seedu.address.ui.CommandBox;
-import seedu.address.ui.MainWindow;
-
-import javax.speech.*;
 import javax.speech.recognition.*;
-import javax.xml.soap.Text;
-
-import java.io.FileReader;
-import java.util.Locale;
 
 public class SpeechToText extends ResultAdapter {
 	static Recognizer rec;
@@ -19,10 +10,9 @@ public class SpeechToText extends ResultAdapter {
 	public SpeechToText(Logic logic) {
 		this.logic = logic;
 	}
-	public SpeechToText(TextField commandTextField){
+	public SpeechToText(TextField commandTextField) {
 		this.commandTextField = commandTextField;
 	}
-
 	// Receives RESULT_ACCEPTED event: print it, clean up, exit
 	public void resultAccepted(ResultEvent e) {
 		Result r = (Result)(e.getSource());
@@ -37,11 +27,9 @@ public class SpeechToText extends ResultAdapter {
 			commandBox.commandTextField.setText(oldtext+" "+ tokens[i].getSpokenText() + " ");
 			*/
 			speechCommand+=tokens[i].getSpokenText() + " ";
-
-
 		}
 		commandTextField.setText(speechCommand);
-		if(tokens[0].getSpokenText().equals("delete")){
+		if(tokens[0].getSpokenText().equals("delete")) {
 			/*
 			String oldtext = SubmitSurveyForm.getTb_usercomment().getText();
 			 String[] temp1;
@@ -53,9 +41,6 @@ public class SpeechToText extends ResultAdapter {
 			  //.setText(newtext);
 			  */
 		}
-
-
 		// Deallocate the recognizer and exit
-	
 	}
 }
