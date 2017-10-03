@@ -8,8 +8,7 @@ public class TextToSpeech {
 	public TextToSpeech (String message){
 		try {
 			// Create a synthesizer for English
-			Synthesizer synth = Central.createSynthesizer(
-				new SynthesizerModeDesc(Locale.ENGLISH));
+			Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.ENGLISH));
 			// Get it ready to speak
 			synth.allocate();
 			synth.resume();
