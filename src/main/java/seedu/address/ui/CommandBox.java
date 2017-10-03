@@ -105,11 +105,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandInputChanged() {
         try {
-            int randomNum = 1 + (int)(Math.random() * 1);
-            String musicFile = "audio/music/mainmenutheme" + randomNum + ".mp3";
-            if(mediaPlayer !=null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.stop();
-            }
+            String musicFile = "audio/music/mainmenutheme1.mp3";
             Media sound = new Media(new File(musicFile).toURI().toString());
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
