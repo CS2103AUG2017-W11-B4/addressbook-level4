@@ -1,8 +1,10 @@
 package seedu.address.logic;
-import javax.speech.synthesis.*;
-import javax.speech.*;
 
 import java.util.Locale;
+
+import javax.speech.Central;
+import javax.speech.synthesis.Synthesizer;
+import javax.speech.synthesis.SynthesizerModeDesc;
 
 public class TextToSpeech {
 	public TextToSpeech (String message){
