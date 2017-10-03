@@ -30,17 +30,7 @@ public class SpeechToText extends ResultAdapter {
 		}
 		commandTextField.setText(speechCommand);
 		if(tokens[0].getSpokenText().equals("delete")) {
-			/*
-			String oldtext = SubmitSurveyForm.getTb_usercomment().getText();
-			 String[] temp1;
-			 String newtext = "";
-			  temp1 = oldtext.split("\\s+");
-			  for(int i =0; i < temp1.length-2; i++){
-				  newtext = newtext + " " +temp1[i] ;
-			  }
-			  //.setText(newtext);
-			  */
+
 		}
-		// Deallocate the recognizer and exit
 	}
 }

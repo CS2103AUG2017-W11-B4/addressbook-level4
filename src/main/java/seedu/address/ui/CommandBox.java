@@ -38,7 +38,7 @@ public class CommandBox extends UiPart<Region> {
     private Recognizer speecher;
 
     @FXML
-    public TextField commandTextField;
+    private TextField commandTextField;
 
     public CommandBox(Logic logic) {
         super(FXML);
@@ -112,7 +112,7 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandInputChanged() {
 
         try {
-            if(speecher!=null){
+            if(speecher != null) {
                 speecher.pause();
             }
             speecher = Central.createRecognizer(

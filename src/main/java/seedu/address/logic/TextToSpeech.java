@@ -1,6 +1,7 @@
 package seedu.address.logic;
-import javax.speech.*;
 import javax.speech.synthesis.*;
+import javax.speech.*;
+
 import java.util.Locale;
 
 public class TextToSpeech {
