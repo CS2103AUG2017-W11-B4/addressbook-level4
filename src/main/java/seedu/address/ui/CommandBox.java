@@ -25,7 +25,6 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-    private static MediaPlayer mediaPlayer;
 
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private final Logic logic;
@@ -105,16 +104,6 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandInputChanged() {
         try {
-            int randomNum = 1 + (int) (Math.random() * 1);
-            String musicFile = "audio/music/mainmenutheme" + randomNum + ".mp3";
-            if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.stop();
-            }
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setVolume(50.0);
-            mediaPlayer.play();
             CommandResult commandResult = logic.execute(commandTextField.getText());
             initHistory();
             historySnapshot.next();
