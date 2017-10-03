@@ -122,7 +122,6 @@ public class CommandBox extends UiPart<Region> {
             speecher.allocate();
 
             // Load the grammar from a file, and enable it
-            //FileReader reader = new FileReader("voicegrammer/dictionary.grammar");
             FileReader reader = new FileReader("voicegrammer/my_grammar.grammar");
             RuleGrammar gram = speecher.loadJSGF(reader);
             gram.setEnabled(true);
