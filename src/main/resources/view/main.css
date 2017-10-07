@@ -2,72 +2,106 @@
  * Shared
  */
 
-@font-face {
-    src: url(“/src/main/resources/view/ProximaNovaAltRegular-webfont.ttf”);
-}
-
 
 .root * {
-    base: black;
-    accent: #422F2F;
-    light: white;
-    midLight: derive(light, -70%);
-    -fx-font-family: "Proxima Nova Alt Rg", "Helvetica";
+    background: #DFE2E4;
+    toolbar: #D4D2D5;
+    lines: #ceced2;
+    mainText: derive(black, 5%);
+    subText: derive(black, 50%);
+    highlight: derive(#3081F4, 15%);
+    select: #007aff;
+    -fx-font-family: "Helvetica";
     -fx-background-color: transparent;
-    -fx-text-fill: light;
+    -fx-text-fill: mainText;
 }
 
-#id, #tags .label {
-    -fx-text-fill: derive(light, -40%);
-}
-
-.scroll-bar .thumb {
-    -fx-background-color: derive(base, -5%);
-    -fx-fill-width: 5;
+#id, #tags, #tags .label{
+    -fx-text-fill: subText;
 }
 
 /**
  * Menu Bar
  */
 
-#menuBar * {
-    -fx-background-color: light;
-    -fx-text-fill: base;
+#menuBar *, #menuBar {
+    -fx-background-color: toolbar;
+    -fx-text-fill: subText;
 }
+
+
 
 /**
  * Command Box
  */
 
+#commandBoxPlaceholder {
+    -fx-border-color: lines;
+}
+
 #commandTextField {
-    -fx-font-size: 30pt;
-    -fx-font-weight: bold;
-    -fx-border-color: transparent transparent light transparent;
-    -fx-effect: dropshadow(gaussian, base, 5, 0, 0, 0);
+    -fx-font-size: 20pt;
+    -fx-accent: highlight;
 }
 
 #details {
-    lighterBase: derive(base, 10%);
-    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%, accent 0%, lighterBase 100%);
+    -fx-background-color: background;
+}
+/**
+ * Result Display
+ */
+
+#resultDisplayPlaceholder {
+    -fx-font-size: 13pt;
+    -fx-border-color: lines;
+}
+
+#resultDisplay {
+    -fx-text-fill: subText;
 }
 
 /**
  * Person List
  */
-#personListVBox #name, #personListVBox #id{
+#personListVBox {
+    -fx-border-color: lines;
+}
+
+#personListVBox {
     -fx-font-size: 15pt;
 }
 
-#personListVBox .scroll-bar:horizontal .thumb {
-    -fx-background-color: transparent;
+#personListVBox #tags {
+    -fx-font-size: 13pt;
+}
+
+#personList .scroll-bar {
+    -fx-border-color: transparent transparent transparent lines;
+    -fx-start-margin: 0;
+    -fx-end-margin: 0;
+
+}
+
+#personListVBox .scroll-bar:vertical .thumb {
+    -fx-background-color: lines;
+    -fx-scale-x: 0.5;
+}
+
+#personListVBox .scroll-bar:horizontal *{
+    -fx-padding: 0;
+    -fx-scale-y: 0;
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-color: highlight;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-background-color: select;
+}
+
+.list-cell:filled:hover .label, .list-cell:filled:selected .label{
+    -fx-text-fill: white !important;
 }
 
 /**
@@ -75,18 +109,17 @@
  */
 #personPanel {
     -fx-font-size: 15pt;
+    -fx-border-color: lines;
 }
 
 #personPanel #name {
-    -fx-font-size: 50pt;
-    -fx-effect: dropshadow(gaussian, base, 10, 0, 0, 2);
+    -fx-font-size: 30pt;
 }
 
-/**
- * Result Display
- */
+#personPanelHeader, #personPanelDetails{
+    -fx-border-color: transparent transparent lines transparent;
+}
 
-#resultDisplay {
-    -fx-font-size: 13pt;
-    -fx-text-fill: derive(light, -40%);
+#statusbarPlaceholder {
+    -fx-background-color: toolbar;
 }

@@ -3,36 +3,32 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<GridPane fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+<GridPane alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-   <Label fx:id="id" alignment="TOP_LEFT" styleClass="cell_big_label">
+   <Label fx:id="id" styleClass="cell_big_label">
     <minWidth>
       <!-- Ensures that the label text is never truncated -->
       <Region fx:constant="USE_PREF_SIZE" />
     </minWidth>
    </Label>
-   <Label fx:id="name" alignment="TOP_LEFT" styleClass="cell_big_label" text="\$first" GridPane.columnIndex="1" />
-   <FlowPane fx:id="tags" hgap="5.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+   <Label fx:id="name" styleClass="cell_big_label" text="\$first" GridPane.columnIndex="1" />
+      <Label fx:id="tags" text="Label" GridPane.columnIndex="2">
          <GridPane.margin>
-            <Insets top="5.0" />
+            <Insets left="15.0" />
          </GridPane.margin>
-      </FlowPane>
+      </Label>
    </children>
-   <padding>
-      <Insets bottom="5.0" top="5.0" />
-   </padding>
 </GridPane>

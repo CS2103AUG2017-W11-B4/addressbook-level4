@@ -3,10 +3,10 @@ package seedu.address.ui;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -26,13 +26,13 @@ public class PersonCard extends UiPart<Region> {
     public final ReadOnlyPerson person;
 
     @FXML
-    private GridPane cardPane;
+    private HBox cardPane;
     @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
-    private FlowPane tags;
+    private Label tags;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
@@ -49,13 +49,25 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
-            tags.getChildren().clear();
-            person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            String tagString = "- ";
+            String inBetween = ", ";
+            for (Tag tag : person.getTags()) {
+                tagString += tag.tagName + inBetween;
+            }
+            tags.setText(tagString.substring(0, tagString.length() - inBetween.length()));
         });
     }
 
+    /**
+     * Initializes tags for single person
+     */
     private void initTags(ReadOnlyPerson person) {
-        person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        String tagString = "- ";
+        String inBetween = ", ";
+        for (Tag tag : person.getTags()) {
+            tagString += tag.tagName + inBetween;
+        }
+        tags.setText(tagString.substring(0, tagString.length() - inBetween.length()));
     }
 
     @Override
