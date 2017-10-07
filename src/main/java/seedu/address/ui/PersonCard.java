@@ -13,8 +13,9 @@ import seedu.address.model.tag.Tag;
  */
 public class PersonCard extends UiPart<Region> {
 
+    public static final String TAG_IN_BETWEEN = ", ";
+    public static final String TAG_START = "- ";
     private static final String FXML = "PersonListCard.fxml";
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -49,12 +50,7 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
-            String tagString = "- ";
-            String inBetween = ", ";
-            for (Tag tag : person.getTags()) {
-                tagString += tag.tagName + inBetween;
-            }
-            tags.setText(tagString.substring(0, tagString.length() - inBetween.length()));
+            tags.setText(formatTagForCard(person));
         });
     }
 
@@ -62,12 +58,7 @@ public class PersonCard extends UiPart<Region> {
      * Initializes tags for single person
      */
     private void initTags(ReadOnlyPerson person) {
-        String tagString = "- ";
-        String inBetween = ", ";
-        for (Tag tag : person.getTags()) {
-            tagString += tag.tagName + inBetween;
-        }
-        tags.setText(tagString.substring(0, tagString.length() - inBetween.length()));
+        tags.setText(formatTagForCard(person));
     }
 
     @Override
@@ -86,5 +77,20 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    /**
+     * Returns string representation of person's tag for Person Card
+     */
+    public static String formatTagForCard(ReadOnlyPerson person) {
+        if (person.getTags().isEmpty()) {
+            return "";
+        }
+
+        String tagString = TAG_START;
+        for (Tag tag : person.getTags()) {
+            tagString += tag.tagName + TAG_IN_BETWEEN;
+        }
+        return (tagString.substring(0, tagString.length() - TAG_IN_BETWEEN.length()));
     }
 }

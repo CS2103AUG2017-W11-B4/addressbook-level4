@@ -3,12 +3,12 @@ package seedu.address.ui.testutil;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.ui.PersonCard;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -28,7 +28,7 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysPerson(ReadOnlyPerson expectedPerson, PersonCardHandle actualCard) {
         assertEquals(expectedPerson.getName().fullName, actualCard.getName());
-        assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList()),
+        assertEquals(PersonCard.formatTagForCard(expectedPerson),
                 actualCard.getTags());
     }
 
