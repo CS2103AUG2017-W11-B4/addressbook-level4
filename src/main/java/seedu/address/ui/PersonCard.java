@@ -3,18 +3,19 @@ package seedu.address.ui;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
+    public static final String TAG_IN_BETWEEN = ", ";
+    public static final String TAG_START = "- ";
     private static final String FXML = "PersonListCard.fxml";
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -32,7 +33,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private FlowPane tags;
+    private Label tags;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
@@ -49,13 +50,15 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
-            tags.getChildren().clear();
-            person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            tags.setText(formatTagForCard(person));
         });
     }
 
+    /**
+     * Initializes tags for single person
+     */
     private void initTags(ReadOnlyPerson person) {
-        person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.setText(formatTagForCard(person));
     }
 
     @Override
@@ -74,5 +77,20 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    /**
+     * Returns string representation of person's tag for Person Card
+     */
+    public static String formatTagForCard(ReadOnlyPerson person) {
+        if (person.getTags().isEmpty()) {
+            return "";
+        }
+
+        String tagString = TAG_START;
+        for (Tag tag : person.getTags()) {
+            tagString += tag.tagName + TAG_IN_BETWEEN;
+        }
+        return (tagString.substring(0, tagString.length() - TAG_IN_BETWEEN.length()));
     }
 }
