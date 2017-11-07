@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title></title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1><span class="image"><img src="../images/engsheng_header.png" alt="engsheng header" width="900"></span></h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="span-class-image-img-src-images-engsheng_projectheader-png-alt-engsheng-projectheader-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_projectheader-png-alt-engsheng-projectheader-width-900-span"><span class="image"><img src="../images/engsheng_projectheader.png" alt="engsheng projectheader" width="900"></span></a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UNIFY is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/main/hanselblack.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/test/hanselblack.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_enhancementadded-png-alt-engsheng-header-enhancementadded-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_enhancementadded-png-alt-engsheng-header-enhancementadded-width-900-span"><span class="image"><img src="../images/engsheng_header_enhancementadded.png" alt="engsheng header enhancementadded" width="900"></span></a></h3>
+<div class="paragraph">
+<p>This section provides the list of enhancement that has been added to UNIFY address book.</p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_music-png-alt-engsheng-header-music-width-500-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_music-png-alt-engsheng-header-music-width-500-span"><span class="image"><img src="../images/engsheng_header_music.png" alt="engsheng header music" width="500"></span></a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="playing-background-music-code-music-play-code"><a class="link" href="#playing-background-music-code-music-play-code">Playing background music : <code>music play</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_musicplay.png" alt="UG commandheader musicplay" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Want to listen to some of your favourite tunes? Unify&#8217;s got you covered! Unify&#8217;s <code>music play</code> command plays a music track
+from a specific genre from a list of built in mp3 music. If you had already paused a track, <code>music play</code> resumes playing that track.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>music play [GENRE]</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>The genre can only be pop, dance or classic. <code>music play</code> alone will play pop songs as default.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>music play</code> into the command box, then follows by a <code>genre</code> and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_musicplay1.png" alt="UG musicplay1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Playing".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_musicplay2.png" alt="UG musicplay2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopping-background-music-code-music-stop-code"><a class="link" href="#stopping-background-music-code-music-stop-code">Stopping background music : <code>music stop</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_musicstop.png" alt="UG commandheader musicstop" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Maybe the music is getting distracting or you&#8217;re just not in the mood for some tunes.
+<code>music stop</code> stops the current music track playing so that you can focus on the task at hand.+</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>music stop</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>This is different from pausing, as it does not allow resuming.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_musicstop1.png" alt="UG musicstop1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> The result box will display "Music Stopped".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_musicstop2.png" alt="UG musicstop2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pausing-background-music-code-music-pause-code"><a class="link" href="#pausing-background-music-code-music-pause-code">Pausing background music : <code>music pause</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_musicpause.png" alt="UG commandheader musicpause" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Going for a short break and don&#8217;t want to miss that catchy chorus?
+<code>music pause</code> pauses the current music track playing.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>music pause</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>music pause</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_musicpause1.png" alt="UG musicpause1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Paused".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_musicpause2.png" alt="UG musicpause2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="playing-music"><a class="link" href="#playing-music">Playing Music</a></h3>
+<div class="paragraph">
+<p>Unify has a built-in background music player.</p>
+</div>
+<div class="paragraph">
+<p>The <code>music</code> command is extended with an additional command behind it. For example, <code>music play</code>, has play as the extended command. The <code>play</code> command at the back means that the system will play a music track. While <code>music pause</code> will pause the current music track.</p>
+</div>
+<div class="paragraph">
+<p>All these different actions are executed in the same <code>MusicCommand</code> class. This makes the commands easier to remember for the user as well, as anything related to <code>music</code> will start with <code>music</code> as a command.</p>
+</div>
+<div class="paragraph">
+<p>As shown below, additional extended commands can be added by having an additional case in the switch statement, as the extended commands are handled in a switch statement.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute() {
+        <span class="type">boolean</span> genreExist = <span class="predefined-type">Arrays</span>.asList(genreList).contains(genre);
+        <span class="keyword">switch</span> (command) {
+        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">play</span><span class="delimiter">&quot;</span></span>:
+            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+                mediaPlayer.play();
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+            }
+            <span class="keyword">if</span> (genreExist) {
+                <span class="predefined-type">String</span> musicFile = <span class="string"><span class="delimiter">&quot;</span><span class="content">audio/music/</span><span class="delimiter">&quot;</span></span> + genre + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content">.mp3</span><span class="delimiter">&quot;</span></span>;
+                MESSAGE_SUCCESS = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Playing</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">if</span> (trackNumber &lt; <span class="integer">2</span>) {
+                    trackNumber++;
+                } <span class="keyword">else</span> {
+                    trackNumber = <span class="integer">1</span>;
+                }
+                <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                    mediaPlayer.stop();
+                }
+                <span class="predefined-type">Media</span> sound = <span class="keyword">new</span> <span class="predefined-type">Media</span>(<span class="keyword">new</span> <span class="predefined-type">File</span>(musicFile).toURI().toString());
+                mediaPlayer = <span class="keyword">new</span> MediaPlayer(sound);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.setVolume(<span class="float">2.0</span>);
+                mediaPlayer.play();
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+            } <span class="keyword">else</span> {
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+            }
+        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">stop</span><span class="delimiter">&quot;</span></span>:
+            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.stop();
+            }
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICSTOP);
+        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">pause</span><span class="delimiter">&quot;</span></span>:
+            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.pause();
+            }
+            MESSAGE_MUSICPAUSE = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Paused</span><span class="delimiter">&quot;</span></span>;
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICPAUSE);
+        <span class="keyword">default</span>:
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>trackNumber</code> has to be less than or equal to the number of each genre tracks you have in the <code>audio/music</code> folder. For example, if <code>trackNumber</code> is 2, it is required at least 2 mp3 files of each genre of music.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MusicList.jpg" alt="MusicList" width="200">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the music operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MusicSequenceDiagram.png" alt="MusicSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarize what happens inside the <code>MusicCommand</code> when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MusicActivityDiagram.png" alt="MusicActivityDiagram" width="400">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Which music file to play first<br>
+<strong>Alternative 1 (current choice):</strong> Play the music file that starts with 1 then increase from there<br>
+<strong>Pros:</strong> Easy to implement. Users are able to know what song is coming up next in the track list<br>
+<strong>Cons:</strong> Always start at the same music track first<br>
+<strong>Alternative 2:</strong> Play a random music file<br>
+<strong>Pros:</strong> Has a chance to be different the next time the user starts playing music.<br>
+<strong>Cons:</strong> User does not know which song is going to be played next.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_enhancementproposed-png-alt-engsheng-header-enhancementproposed-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_enhancementproposed-png-alt-engsheng-header-enhancementproposed-width-900-span"><span class="image"><img src="../images/engsheng_header_enhancementproposed.png" alt="engsheng header enhancementproposed" width="900"></span></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<div class="paragraph">
+<p>{Explain similar to the Undo/Redo feature above.}</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><span class="image"><img src="../images/engsheng_header_contribution.png" alt="engsheng header contribution" width="900"></span></a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Created template for User Guide step by step design (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/74/commits/d3724bd9bd95a51cf9821906166835419259f050">#74</a>)</p>
+</li>
+<li>
+<p>Enhanced and overhauled the design the User Guide to make it user-friendly and appealing, made every images used in User Guide, except for respective developer screenshot (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/62">#62</a>)</p>
+</li>
+<li>
+<p>Made teaser trailer, to showcase application at README (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/78">#78</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-07 19:12:34 +00:00
+</div>
+</div>
+</body>
+</html>

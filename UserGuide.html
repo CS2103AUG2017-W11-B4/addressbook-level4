@@ -5,55 +5,229 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>AddressBook Level 4 - User Guide</title>
+<title></title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>AddressBook Level 4 - User Guide</h1>
+<h1><span class="image"><img src="images/UG_userguideheader.png" alt="UG userguideheader" width="900"></span></h1>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>W-11 B4</code>      Since: <code>Sep 2017</code>      Licence: <code>MIT</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_tableofcontents.png" alt="header tableofcontents" width="400">
+</div>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#quick-start">1. Quick Start</a></li>
-<li><a href="#features">2. Features</a>
+<li><a href="#welcome-to-unify">1. Welcome to Unify</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">2.8. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">2.9. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.10. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.11. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.12. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.13. Saving the data</a></li>
+<li><a href="#do-more-with-less">1.1. Do More with Less</a></li>
+<li><a href="#first-time-cli-user">1.2. First Time CLI User?</a></li>
+<li><a href="#how-to-use-the-user-guide">1.3. How to Use the User Guide</a></li>
+<li><a href="#a-quick-look-at-unify">1.4. A Quick Look At Unify</a></li>
 </ul>
 </li>
-<li><a href="#faq">3. FAQ</a></li>
-<li><a href="#command-summary">4. Command Summary</a></li>
+<li><a href="#quick-start">2. Quick Start</a></li>
+<li><a href="#features">3. Features</a>
+<ul class="sectlevel2">
+<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
+<li><a href="#autocompleting-commands-kbd-tab-kbd">3.2. Autocompleting commands: <kbd>Tab</kbd></a></li>
+<li><a href="#adding-a-person-code-add-code">3.3. Adding a person: <code>add</code></a></li>
+<li><a href="#listing-all-persons-code-list-code">3.4. Listing all persons : <code>list</code></a></li>
+<li><a href="#editing-a-person-code-edit-code">3.5. Editing a person : <code>edit</code></a></li>
+<li><a href="#searching-for-people-by-details-code-find-code">3.6. Searching for people by details: <code>find</code></a></li>
+<li><a href="#deleting-a-person-code-delete-code">3.7. Deleting a person : <code>delete</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">3.8. Selecting a person : <code>select</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.11. Listing entered commands : <code>history</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#playing-background-music-code-music-play-code">3.13. Playing background music : <code>music play</code></a></li>
+<li><a href="#stopping-background-music-code-music-stop-code">3.14. Stopping background music : <code>music stop</code></a></li>
+<li><a href="#pausing-background-music-code-music-pause-code">3.15. Pausing background music : <code>music pause</code></a></li>
+<li><a href="#exporting-contact-s-details-as-an-email-code-email-code">3.16. Exporting contact&#8217;s details as an email : <code>email</code></a></li>
+<li><a href="#adding-editing-a-remark-code-remark-code">3.17. Adding / Editing a remark : <code>remark</code></a></li>
+<li><a href="#deleting-a-remark-code-remark-code">3.18. Deleting a remark : <code>remark</code></a></li>
+<li><a href="#adding-aliases-code-alias-code">3.19. Adding aliases : <code>alias</code></a></li>
+<li><a href="#deleting-aliases-code-unalias-code">3.20. Deleting aliases : <code>unalias</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.21. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.22. Saving the data</a></li>
+</ul>
+</li>
+<li><a href="#faq">4. FAQ</a></li>
+<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="quick-start"><a class="link" href="#quick-start">1. Quick Start</a></h2>
+<h2 id="welcome-to-unify"><a class="link" href="#welcome-to-unify">1. Welcome to Unify</a></h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_introduction.png" alt="UG mainheader introduction" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect2">
+<h3 id="do-more-with-less"><a class="link" href="#do-more-with-less">1.1. Do More with Less</a></h3>
+<div class="paragraph">
+<p>Unify is a Command Line Interface AddressBook that helps you manage your contacts efficiently. Unlike conventional Address Books, Unify adopts a Command-Line Interface (CLI).
+By having a CLI, you can navigate and manage Unify efficiently by typing commands.
+Commands capture the important details of your action into a concise line.
+With just one line, you can traverse your large network to find your old pal John or update your Brother&#8217;s phone number.
+Now you can spend less time in your Address Book, and more time on what matters most to you.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="first-time-cli-user"><a class="link" href="#first-time-cli-user">1.2. First Time CLI User?</a></h3>
+<div class="ulist">
+<ul>
 <li>
-<p>Ensure you have Java version <code>1.8.0_60</code> or later installed in your Computer.</p>
+<p>Don&#8217;t fret! Unify offers inline hints to prompt you what to type next,</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_Hints.png" alt="UG Hints" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>and will validate your input as you type.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_Validation.png" alt="UG Validation" width="300">
+</div>
+</div>
+</li>
+<li>
+<p>Afraid you will accidentally delete your girlfriend&#8217;s details? We&#8217;ve got you covered! The <code>undo</code> command lets you revert any important changes to prevent any future embarrassment/pain.<br></p>
+</li>
+<li>
+<p>Still lost? You can type <code>help</code> to access the User Guide whenever you need.<br></p>
+</li>
+<li>
+<p>Unify will guide you along the way so that you can turn from Novice to Master in no time!<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-use-the-user-guide"><a class="link" href="#how-to-use-the-user-guide">1.3. How to Use the User Guide</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_howtouseuserguide.png" alt="UG header howtouseuserguide" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>Everything you need to know about Unify is in this user guide.</p>
+</div>
+<div class="paragraph">
+<p>You are able to quickly navigate the user guide by clicking on the links found in the table of contents at the top of the user guide.</p>
+</div>
+<div class="paragraph">
+<p>An example of the user guide for the features is shown below. You are able to identify the feature&#8217;s title, description, format and easy to follow step by step instructions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_howtouse1.png" alt="UG howtouse1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>To find the information you need, just look out for these sub-headers in the user guide. These are the few sub-headers you will find in this user guide below.</p>
+</div>
+<div class="paragraph">
+<p>These sub-headers are unique, they are marked with a circle surrounding the first letter of the header. This help you find the information quickly. Just look out for the first letter in the circle and you are able to find what you need to know!</p>
+</div>
+<div class="paragraph">
+<p>For example, the letter "F" in the circle represent format. Hence, you just have to look out for the letter "F" in the circle, to find the format quickly.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_howtouse2.png" alt="UG howtouse2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p>Follow the step by step instructions by doing step 1 first. Step 1 is linked to the numbered icons that labels the section of the user interface you have to interacts with.
+Therefore, you should have a similar user interface of Unify when following the step by step instructions.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_howtouse3.png" alt="UG howtouse3" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="a-quick-look-at-unify"><a class="link" href="#a-quick-look-at-unify">1.4. A Quick Look At Unify</a></h3>
+<div class="paragraph">
+<p>Unify&#8217;s user interface is split into a few sections. These sections are highlighted in the image below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Command Box</p>
+</li>
+<li>
+<p>Message Box</p>
+</li>
+<li>
+<p>List of Contacts</p>
+</li>
+<li>
+<p>Contact&#8217;s Details</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_quicklookui.png" alt="UG quicklookui" width="790">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_installationguide.png" alt="UG mainheader installationguide" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> 
+Follow this installation guide to get Unify up and running on your computer.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step1.png" alt="step1" width="70"></span>Ensure you have Java version <code>1.8.0_60</code> or later installed in your Computer.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -67,58 +241,84 @@ This app will not work with earlier versions of Java 8.
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
-</li>
-<li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
-</li>
-<li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> Download the latest <code>addressbook.jar</code> <a href="https://github.com/CS2103AUG2017-W11-B4/main/releases">here</a>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span>  Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Double-click the file to start the app. You should see the application open in a few seconds:</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="images/UG_introui.png" alt="UG introui" width="590">
 </div>
 </div>
-</li>
-<li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
-</li>
-<li>
+<div class="paragraph">
+<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span>  Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. Typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_help.png" alt="UG help" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
 <p>Some example commands you can try:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
 <p><strong><code>list</code></strong> : lists all contacts</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>add</code></strong>` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named <code>John Doe</code> to the Address Book.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
-</li>
-</ul>
-</div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Refer to the <a href="#features">Features</a> section below for details of each command.</p>
 </li>
 </ol>
 </div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="features"><a class="link" href="#features">2. Features</a></h2>
+<h2 id="features"><a class="link" href="#features">3. Features</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Unify is jam-packed with features and it may be daunting for new users.
+This section of the user guide provides a step by step walk-through of all the commands Unify has to offer.
+Do read our short explanation about Command Format below so that the subsequent portions of this section will make sense to you.</p>
+</div>
 <div class="exampleblock">
 <div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_commandformat.png" alt="UG header commandformat" width="500">
+</div>
+</div>
 <div class="paragraph">
-<p><strong>Command Format</strong></p>
+<p><br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -138,17 +338,152 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>help</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_basicfeatures.png" alt="UG mainheader basicfeatures" width="900">
 </div>
 </div>
-<div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+<p> </p>
+</div>
+<div class="sect2">
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_help.png" alt="UG commandheader help" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Feeling lost and not sure what to do? You can type the <code>help</code> command and Unify will open an in-application
+user guide for your reference!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Format: <code>help</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>help</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_help1.png" alt="UG help1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The help window will appear as shown above.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_help2.png" alt="UG help2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocompleting-commands-kbd-tab-kbd"><a class="link" href="#autocompleting-commands-kbd-tab-kbd">3.2. Autocompleting commands: <kbd>Tab</kbd></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_autocomplete.png" alt="UG commandheader autocomplete" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Slow typer? Fret not! Just press <kbd>Tab</kbd> and Unify will automatically finish your commands for you.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Autocomplete understands what you&#8217;re typing and can automatically complete parameters of some commands,
+too! Simply press <kbd>Tab</kbd> whenever you&#8217;re unsure what to type next.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type an incomplete command into the command box, and press <kbd>Tab</kbd> to autocomplete it.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The automatically completed command will appear in the command box.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.3. Adding a person: <code>add</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_add.png" alt="UG commandheader add" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Adding a new contact? Unify&#8217;s <code>add</code> command takes a person&#8217;s information and records it in Unify as a contact!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Still unsure of what fields are required? Not to worry! Unify&#8217;s in-line hints will prompt you on the fields required.
+Simply press <kbd>Tab</kbd> to auto-complete to the next required prefix!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Alias: <code>new</code>, <code>create</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -162,8 +497,10 @@ A person can have any number of tags (including 0)
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Examples:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -171,26 +508,159 @@ A person can have any number of tags (including 0)
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 i/d:/pictures/betsy.png t/criminal</code></p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></h3>
-<div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
+<div class="imageblock">
 <div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>add</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_add1.png" alt="UG add1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "New person added:" with the contact details.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with the newly added contact at the bottom of the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_add2.png" alt="UG add2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When choosing the right image for your contact, make sure that the image is in .jpg or .png format.</p>
+</li>
+<li>
+<p>For a contact&#8217;s avatar file path, you may specify the full path of the image (ie: d:/pictures/betsy.png)</p>
+</li>
+<li>
+<p>For Windows users, if you are unsure how to get the path of the image click <a href="http://www.howto-connect.com/copy-path-of-a-file-or-folder-in-windows-10/">here</a></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.4. Listing all persons : <code>list</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_list.png" alt="UG commandheader list" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Looking to scroll through your entire contact list? Or just want to admire your large network?
+Unify&#8217;s <code>list</code> command will list of all your contacts!<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Format: <code>list</code><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Alias: <code>ls</code>, <code>show</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list1.png" alt="UG list1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons"</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list2.png" alt="UG list2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.5. Editing a person : <code>edit</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_edit.png" alt="UG commandheader edit" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Need to update your girlfriend&#8217;s phone number? Or misspelt your tutor&#8217;s e-mail address?
+Unify&#8217;s <code>edit</code> command lets you edit an existing contact&#8217;s details in the address book.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Alias: <code>change</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -210,10 +680,10 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
 </div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -227,60 +697,315 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>edit</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_edit1.png" alt="UG edit1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Edited person:" with the edited details.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The details of last updated will be updated with your system time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_edit2.png" alt="UG edit2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></h3>
-<div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
+<h3 id="searching-for-people-by-details-code-find-code"><a class="link" href="#searching-for-people-by-details-code-find-code">3.6. Searching for people by details: <code>find</code></a></h3>
+<div class="imageblock">
 <div class="content">
+<img src="images/UG_commandheader_find.png" alt="UG commandheader find" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Looking for an old friend who stayed in Bishan? Identifying the person who sent you a message from his e-mail made in Primary School?
+Unify&#8217;s <code>find</code> command allows you to search for people based on their details, which include:<br></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>Name</p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+<p>Phone</p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>E-mail</p>
 </li>
 <li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>Address</p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Tags</p>
+</li>
+<li>
+<p>Remark</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format: <code>find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Alias: <code>search</code>, <code>filter</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
+<p><code>find n/John</code><br>
 Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>find n/John t/friend p/123</code><br>
+Returns any person whose name contains <code>john</code>, has a tag which contains <code>friend</code> and whose phone contains <code>123</code>.</p>
+</li>
+<li>
+<p><code>find a/Blk 100 Street</code><br>
+Returns any person whose address contains <code>Blk 100 Street</code> (case-insensitive). Does not return person whose address is <code>Street Blk 100</code>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only people matching all the keywords will be returned (i.e. <code>AND</code> search).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>e.g. <code>n/Hans n/Bo</code> will not return <code>Hans Gruber</code> or <code>Bo Yang</code> but will return <code>Hans Holbo</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The search is case insensitive. e.g <code>n/hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>n/Hans n/Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>You may search for different fields by adding a prefix. ([n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG])</p>
+</li>
+<li>
+<p>If the first field is a name, you do not need a prefix. (find NAME [MORE_PREFIX/KEYWORDS]&#8230;&#8203;)<br></p>
+</li>
+<li>
+<p>Words will be matched if the keyword is contained by the peron&#8217;s details e.g. <code>n/Han</code> will identify <code>Hans</code>, <code>n/Gabrielle</code> will not identify <code>Gabriel</code>.</p>
+</li>
+<li>
+<p>For Remark, only people whose remark sentence contains your query will be found. A full word match is required but it is case-insensitive.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For example <code>find r/swim</code> will identify John whose remark is <code>likes to swim</code> but not Hans whose remark is <code>likes swimming</code>.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></h3>
-<div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
 </div>
-<div class="sidebarblock">
+<div class="imageblock">
 <div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find n/John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find n/John t/friend p/123</code><br>
+Returns any person whose name contains <code>john</code>, has a tag which contains <code>friend</code> and whose phone contains <code>123</code>.</p>
+</li>
+<li>
+<p><code>find a/Blk 100 Street</code><br>
+Returns any person whose address contains <code>Blk 100 Street</code> (case-insensitive). Does not return person whose address is <code>Street Blk 100</code>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>find</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_find1.png" alt="UG find1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display (number) persons listed!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_find2.png" alt="UG find2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> You can click on any other of people listed in the list of contacts or do a <code>select</code> command.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> The details of the selected person will be displayed under the Contact Details.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_find3.png" alt="UG find3" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also click on tags to do a search for that tag. (ie. find t/CLICKED_TAG);<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Click on the tag you wish to search for.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_findtag1.png" alt="UG findtag1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display (number) persons listed!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_find2.png" alt="UG find2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> You can click on any other of people listed in the list of contacts or do a <code>select</code> command.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> The details of the selected person will be displayed under the Contact Details.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_find3.png" alt="UG find3" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.7. Deleting a person : <code>delete</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_delete.png" alt="UG commandheader delete" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Deleting a duplicate contact?
+Unify&#8217;s <code>delete</code> command removes a specified contact from the address book.<br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you accidentally deleted a contact, Unify&#8217;s <code>undo</code> command can help undo the deletion!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>delete INDEX</code><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Alias: <code>remove</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -294,10 +1019,10 @@ Format: <code>delete INDEX</code></p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
 </div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -313,15 +1038,95 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list1.png" alt="UG list1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons"</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list2.png" alt="UG list2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>delete</code> into the command box first, then follow the index of the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_delete1.png" alt="UG delete1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> The result box will display "Deleted person:" with the deleted details.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step6.png" alt="step6" width="70"></span> The deleted contact will be deleted from the contact list.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step7.png" alt="step7" width="70"></span> The details of last updated will be updated with your system time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_delete2.png" alt="UG delete2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></h3>
-<div class="paragraph">
-<p>Selects the person identified by the index number used in the last person listing.<br>
-Format: <code>select INDEX</code></p>
-</div>
-<div class="sidebarblock">
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.8. Selecting a person : <code>select</code></a></h3>
+<div class="imageblock">
 <div class="content">
+<img src="images/UG_commandheader_select.png" alt="UG commandheader select" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Two hands on your keyboard and don&#8217;t want to press the mouse?
+Unify&#8217;s <code>select</code> command provides and alternative to clicking on a contact list.
+It selects the person identified by the index number used in the last contact listing.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>select INDEX</code><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Alias: <code>choose</code>, <code>pick</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -335,10 +1140,10 @@ Format: <code>select INDEX</code></p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
 </div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -354,50 +1159,94 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list1.png" alt="UG list1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons"</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list2.png" alt="UG list2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>select</code> into the command box first, then follow the index of the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_select1.png" alt="UG select1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> The result box will display "Selected person:" with the index.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step6.png" alt="step6" width="70"></span> The selected person will be highlighted from the contact list.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step7.png" alt="step7" width="70"></span> The details of the selected person will be shown in the contact&#8217;s detail box.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_select2.png" alt="UG select2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.8. Listing entered commands : <code>history</code></a></h3>
-<div class="paragraph">
-<p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history</code></p>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_undo.png" alt="UG commandheader undo" width="500">
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.9. Undoing previous command : <code>undo</code></a></h3>
-<div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Accidentally cleared all your contacts? Edited the wrong contact detail? Fear not! Unify&#8217;s <code>undo</code> command restores the
+address book to the state before the previous <em>undoable</em> command was executed. This is your emergency command if you
+incorrectly modified Unify&#8217;s contact list.+</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>undo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Undoable commands modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -420,15 +1269,37 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.10. Redoing the previously undone command : <code>redo</code></a></h3>
-<div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code></p>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_redo.png" alt="UG commandheader redo" width="500">
+</div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Just like how <code>undo</code> undoes your most recent command, <code>redo</code> reverses the most recent <code>undo</code> command.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>redo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -452,47 +1323,654 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.11. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
+<p><br></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
 </div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.12. Exiting the program : <code>exit</code></a></h3>
-<div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.13. Saving the data</a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.11. Listing entered commands : <code>history</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_history.png" alt="UG commandheader history" width="500">
+</div>
+</div>
 <div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
+<p>If you are unsure what commands the <code>undo</code> command will undo, Unify&#8217;s <code>history</code> command will
+lists all the commands that you have entered in reverse chronological order.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>history</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>history</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_history1.png" alt="UG history1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Entered commands (from most recent to earliest):" with the history of the commands you have previously entered.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_history2.png" alt="UG history2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> If your result box will display "You have not yet entered any commands." Do not worry! It just means that you have not entered any commands yet! Try executing a command and repeat step 1 again.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_history3.png" alt="UG history3" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_clear.png" alt="UG commandheader clear" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to empty Unify from all contacts, Unify&#8217;s <code>clear</code> command clears all entries from the address book.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>clear</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>clear</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_clear1.png" alt="UG clear1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Address book has been cleared".<br></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The cleared contact will be deleted from the contact list.<br></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> The details of last updated will be updated with your system time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_clear2.png" alt="UG clear2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="playing-background-music-code-music-play-code"><a class="link" href="#playing-background-music-code-music-play-code">3.13. Playing background music : <code>music play</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_musicplay.png" alt="UG commandheader musicplay" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Want to listen to some of your favourite tunes? Unify&#8217;s got you covered! Unify&#8217;s <code>music play</code> command plays a music track
+from a specific genre from a list of built in mp3 music. If you had already paused a track, <code>music play</code> resumes playing that track.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>music play [GENRE]</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>The genre can only be pop, dance or classic. <code>music play</code> alone will play pop songs as default.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music play</code> into the command box, then follows by a <code>genre</code> and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_musicplay1.png" alt="UG musicplay1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Playing".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_musicplay2.png" alt="UG musicplay2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopping-background-music-code-music-stop-code"><a class="link" href="#stopping-background-music-code-music-stop-code">3.14. Stopping background music : <code>music stop</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_musicstop.png" alt="UG commandheader musicstop" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Maybe the music is getting distracting or you&#8217;re just not in the mood for some tunes.
+<code>music stop</code> stops the current music track playing so that you can focus on the task at hand.+</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>music stop</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>This is different from pausing, as it does not allow resuming.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_musicstop1.png" alt="UG musicstop1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Music Stopped".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_musicstop2.png" alt="UG musicstop2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pausing-background-music-code-music-pause-code"><a class="link" href="#pausing-background-music-code-music-pause-code">3.15. Pausing background music : <code>music pause</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_musicpause.png" alt="UG commandheader musicpause" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Going for a short break and don&#8217;t want to miss that catchy chorus?
+<code>music pause</code> pauses the current music track playing.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>music pause</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music pause</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_musicpause1.png" alt="UG musicpause1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Paused".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_musicpause2.png" alt="UG musicpause2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-contact-s-details-as-an-email-code-email-code"><a class="link" href="#exporting-contact-s-details-as-an-email-code-email-code">3.16. Exporting contact&#8217;s details as an email : <code>email</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_email.png" alt="UG commandheader email" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Want to share a contact to your colleagues via e-mail?
+Unify&#8217;s <code>email</code> command lets you email the selected contact&#8217;s details to your personal email!<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>email INDEX EMAIL_ADDRESS</code>+</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>email 2 <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a></code><br>
+Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with the 2nd person&#8217;s details in the address book.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list1.png" alt="UG list1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons"<br></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_list2.png" alt="UG list2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>email</code> into the command box first, then follow the index of the contact list and your recipient&#8217;s email address, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_email1.png" alt="UG email1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> The result box will display "Email Sent!".<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_email2.png" alt="UG email2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-editing-a-remark-code-remark-code"><a class="link" href="#adding-editing-a-remark-code-remark-code">3.17. Adding / Editing a remark : <code>remark</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_remarksadd.png" alt="UG commandheader remarksadd" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Have something to say about a particular contact? Or want to record their favourite food so that you can treat them on their
+birthday? Unify&#8217;s <code>remark</code> command lets you record anything you want about any person.</p>
+</div>
+<div class="paragraph">
+<p>Adds or edits the remark for a person specified in the INDEX.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>remark INDEX r/[REMARK]</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remark 1 r/Likes to drink coffee</code><br>
+Add / Edits the remark for the first person to Likes to drink coffee.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-remark-code-remark-code"><a class="link" href="#deleting-a-remark-code-remark-code">3.18. Deleting a remark : <code>remark</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_remarksdelete.png" alt="UG commandheader remarksdelete" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Edits the remark for a person specified in the INDEX.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>remark INDEX r/</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remark 1 r/</code><br>
+Removes the remark for the first person.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-aliases-code-alias-code"><a class="link" href="#adding-aliases-code-alias-code">3.19. Adding aliases : <code>alias</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_aliasadd.png" alt="UG commandheader aliasadd" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>If you find yourself forgetting your commands often, you can define aliases to make them mean the same thing!<br></p>
+</div>
+<div class="paragraph">
+<p>Unify&#8217;s `alias' command an alias to another command. If unspecified, lists all aliases.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>alias [ALIAS COMMAND]</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alias unfriend delete</code><br>
+<code>unfriend</code> (performs the <code>delete</code> command)<br></p>
+</li>
+<li>
+<p><code>alias</code><br>
+Lists all your previously defined aliases.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-aliases-code-unalias-code"><a class="link" href="#deleting-aliases-code-unalias-code">3.20. Deleting aliases : <code>unalias</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_aliasdelete.png" alt="UG commandheader aliasdelete" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Deletes a previously defined alias.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>unalias ALIAS</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alias unfriend delete</code><br>
+<code>unalias unfriend</code><br>
+<code>unfriend</code><br>
+The <code>unfriend</code> command fails as there is no longer such a command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.21. Exiting the program : <code>exit</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_commandheader_exit.png" alt="UG commandheader exit" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Exits the program.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>exit</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Alias: <code>quit</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>exit</code> into the command box, and press <kbd>Enter</kbd> to execute it.<br></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The application will be closed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_exit1.png" alt="UG exit1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.22. Saving the data</a></h3>
+<div class="paragraph">
+<p>Unify knows that your contacts are important and automatically saves them to your hard disk. There is no need to save manually.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">3. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_faq.png" alt="UG mainheader faq" width="900">
+</div>
+</div>
 <div class="paragraph">
-<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<p> </p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/question.png" alt="question" width="70"></span> How do I transfer my data to another Computer?<br>
+<span class="image"><img src="images/answer.png" alt="answer" width="70"></span> Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">4. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_commandsummary.png" alt="UG mainheader commandsummary" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
+</li>
+<li>
+<p><strong>Alias</strong> <code>alias [ALIAS COMMAND]</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -506,7 +1984,11 @@ e.g. <code>delete 3</code></p>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
+<p><strong>Email</strong> : <code>email INDEX EMAILADDRESS</code><br>
+e.g. <code>email 2 <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a></code></p>
+</li>
+<li>
+<p><strong>Find</strong> : <code>find PREFIX/KEYWORD [MORE_PREFIX/KEYWORDS]&#8230;&#8203;</code><br>
 e.g. <code>find James Jake</code></p>
 </li>
 <li>
@@ -523,10 +2005,17 @@ e.g.<code>select 2</code></p>
 <p><strong>History</strong> : <code>history</code></p>
 </li>
 <li>
-<p><strong>Undo</strong> : <code>undo</code></p>
+<p><strong>Music</strong> : <code>music [MUSIC COMMAND]</code><br>
+e.g. <code>music stop</code></p>
 </li>
 <li>
 <p><strong>Redo</strong> : <code>redo</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code></p>
+</li>
+<li>
+<p><strong>Unalias</strong> <code>unalias ALIAS</code></p>
 </li>
 </ul>
 </div>
@@ -535,7 +2024,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-21 15:57:58 +00:00
+Last updated 2017-11-07 19:12:34 +00:00
 </div>
 </div>
 </body>

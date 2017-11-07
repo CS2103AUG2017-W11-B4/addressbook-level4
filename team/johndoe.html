@@ -36,26 +36,36 @@
 </div>
 <div class="sect2">
 <h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
-<div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_undo.png" alt="UG commandheader undo" width="500">
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Accidentally cleared all your contacts? Edited the wrong contact detail? Fear not! Unify&#8217;s <code>undo</code> command restores the
+address book to the state before the previous <em>undoable</em> command was executed. This is your emergency command if you
+incorrectly modified Unify&#8217;s contact list.+</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>undo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Undoable commands modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -78,15 +88,37 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
-<div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_redo.png" alt="UG commandheader redo" width="500">
+</div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Just like how <code>undo</code> undoes your most recent command, <code>redo</code> reverses the most recent <code>undo</code> command.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>redo</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -360,7 +392,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-21 15:57:58 +00:00
+Last updated 2017-11-07 19:12:34 +00:00
 </div>
 </div>
 </body>

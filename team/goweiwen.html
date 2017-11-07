@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Goh Wei Wen - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Goh Wei Wen - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="span-class-image-img-src-images-engsheng_projectheader-png-alt-engsheng-projectheader-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_projectheader-png-alt-engsheng-projectheader-width-900-span"><span class="image"><img src="../images/engsheng_projectheader.png" alt="engsheng projectheader" width="900"></span></a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>UNIFY</code> is a Command Line Interface AddressBook that helps users manage your contacts efficiently. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/main/goweiwen.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/test/goweiwen.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_enhancementadded-png-alt-engsheng-header-enhancementadded-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_enhancementadded-png-alt-engsheng-header-enhancementadded-width-900-span"><span class="image"><img src="../images/engsheng_header_enhancementadded.png" alt="engsheng header enhancementadded" width="900"></span></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-alias"><a class="link" href="#enhancement-added-alias">Enhancement Added: Alias</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-aliases-code-alias-code"><a class="link" href="#adding-aliases-code-alias-code">Adding aliases : <code>alias</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_aliasadd.png" alt="UG commandheader aliasadd" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>If you find yourself forgetting your commands often, you can define aliases to make them mean the same thing!<br></p>
+</div>
+<div class="paragraph">
+<p>Unify&#8217;s `alias' command an alias to another command. If unspecified, lists all aliases.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>alias [ALIAS COMMAND]</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alias unfriend delete</code><br>
+<code>unfriend</code> (performs the <code>delete</code> command)<br></p>
+</li>
+<li>
+<p><code>alias</code><br>
+Lists all your previously defined aliases.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-aliases-code-unalias-code"><a class="link" href="#deleting-aliases-code-unalias-code">Deleting aliases : <code>unalias</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_aliasdelete.png" alt="UG commandheader aliasdelete" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Deletes a previously defined alias.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>unalias ALIAS</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alias unfriend delete</code><br>
+<code>unalias unfriend</code><br>
+<code>unfriend</code><br>
+The <code>unfriend</code> command fails as there is no longer such a command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Aliases help users execute commands they might forget. For example, if the user can&#8217;t remember how to
+add a new contact to the address book, they can type any of <code>add</code>, <code>create</code>, or <code>new</code>. In addition,
+we allow users to define their own aliases if the default ones are not memorable enough.</p>
+</div>
+<div class="paragraph">
+<p>We do not
+provide short-form aliases (e.g. <code>a</code> as an alias for <code>add</code>) by default as we feel having a powerful
+autocompletion feature completely eclipses any uses for cryptic short-form commands.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aliases"><a class="link" href="#aliases">Aliases</a></h3>
+<div class="paragraph">
+<p>Users can specify aliases that map to other commands, which helps them reduce the amount of typing required,
+and also the cognitive load of memorising exact commands.
+For example, <code>alias show list</code> will map <code>show</code> to the <code>list</code> command. When the user types <code>show</code> in the
+command box, the result will be the same as when he types <code>list</code>.</p>
+</div>
+<div class="paragraph">
+<p>To remove an alias, users can use the
+<code>unalias</code> command. For example, <code>unalias show</code> will remove the mapping for <code>show</code>.
+<code>unalias</code>,</p>
+</div>
+<div class="paragraph">
+<p>We implement this feature by adding a new <code>Aliases</code> class to the <code>UserPrefs</code> model. Since <code>UserPrefs</code> is saved
+to file, aliases will persist through application restarts.</p>
+</div>
+<div class="paragraph">
+<p><code>Aliases</code> contains a <code>HashMap&lt;String, String&gt;</code> which maps <code>alias &#8594; command</code>. This allows us to find the
+matching command in amortized O(1) time. By default, <code>Aliases</code> contains a map of short-forms for frequently
+used commands. For example, <code>a &#8594; add</code>, <code>d &#8594; delete</code>, <code>l &#8594; list</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p>We added a new parser, <code>parseCommandAndArguments</code> in <code>ParserUtil</code> that parses user input into a <code>commandWord</code> and <code>arguments</code>, which
+<code>AddressBookParser</code>, uses. To allow access to the <code>UserPrefs</code> instance in <code>ParserUtil</code>, we changed <code>UserPrefs</code>
+into a <a href="#singleton">Singleton</a>. <code>parseCommandAndArguments</code> refers to the <code>Aliases</code> instance inside <code>UserPrefs</code>
+and returns the mapped command.</p>
+</div>
+<div class="paragraph">
+<p>This sequence diagram shows how <code>parseCommandAndArguments</code> work:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AliasSequenceDiagram.png" alt="AliasSequenceDiagram" width="800">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Accessing <code>UserPrefs</code> from <code>ParserUtil</code> and other classes<br>
+<strong>Alternative 1 (current choice):</strong> Turn <code>UserPrefs</code> into a Singleton<br>
+<strong>Pros:</strong> Easy to implement. Minimise code change across code base.<br>
+<strong>Cons:</strong> Increases coupling. Difficult to stub in testing. Does not reset between tests.<br>
+<strong>Alternative 2:</strong> Pass the <code>UserPrefs</code> instance down to the parser<br>
+<strong>Pros:</strong> Less coupling. Follows Law of Demeter.<br>
+<strong>Cons:</strong> Heavy changes to code base to pass the instance downstream.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-alias-2"><a class="link" href="#enhancement-added-alias-2">Enhancement Added: Alias</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocompleting-commands-kbd-tab-kbd"><a class="link" href="#autocompleting-commands-kbd-tab-kbd">Autocompleting commands: <kbd>Tab</kbd></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_autocomplete.png" alt="UG commandheader autocomplete" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Slow typer? Fret not! Just press <kbd>Tab</kbd> and Unify will automatically finish your commands for you.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Autocomplete understands what you&#8217;re typing and can automatically complete parameters of some commands,
+too! Simply press <kbd>Tab</kbd> whenever you&#8217;re unsure what to type next.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type an incomplete command into the command box, and press <kbd>Tab</kbd> to autocomplete it.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> The automatically completed command will appear in the command box.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_enhancementproposed-png-alt-engsheng-header-enhancementproposed-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_enhancementproposed-png-alt-engsheng-header-enhancementproposed-width-900-span"><span class="image"><img src="../images/engsheng_header_enhancementproposed.png" alt="engsheng header enhancementproposed" width="900"></span></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<div class="paragraph">
+<p>{Explain similar to the Undo/Redo feature above.}</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><span class="image"><img src="../images/engsheng_header_contribution.png" alt="engsheng header contribution" width="900"></span></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+</li>
+<li>
+<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-07 19:12:34 +00:00
+</div>
+</div>
+</body>
+</html>

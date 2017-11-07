@@ -18,57 +18,66 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>W-11 B4</code>      Since: <code>Sep 2017</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a>
+<li><a href="#contributing-to-unify">1. Contributing to Unify</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites">1.1. Prerequisites</a></li>
-<li><a href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></li>
-<li><a href="#verifying-the-setup">1.3. Verifying the setup</a></li>
-<li><a href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></li>
+<li><a href="#who-we-are">1.1. Who we are</a></li>
+<li><a href="#how-to-contribute">1.2. How to contribute</a></li>
 </ul>
 </li>
-<li><a href="#design">2. Design</a>
+<li><a href="#setting-up">2. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#architecture">2.1. Architecture</a></li>
-<li><a href="#ui-component">2.2. UI component</a></li>
-<li><a href="#logic-component">2.3. Logic component</a></li>
-<li><a href="#model-component">2.4. Model component</a></li>
-<li><a href="#storage-component">2.5. Storage component</a></li>
-<li><a href="#common-classes">2.6. Common classes</a></li>
+<li><a href="#prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></li>
+<li><a href="#verifying-the-setup">2.3. Verifying the setup</a></li>
+<li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#configuration">3.3. Configuration</a></li>
+<li><a href="#architecture">3.1. Architecture</a></li>
+<li><a href="#ui-component">3.2. UI component</a></li>
+<li><a href="#logic-component">3.3. Logic component</a></li>
+<li><a href="#model-component">3.4. Model component</a></li>
+<li><a href="#storage-component">3.5. Storage component</a></li>
+<li><a href="#common-classes">3.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a>
+<li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">4.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">4.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></li>
+<li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
+<li><a href="#logging">4.2. Logging</a></li>
+<li><a href="#find-by-person-details">4.3. Find by Person Details</a></li>
+<li><a href="#playing-music">4.4. Playing Music</a></li>
+<li><a href="#aliases">4.5. Aliases</a></li>
+<li><a href="#configuration">4.6. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#testing">5. Testing</a>
+<li><a href="#documentation">5. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">5.1. Running Tests</a></li>
-<li><a href="#types-of-tests">5.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></li>
+<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></li>
 </ul>
 </li>
-<li><a href="#dev-ops">6. Dev Ops</a>
+<li><a href="#testing">6. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#build-automation">6.1. Build Automation</a></li>
-<li><a href="#continuous-integration">6.2. Continuous Integration</a></li>
-<li><a href="#making-a-release">6.3. Making a Release</a></li>
-<li><a href="#managing-dependencies">6.4. Managing Dependencies</a></li>
+<li><a href="#running-tests">6.1. Running Tests</a></li>
+<li><a href="#types-of-tests">6.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
+</ul>
+</li>
+<li><a href="#dev-ops">7. Dev Ops</a>
+<ul class="sectlevel2">
+<li><a href="#build-automation">7.1. Build Automation</a></li>
+<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
+<li><a href="#making-a-release">7.3. Making a Release</a></li>
+<li><a href="#managing-dependencies">7.4. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#suggested-programming-tasks-to-get-started">Appendix A: Suggested Programming Tasks to Get Started</a>
@@ -86,10 +95,62 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="contributing-to-unify"><a class="link" href="#contributing-to-unify">1. Contributing to Unify</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites"><a class="link" href="#prerequisites">1.1. Prerequisites</a></h3>
+<h3 id="who-we-are"><a class="link" href="#who-we-are">1.1. Who we are</a></h3>
+<div class="paragraph">
+<p>Unify is an open source Command Line Interface (CLI) AddressBook.
+We aim to offer a an efficient solution for contact management for computing students through the command line.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-contribute"><a class="link" href="#how-to-contribute">1.2. How to contribute</a></h3>
+<div class="paragraph">
+<p>Looking to contribute to Unify? You have come to the right place! This developer guide provides information for
+both experienced and first-time contributors.</p>
+</div>
+<div class="sect3">
+<h4 id="first-time-contributors"><a class="link" href="#first-time-contributors">1.2.1. First Time Contributors</a></h4>
+<div class="paragraph">
+<p>First time contributing to an open source project? Welcome to the community - we appreciate your enthusiasm!<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For starters, do read our Setting up guide to familiarize yourself with Unify</p>
+</li>
+<li>
+<p>If you are ready to contribute, make a pull request (pr) on our main repository.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>First time making a pr? There&#8217;s a great guide for beginners over <a href="https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github">here</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Lastly, if you have any questions, feel free to <a href="https://github.com/CS2103AUG2017-W11-B4/main/issues">make an issue</a> or <a href="ContactUs.html">contact us</a> directly.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="experienced-developers"><a class="link" href="#experienced-developers">1.2.2. Experienced Developers</a></h4>
+<div class="paragraph">
+<p>Thank you for taking the time to look at our project. While we have worked on this extensively, do let us know what can be improved!
+Your experience and contribution will be invaluable in improving Unify for our valued users.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -128,7 +189,7 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></h3>
+<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -170,7 +231,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">1.3. Verifying the setup</a></h3>
+<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -183,9 +244,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></h3>
+<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></h3>
 <div class="sect3">
-<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the coding style</a></h4>
+<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
 <p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
 </div>
@@ -217,13 +278,13 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
+<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
 <p>After forking the repo, links in the documentation will still point to the <code>se-edu/addressbook-level4</code> repo. If you plan to develop this as a separate product (i.e. instead of contributing to the <code>se-edu/addressbook-level4</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">2.4.3. Setting up CI</a></h4>
 <div class="paragraph">
 <p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
@@ -244,7 +305,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
 <p>When you are ready to start coding,</p>
 </div>
@@ -263,10 +324,10 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="architecture"><a class="link" href="#architecture">2.1. Architecture</a></h3>
+<h3 id="architecture"><a class="link" href="#architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/Architecture.png" alt="Architecture" width="600">
@@ -411,7 +472,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="ui-component"><a class="link" href="#ui-component">2.2. UI component</a></h3>
+<h3 id="ui-component"><a class="link" href="#ui-component">3.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
@@ -447,7 +508,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="logic-component"><a class="link" href="#logic-component">2.3. Logic component</a></h3>
+<h3 id="logic-component"><a class="link" href="#logic-component">3.3. Logic component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -497,7 +558,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="model-component"><a class="link" href="#model-component">2.4. Model component</a></h3>
+<h3 id="model-component"><a class="link" href="#model-component">3.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
@@ -530,7 +591,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-component"><a class="link" href="#storage-component">2.5. Storage component</a></h3>
+<h3 id="storage-component"><a class="link" href="#storage-component">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -557,7 +618,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="common-classes"><a class="link" href="#common-classes">2.6. Common classes</a></h3>
+<h3 id="common-classes"><a class="link" href="#common-classes">3.6. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -565,13 +626,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></h3>
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -723,7 +784,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.1. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
@@ -767,7 +828,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.2. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -805,7 +866,287 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
+<h3 id="find-by-person-details"><a class="link" href="#find-by-person-details">4.3. Find by Person Details</a></h3>
+<div class="paragraph">
+<p>Unify offers users the option to find people by their details. To implement the new command syntax,
+<code>FindCommandParser</code> makes use of the <code>ArgumentTokenizer#tokenize</code> to generate an <code>ArgumentMultimap</code>. The <code>ArgumentMultimap&#8217;s</code>
+<code>key</code> contains the detail&#8217;s prefix and <code>value</code> contains the keywords that succeed that prefix.</p>
+</div>
+<div class="paragraph">
+<p>For each detail, there are specific <code>Predicates</code> that are defined. They are <code>AddressContainsKeywordPredicate</code>, <code>EmailContainsKeywordPredicate</code>,
+<code>NameContainsKeywordPredicate</code>, <code>PhoneContainsKeywordPredicate</code> and <code>TagsContainKeywordPredicate</code>, <code>RemarkContainsKeywordPredicate</code>. The implementation is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DetailContainsKeywordPredicate</span> <span class="directive">implements</span> <span class="predefined-type">Predicate</span>&lt;ReadOnlyPerson&gt; {
+
+    ...
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="predefined-type">String</span> detail = person.getDetail(); <span class="comment">//getter for person's specific detail</span>
+
+        <span class="comment">//we convert detail to lowercase and check if it contains the lower case keyword</span>
+        <span class="keyword">return</span> detail.toLowerCase().contains(keyword.toLowerCase());
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For Tags, we test for all tags and check for at least one <code>String#contains</code> match. For Remark, we check using <code>StringUtil#containsWordIgnoreCase</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>However, just having a specific <code>Predicate</code> for each detail is insufficient as <code>ModelManager#updateFilteredPersonList()</code>
+only takes only a single <code>Predicate</code> as an argument.
+As such, to accept multiple details in one query, we need to encapsulate multiple <code>Predicates</code> into one <code>Predicate</code>.
+This is encapsulated by <code>PersonContainsFieldsPredicate</code> which takes in a list of <code>Predicates</code> as an argument.</p>
+</div>
+<div class="paragraph">
+<p>Internally, the <code>Predicates</code> are stored in a <code>HashSet</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">PersonContainsFieldsPredicate</span> <span class="directive">implements</span> <span class="predefined-type">Predicate</span>&lt;ReadOnlyPerson&gt; {
+
+    ...
+
+    public PersonContainsFieldsPredicate(<span class="predefined-type">List</span>&lt;<span class="predefined-type">Predicate</span>&gt; predicates) {
+        <span class="local-variable">this</span>.predicates = predicates.stream().collect(Collectors.toSet()); <span class="comment">//Collects in a HashSet</span>
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="keyword">for</span> (<span class="predefined-type">Predicate</span> searchQuery : predicates) {
+            <span class="keyword">if</span> (!searchQuery.test(person)) {
+                <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+            }
+        }
+        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <code>PersonContainsFieldsPredicate#test</code> we iterate through all <code>Predicates</code> and return <code>false</code> if any of their <code>#test</code> calls return false. Thus this <code>Predicate</code> will check for all matches before return <code>true</code> (ie an <strong>AND</strong> find).
+Consider a <code>PersonContainsFieldsPredicate p</code> with <code>NameContainsKeywordPredicate n</code>, <code>AddressContainsKeywordPredicate a</code> and a <code>ReadOnlyPerson rop</code>. <code>rop&#8217;s</code> <code>Name</code> contains keyword found in <code>n</code> but <code>Address</code> does not contain the keyword found in <code>a</code>.
+The following sequence diagram shows <code>p</code> being tested on <code>rop</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PersonContainsFieldsPredicate.png" alt="PersonContainsFieldsPredicate" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>We can pass this <code>PersonContainsFieldsPredicate</code> into <code>ModelManager#updateFilteredPersonList()</code> which updates <code>FilteredList</code> the with the new <code>Predicate</code> which updates
+the list to suit the parameters of the find query.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.3.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Storing of <code>Predicates</code> in <code>PersonContainsFieldsPredicate</code><br>
+<strong>Alternative 1 (current choice):</strong> Store in a <code>HashSet</code><br>
+<strong>Pros:</strong> We can filter out duplicate <code>Predicates</code>. <code>equals()</code> implementation is cleaner.<br>
+<strong>Cons:</strong> Must override <code>hashCode()</code> for new <code>Predicate</code>. Constructor must iterate through list to create <code>Set</code>.<br>
+<strong>Alternative 2:</strong> Store in a <code>List</code><br>
+<strong>Pros:</strong> Do not need to override <code>hashCode()</code> for new <code>Predicate</code>. Constructor only needs to assign constructor arguments.<br>
+<strong>Cons:</strong> <code>equals()</code> results in O(n<sup>2</sup>) execution. Also results in 2 nested <code>for</code> loops.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Encapsulation of multiple <code>Predicates</code><br>
+<strong>Alternative 1 (current choice):</strong> Create different <code>Predicates</code> and wrap them in one <code>Predicate</code><br>
+<strong>Pros:</strong> Modular code: we can easily implement an <strong>OR</strong> find by creating a new wrapper <code>Predicate</code> and reusing the existing <code>Predicates</code>. <code>PersonContainsFieldsPredicate</code>
+does not have to be aware of new <code>Predicates</code><br>
+<strong>Cons:</strong> Every new field in <code>ReadOnlyPerson</code> requires a new <code>Predicate</code><br>
+<strong>Alternative 2:</strong> Create one <code>Predicate</code> that implements test by switch statements<br>
+<strong>Pros:</strong> A new field can be added by adding an additional case to the switch statement<br>
+<strong>Cons:</strong> Implementing <strong>OR</strong> find will require the reuse of switch statements in a new <code>Predicate</code>. When creating a new <code>Predicate</code>, all the switch
+ statements must be updated.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="playing-music"><a class="link" href="#playing-music">4.4. Playing Music</a></h3>
+<div class="paragraph">
+<p>Unify has a built-in background music player.</p>
+</div>
+<div class="paragraph">
+<p>The <code>music</code> command is extended with an additional command behind it. For example, <code>music play</code>, has play as the extended command. The <code>play</code> command at the back means that the system will play a music track. While <code>music pause</code> will pause the current music track.</p>
+</div>
+<div class="paragraph">
+<p>All these different actions are executed in the same <code>MusicCommand</code> class. This makes the commands easier to remember for the user as well, as anything related to <code>music</code> will start with <code>music</code> as a command.</p>
+</div>
+<div class="paragraph">
+<p>As shown below, additional extended commands can be added by having an additional case in the switch statement, as the extended commands are handled in a switch statement.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute() {
+        <span class="type">boolean</span> genreExist = <span class="predefined-type">Arrays</span>.asList(genreList).contains(genre);
+        <span class="keyword">switch</span> (command) {
+        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">play</span><span class="delimiter">&quot;</span></span>:
+            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+                mediaPlayer.play();
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+            }
+            <span class="keyword">if</span> (genreExist) {
+                <span class="predefined-type">String</span> musicFile = <span class="string"><span class="delimiter">&quot;</span><span class="content">audio/music/</span><span class="delimiter">&quot;</span></span> + genre + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content">.mp3</span><span class="delimiter">&quot;</span></span>;
+                MESSAGE_SUCCESS = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Playing</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">if</span> (trackNumber &lt; <span class="integer">2</span>) {
+                    trackNumber++;
+                } <span class="keyword">else</span> {
+                    trackNumber = <span class="integer">1</span>;
+                }
+                <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                    mediaPlayer.stop();
+                }
+                <span class="predefined-type">Media</span> sound = <span class="keyword">new</span> <span class="predefined-type">Media</span>(<span class="keyword">new</span> <span class="predefined-type">File</span>(musicFile).toURI().toString());
+                mediaPlayer = <span class="keyword">new</span> MediaPlayer(sound);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.setVolume(<span class="float">2.0</span>);
+                mediaPlayer.play();
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+            } <span class="keyword">else</span> {
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+            }
+        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">stop</span><span class="delimiter">&quot;</span></span>:
+            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.stop();
+            }
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICSTOP);
+        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">pause</span><span class="delimiter">&quot;</span></span>:
+            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.pause();
+            }
+            MESSAGE_MUSICPAUSE = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Paused</span><span class="delimiter">&quot;</span></span>;
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICPAUSE);
+        <span class="keyword">default</span>:
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>trackNumber</code> has to be less than or equal to the number of each genre tracks you have in the <code>audio/music</code> folder. For example, if <code>trackNumber</code> is 2, it is required at least 2 mp3 files of each genre of music.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MusicList.jpg" alt="MusicList" width="200">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the music operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MusicSequenceDiagram.png" alt="MusicSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarize what happens inside the <code>MusicCommand</code> when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MusicActivityDiagram.png" alt="MusicActivityDiagram" width="400">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Which music file to play first<br>
+<strong>Alternative 1 (current choice):</strong> Play the music file that starts with 1 then increase from there<br>
+<strong>Pros:</strong> Easy to implement. Users are able to know what song is coming up next in the track list<br>
+<strong>Cons:</strong> Always start at the same music track first<br>
+<strong>Alternative 2:</strong> Play a random music file<br>
+<strong>Pros:</strong> Has a chance to be different the next time the user starts playing music.<br>
+<strong>Cons:</strong> User does not know which song is going to be played next.<br>
+=== Sending Email
+The sending email function is an external library and requires internet connection.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> What to use for subject header in email<br>
+<strong>Alternative 1 (current choice):</strong> Fixed subject header<br>
+<strong>Pros:</strong> Easy to implement. Prevent of abuse of subject header to send negative subject headers<br>
+<strong>Cons:</strong> Always the same subject headert<br>
+<strong>Alternative 2:</strong> Let user input the subject header<br>
+<strong>Pros:</strong> Different subject header can be used for different purpose.<br>
+<strong>Cons:</strong> Can be abused and send negative subject header<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aliases"><a class="link" href="#aliases">4.5. Aliases</a></h3>
+<div class="paragraph">
+<p>Users can specify aliases that map to other commands, which helps them reduce the amount of typing required,
+and also the cognitive load of memorising exact commands.
+For example, <code>alias show list</code> will map <code>show</code> to the <code>list</code> command. When the user types <code>show</code> in the
+command box, the result will be the same as when he types <code>list</code>.</p>
+</div>
+<div class="paragraph">
+<p>To remove an alias, users can use the
+<code>unalias</code> command. For example, <code>unalias show</code> will remove the mapping for <code>show</code>.
+<code>unalias</code>,</p>
+</div>
+<div class="paragraph">
+<p>We implement this feature by adding a new <code>Aliases</code> class to the <code>UserPrefs</code> model. Since <code>UserPrefs</code> is saved
+to file, aliases will persist through application restarts.</p>
+</div>
+<div class="paragraph">
+<p><code>Aliases</code> contains a <code>HashMap&lt;String, String&gt;</code> which maps <code>alias &#8594; command</code>. This allows us to find the
+matching command in amortized O(1) time. By default, <code>Aliases</code> contains a map of short-forms for frequently
+used commands. For example, <code>a &#8594; add</code>, <code>d &#8594; delete</code>, <code>l &#8594; list</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p>We added a new parser, <code>parseCommandAndArguments</code> in <code>ParserUtil</code> that parses user input into a <code>commandWord</code> and <code>arguments</code>, which
+<code>AddressBookParser</code>, uses. To allow access to the <code>UserPrefs</code> instance in <code>ParserUtil</code>, we changed <code>UserPrefs</code>
+into a <a href="#singleton">Singleton</a>. <code>parseCommandAndArguments</code> refers to the <code>Aliases</code> instance inside <code>UserPrefs</code>
+and returns the mapped command.</p>
+</div>
+<div class="paragraph">
+<p>This sequence diagram shows how <code>parseCommandAndArguments</code> work:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AliasSequenceDiagram.png" alt="AliasSequenceDiagram" width="800">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Accessing <code>UserPrefs</code> from <code>ParserUtil</code> and other classes<br>
+<strong>Alternative 1 (current choice):</strong> Turn <code>UserPrefs</code> into a Singleton<br>
+<strong>Pros:</strong> Easy to implement. Minimise code change across code base.<br>
+<strong>Cons:</strong> Increases coupling. Difficult to stub in testing. Does not reset between tests.<br>
+<strong>Alternative 2:</strong> Pass the <code>UserPrefs</code> instance down to the parser<br>
+<strong>Pros:</strong> Less coupling. Follows Law of Demeter.<br>
+<strong>Cons:</strong> Heavy changes to code base to pass the instance downstream.<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="link" href="#configuration">4.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -813,7 +1154,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -831,20 +1172,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">4.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">4.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -879,10 +1220,10 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">5.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -944,7 +1285,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">5.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -986,7 +1327,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -1004,22 +1345,22 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">6.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">6.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">6.3. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">7.3. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -1041,7 +1382,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.4. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.4. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
@@ -1708,39 +2049,189 @@ for <code>RemarkCommandParser</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see usage instructions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions when I forget how to use the App</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see my contacts while managing my address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remember what I need to do without flipping back and forth</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">backup the contacts into a xml file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transfer my contact details with another user or load the existing details to another computer of mine</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create new contacts in the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add new contacts</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type commands that do not follow the format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use them without memorizing the formats</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">merge duplicate contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use my addressbook without clutter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">group my contacts in more than one grouping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search my contacts easily by groups</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filter and search contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display important contacts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update existing contacts from the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update existing contacts if they have changed their contact number or details</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a short description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">recall details about them</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view all my contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">organise my contacts easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete contacts from the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove unwanted contacts</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be prompted about upcoming birthdays</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prepare a gift for my friends</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see an aesthetically pleasing application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use the app daily and not get bored of it so quickly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have ways to enter commands with shortcuts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update and traverse my address book quickly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sync my contacts from my phone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">skip adding users manually</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">star my favourite contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly access my most important contacts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily input the commands as the systems learn the behaviour and common commands that I had in the past</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto-complete my words</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use <a href="#natural-language">natural language</a> to perform actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use it without memorising the syntax of commands</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily input commands into the <a href="#command-line-interface">Command Line Interface (CLI)</a> with the system prompting me with options of each command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily input commands without having to refer to the user guide</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">store my contact&#8217;s birthday</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know when to prepare a gift</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change the colour of the user interface design and the font colour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make it feel more personal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a photo to my contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">visually identify my friends</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see mutual friends</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">understand my social network better</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use speech to input to the <a href="#command-line-interface">CLI</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use the app hands-free</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see people whom I&#8217;ve not talked to recently,</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reconnect with people whom I&#8217;ve not met in a while</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">access my friend&#8217;s social media from the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stay up to date with their lives</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">select different language settings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">navigate the user interface in my native language</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view emergency contacts immediately with a single command, and these contacts are hidden and can&#8217;t be deleted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily find the relevant emergency contacts such as the contact for ambulance or police easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see where my friends live on the map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">visualise who lives near me</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit the layout of the UI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">customise the layout to suit my needs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set a password to my address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prevent other users from accessing my address book</p></td>
 </tr>
 </tbody>
 </table>
@@ -1754,6 +2245,56 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<h3 id="use-case-add-person" class="discrete">Use case: Add person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to add person</p>
+</li>
+<li>
+<p>AddressBook adds the person with success message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The format of person information given is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. The Address Book already contains person with the same details.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
 <div class="paragraph">
@@ -1804,6 +2345,98 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-find-person" class="discrete">Use case: Find person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to find person by name</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons whose full name contains name provided</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-edit-person" class="discrete">Use case: Edit person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons</p>
+</li>
+<li>
+<p>User request to edit person&#8217;s information</p>
+</li>
+<li>
+<p>AddressBook updates person&#8217;s information with success message</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The format of new information given is not valid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>{More to be added}</p>
 </div>
@@ -1818,10 +2451,31 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>1.8.0_60</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Text to Speech and Speech to Text features should work on Windows 10.</p>
 </li>
 <li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+<p>Speech to Text should work with any microphone enabled computer.</p>
+</li>
+<li>
+<p>Program should have a clean design, that is still readable with low brightness.</p>
+</li>
+<li>
+<p>Should encompass most point of possible failures.</p>
+</li>
+<li>
+<p>System should be modular, able to add, remove or improve features anytime without disruption.</p>
+</li>
+<li>
+<p>Should be user friendly, such that a young child can use it without any supervision.</p>
+</li>
+<li>
+<p>Should be <a href="#portable-app">portable</a> and easily transferable.</p>
+</li>
+<li>
+<p>Should be able to hold up to 1000 persons without a noticeable <a href="#response-time">sluggishness</a> in performance for typical usage.</p>
+</li>
+<li>
+<p>A user with above <a href="#average-typing-speed">average typing speed</a> for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 </ol>
 </div>
@@ -1833,6 +2487,24 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect1">
 <h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
+<div id="average-typing-speed" class="paragraph">
+<p>Average Typing Speed</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>40 words per minute</pre>
+</div>
+</div>
+<div id="command-line-interface" class="paragraph">
+<p>Command Line Interface (CLI)
+<br>
+<a href="http://searchwindowsserver.techtarget.com/definition/command-line-interface-CLI">Full Definition</a></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A user interface to a computer's operating system or an application in which the user responds to a visual prompt by typing in a command on a specified line, receives a response back from the system, and then enters another command, and so forth.</pre>
+</div>
+</div>
 <div id="mainstream-os" class="paragraph">
 <p>Mainstream OS</p>
 </div>
@@ -1841,12 +2513,50 @@ for <code>RemarkCommandParser</code>.</p>
 <pre>Windows, Linux, Unix, OS-X</pre>
 </div>
 </div>
+<div id="natural-language" class="paragraph">
+<p>Natural Language
+<br>
+<a href="http://whatis.techtarget.com/definition/natural-language">Full Definition</a></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>In computing, natural language refers to a human language such as English, Russian, German, or Japanese as distinct from the typically artificial command or programming language with which one usually talks to a computer.</pre>
+</div>
+</div>
+<div id="portable-app" class="paragraph">
+<p>Portable Application</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A portable application (portable app) is a software product designed to be easily moved from one computing environment to another. They include portable versions of regular applications – such as browsers, for example – as well as specialized apps designed to enhance mobile computing.</pre>
+</div>
+</div>
 <div id="private-contact-detail" class="paragraph">
 <p>Private contact detail</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>A contact detail that is not meant to be shared with others</pre>
+</div>
+</div>
+<div id="response-time" class="paragraph">
+<p>Sluggishness
+<br>
+<a href="https://www.nngroup.com/articles/response-times-3-important-limits/">Response Times: The 3 Important Limits</a></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Respond time of greater than 1 second upon user input</pre>
+</div>
+</div>
+<div id="singleton" class="paragraph">
+<p>Singleton
+<br>
+<a href="https://en.wikipedia.org/wiki/Singleton_pattern">Wikipedia Article</a></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A class which has only one instance</pre>
 </div>
 </div>
 </div>
@@ -1891,7 +2601,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-21 15:57:58 +00:00
+Last updated 2017-11-07 19:12:34 +00:00
 </div>
 </div>
 </body>
