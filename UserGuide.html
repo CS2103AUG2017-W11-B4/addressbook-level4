@@ -38,7 +38,12 @@
 </ul>
 </li>
 <li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#features-format">3. Features Format</a></li>
+<li><a href="#features">3. Features Format</a>
+<ul class="sectlevel2">
+<li><a href="#command-format">3.1. Command Format</a></li>
+<li><a href="#tags">3.2. Tags</a></li>
+</ul>
+</li>
 <li><a href="#basic-features">4. Basic Features</a>
 <ul class="sectlevel2">
 <li><a href="#adding-a-person-code-add-code">4.1. Adding a person: <code>add</code></a></li>
@@ -57,7 +62,7 @@
 <li><a href="#autocompleting-commands-kbd-tab-kbd">5.1. Autocompleting commands: <kbd>Tab</kbd></a></li>
 <li><a href="#adding-aliases-code-alias-code">5.2. Adding aliases : <code>alias</code></a></li>
 <li><a href="#deleting-aliases-code-unalias-code">5.3. Deleting aliases : <code>unalias</code></a></li>
-<li><a href="#searching-for-people-by-details-code-find-code">5.4. Searching for people by details: <code>find</code></a></li>
+<li><a href="#find">5.4. Searching for people by details: <code>find</code></a></li>
 <li><a href="#sharing-contact-s-details-by-email-code-share-code">5.5. Sharing contact&#8217;s details by email : <code>share</code></a></li>
 <li><a href="#playing-music-code-music-play-code">5.6. Playing music : <code>music play</code></a></li>
 <li><a href="#stopping-music-code-music-stop-code">5.7. Stopping music : <code>music stop</code></a></li>
@@ -313,13 +318,17 @@ This app will not work with earlier versions of Java 8.
 </div>
 </div>
 <div class="sect1">
-<h2 id="features-format"><a class="link" href="#features-format">3. Features Format</a></h2>
+<h2 id="features"><a class="link" href="#features">3. Features Format</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Unify is jam-packed with features and it may be daunting for new users.
-This section of the user guide provides a step by step walk-through of all the commands Unify has to offer.
-Do read our short explanation about Command Format below so that the subsequent portions of this section will make sense to you.</p>
+The subsequent sections of the user guide provides a step by step walk-through of all the commands Unify has to offer.</p>
 </div>
+<div class="paragraph">
+<p>Do read our short explanation about Command Format and Tags below so that the subsequent portions of this section will make sense to you.</p>
+</div>
+<div class="sect2">
+<h3 id="command-format"><a class="link" href="#command-format">3.1. Command Format</a></h3>
 <div class="exampleblock">
 <div class="content">
 <div class="imageblock">
@@ -346,6 +355,35 @@ Do read our short explanation about Command Format below so that the subsequent 
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tags"><a class="link" href="#tags">3.2. Tags</a></h3>
+<div class="paragraph">
+<p>Tags are a way for you to label your contacts. Your contacts can contain multiple tags which help you identify them more easily.
+A person&#8217;s tag will be indicated on the List of Contacts as well as the Contact&#8217;s details.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_tag.png" alt="UG tag" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p>Tags should only contain letters and numbers, and cannot contain any spaces.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A common way to utilise tags is grouping your contacts with tags. For example, you can tag your family members with a <code>family</code> tag.
+Next time if you want to search for your family members, you can execute the <a href="#find"><code>find</code> command</a> to list your family members.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1291,7 +1329,7 @@ The <code>unfriend</code> command fails as there is no longer such a command.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="searching-for-people-by-details-code-find-code"><a class="link" href="#searching-for-people-by-details-code-find-code">5.4. Searching for people by details: <code>find</code></a></h3>
+<h3 id="find"><a class="link" href="#find">5.4. Searching for people by details: <code>find</code></a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_commandheader_find.png" alt="UG commandheader find" width="500">
@@ -1329,7 +1367,7 @@ Unify&#8217;s <code>find</code> command allows you to search for people based on
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br></p>
+<p>Format: <code>find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/REMARK]&#8230;&#8203;</code><br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2297,7 +2335,7 @@ technology that is able to read your friend&#8217;s name when you click on their
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Add</strong></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/REMARK i/AVATAR_FILE_PATH [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK] [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Loves Tea i/d:/pictures/betsy.png t/friend t/colleague</code></p></td>
 </tr>
 <tr>
@@ -2323,7 +2361,7 @@ technology that is able to read your friend&#8217;s name when you click on their
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Find</strong></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><code>find PREFIX/KEYWORD [MORE_PREFIX/KEYWORDS]&#8230;&#8203;</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>find James Jake</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>find James t/friend</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>List</strong></p></td>
@@ -2431,7 +2469,7 @@ technology that is able to read your friend&#8217;s name when you click on their
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 08:04:37 +00:00
+Last updated 2017-11-12 15:30:09 +00:00
 </div>
 </div>
 </body>
