@@ -49,8 +49,8 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Want to listen to some of your favourite tunes? Unify&#8217;s got you covered! Unify&#8217;s <code>music play</code> command plays a music track
-from a specific genre from a list of built in mp3 music. If you had already paused a track, <code>music play</code> resumes playing that track.<br></p>
+<p>Want to listen to some of your favourite tunes, but do not have any internet connection currently? Fear not! Unify has got you covered! Unify&#8217;s <code>music play [GENRE]</code> command plays a music track
+from a specific genre from a list of built-in mp3 music. You are able to select from three different genre, such as "pop", "dance" and "classic".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -65,8 +65,19 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 <img src="../images/header_note.png" alt="header note" width="400">
 </div>
 </div>
-<div class="paragraph">
-<p>The genre can only be pop, dance or classic. <code>music play</code> alone will play pop songs as default.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can only select either "pop", "dance" or "classic" as the <code>[GENRE]</code> of the music. <code>music play</code> command without any <code>[GENRE]</code> will play "pop" songs as default.</p>
+</li>
+<li>
+<p>Tired of the same music playing on a loop?  To skip to the next track, input the same command as previously for example, if you have input <code>music play pop</code>,
+input the same command <code>music play pop</code> again to go to the next pop song.</p>
+</li>
+<li>
+<p>Changing of the music <code>[GENRE]</code> or inputting the <code>radio play</code> command, will reset your music playlist back to track number 1.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -75,7 +86,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>music play</code> into the command box, then follows by a <code>genre</code> and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> To start off your day with some songs, type <code>music play</code> into the command box, then follows by a <code>[GENRE]</code> and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -83,12 +94,30 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Playing".<br></p>
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> If your <code>[GENRE]</code> is Pop, the result box will display "POP Music 1 Playing".</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/UG_musicplay2.png" alt="UG musicplay2" width="590">
 </div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can repeat <span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input to play other  music <code>[GENRE]</code> songs.</p>
+</li>
+<li>
+<p>For example, input <code>music play classic</code> at step 1 to play classical songs instead.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -107,7 +136,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p>Maybe the music is getting distracting or you&#8217;re just not in the mood for some tunes.
+<p>Maybe the music is getting a little distracting or you are just not in the mood for some tunes.
 <code>music stop</code> stops the current music track playing so that you can focus on the task at hand.+</p>
 </div>
 <div class="imageblock">
@@ -120,20 +149,12 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/header_note.png" alt="header note" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p>This is different from pausing, as it does not allow resuming.</p>
-</div>
-<div class="imageblock">
-<div class="content">
 <img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
 </div>
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> To stop the music from playing, type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -141,7 +162,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> The result box will display "Music Stopped".<br></p>
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> Now you have the silence that you need and the result box will display "Music Stopped".<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -153,49 +174,20 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/divider.png" alt="divider" width="900">
+<img src="../images/header_note.png" alt="header note" width="400">
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="pausing-music-code-music-pause-code"><a class="link" href="#pausing-music-code-music-pause-code">Pausing music : <code>music pause</code></a></h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UG_commandheader_musicpause.png" alt="UG commandheader musicpause" width="500">
-</div>
-</div>
-<div class="paragraph">
-<p>Going for a short break and don&#8217;t want to miss that catchy chorus?
-<code>music pause</code> pauses the current music track playing.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>If there is no music currently playing and you try to stop the music player, you may encounter "No music is currently playing" in the result box at your <span class="image"><img src="../images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just issue the <code>music stop</code>
+command only, when there is music currently playing.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UG_header_format.png" alt="UG header format" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p>Format: <code>music pause</code></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><br>
-<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>music pause</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UG_musicpause1.png" alt="UG musicpause1" width="590">
-</div>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Paused".<br></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UG_musicpause2.png" alt="UG musicpause2" width="590">
+<img src="../images/UG_musicstop2a.png" alt="UG musicstop2a" width="590">
 </div>
 </div>
 <div class="paragraph">
@@ -366,7 +358,7 @@ The <code>trackNumber</code> has to be less than or equal to the number of each 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 05:21:19 +00:00
+Last updated 2017-11-12 08:04:37 +00:00
 </div>
 </div>
 </body>

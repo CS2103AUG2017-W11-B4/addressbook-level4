@@ -61,16 +61,21 @@
 <li><a href="#sharing-contact-s-details-by-email-code-share-code">5.5. Sharing contact&#8217;s details by email : <code>share</code></a></li>
 <li><a href="#playing-music-code-music-play-code">5.6. Playing music : <code>music play</code></a></li>
 <li><a href="#stopping-music-code-music-stop-code">5.7. Stopping music : <code>music stop</code></a></li>
-<li><a href="#pausing-music-code-music-pause-code">5.8. Pausing music : <code>music pause</code></a></li>
-<li><a href="#playing-radio-code-radio-play-code">5.9. Playing radio : <code>radio play</code></a></li>
-<li><a href="#stopping-radio-code-radio-stop-code">5.10. Stopping radio : <code>radio stop</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">5.11. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">5.12. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#playing-radio-code-radio-play-code">5.8. Playing radio : <code>radio play</code></a></li>
+<li><a href="#stopping-radio-code-radio-stop-code">5.9. Stopping radio : <code>radio stop</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">5.10. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">5.11. Redoing the previously undone command : <code>redo</code></a></li>
 </ul>
 </li>
-<li><a href="#saving-the-data">6. Saving the data</a></li>
+<li><a href="#miscellaneous-features">6. Miscellaneous Features</a>
+<ul class="sectlevel2">
+<li><a href="#saving-the-data">6.1. Saving the Data</a></li>
+<li><a href="#audible-feedback">6.2. Audible Feedback</a></li>
+</ul>
+</li>
 <li><a href="#faq">7. FAQ</a></li>
 <li><a href="#command-summary">8. Command Summary</a></li>
+<li><a href="#glossary">9. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -374,7 +379,7 @@ Adding a new contact? Unify&#8217;s <code>add</code> command takes a person&#821
 </div>
 <div class="paragraph">
 <p><br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK] [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -681,7 +686,7 @@ Unify&#8217;s <code>edit</code> command lets you edit an existing contact&#8217;
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br></p>
+<p>Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]&#8230;&#8203;</code><br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -709,6 +714,9 @@ Alias: <code>change</code></p>
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
+<p>You can remove the person&#8217;s remarks by typing <code>r/</code> without specifying any remarks after it.</p>
+</li>
+<li>
 <p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
 </li>
 <li>
@@ -730,6 +738,14 @@ Edits the phone number and email address of the 1st person to be <code>91234567<
 <li>
 <p><code>edit 2 n/Betsy Crower t/</code><br>
 Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+<li>
+<p><code>edit 3 r/Loan me $50</code><br>
+Edits the remarks of the 3rd person to be `Loan me $50.</p>
+</li>
+<li>
+<p><code>edit 3 r/</code><br>
+Remove the remarks of the 3rd person.</p>
 </li>
 </ul>
 </div>
@@ -1513,8 +1529,8 @@ You can also click on tags to do a search for that tag. (ie. find t/CLICKED_TAG)
 </div>
 </div>
 <div class="paragraph">
-<p>Want to share a contact to your colleagues via e-mail?
-Unify&#8217;s <code>email</code> command lets you email the selected contact&#8217;s details to your personal email!<br></p>
+<p>Want to share a contact to your colleagues or friends via e-mail?
+Unify&#8217;s <code>share</code> command lets you email the selected contact&#8217;s details to your designated email!<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1522,7 +1538,34 @@ Unify&#8217;s <code>email</code> command lets you email the selected contact&#82
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>email INDEX EMAIL_ADDRESS</code>+</p>
+<p>Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>share INDEX s/EMAIL</code></p>
+</li>
+<li>
+<p><code>share INDEX s/INDEX</code></p>
+</li>
+<li>
+<p><code>share INDEX s/EMAIL INDEX</code> is same as <code>share INDEX s/INDEX EMAIL</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can share the selected contact&#8217;s details to as many email addresses as you wish.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For example, to share to three 3 email addresses,
+use the format <code>share INDEX s/INDEX INDEX INDEX</code> or <code>INDEX s/EMAIL INDEX EMAIL</code>.</p>
+</li>
+<li>
+<p>The <code>INDEX</code> after the "s/" can also be replaced with an <code>EMAIL</code> and it is interchangeable.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1533,10 +1576,56 @@ Unify&#8217;s <code>email</code> command lets you email the selected contact&#82
 <ul>
 <li>
 <p><code>list</code><br>
-<code>share 2 s/cs2103@gmail.com</code><br>
-Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with the 2nd person&#8217;s details in the address book.</p>
+<code>share 1 s/cs2103@gmail.com</code><br>
+Sends the 1st contact&#8217;s details in the address book as an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a>.</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>share 1 s/2</code><br>
+Sends the 1st contact&#8217;s details in the address book as an email to the 2nd contact&#8217;s email in the address book.</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>share 1 s/cs2103@gmail.com 2</code><br>
+Sends the 1st contact&#8217;s details in the address book as an email to both <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> and the 2nd contact&#8217;s email in the address book.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The format of the <code>share</code> between email and index</p>
+</li>
+<li>
+<p>If you are unable to find the email that has been sent out to your inbox, try searching for it under the "junk" folder.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure that you have input a valid email address to send to, otherwise the result box will display "Email address is no valid!"
+and the email will not be sent.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_sharewarning.png" alt="UG sharewarning" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1545,7 +1634,7 @@ Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with th
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> First, find your contacts that you wish to share details about. Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1553,10 +1642,10 @@ Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with th
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons"<br></p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons".</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will display every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1564,7 +1653,7 @@ Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with th
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>email</code> into the command box first, then follow the index of the contact list and your recipient&#8217;s email address, after which press <kbd>Enter</kbd> to execute it.</p>
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> To start sharing the contact through email, type <code>share</code> into the command box first, then follows by the index of the contact list and your recipient&#8217;s email address or their index in the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1572,11 +1661,34 @@ Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with th
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> The result box will display "Email Sent!".<br></p>
+<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> You are done! The contact details have been sent out as an email to your recipients. The result box will also display "Email Sent!".</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_share2.png" alt="UG share2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It requires internet connection to share a contact details by email.</p>
+</li>
+<li>
+<p>Otherwise, your  <span class="image"><img src="images/step5.png" alt="step5" width="70"></span> will have the result box displaying "Not Connected to the Internet".</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_share2a.png" alt="UG share2a" width="590">
 </div>
 </div>
 <div class="paragraph">
@@ -1596,8 +1708,8 @@ Sends an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> with th
 </div>
 </div>
 <div class="paragraph">
-<p>Want to listen to some of your favourite tunes? Unify&#8217;s got you covered! Unify&#8217;s <code>music play</code> command plays a music track
-from a specific genre from a list of built in mp3 music. If you had already paused a track, <code>music play</code> resumes playing that track.<br></p>
+<p>Want to listen to some of your favourite tunes, but do not have any internet connection currently? Fear not! Unify has got you covered! Unify&#8217;s <code>music play [GENRE]</code> command plays a music track
+from a specific genre from a list of built-in mp3 music. You are able to select from three different genre, such as "pop", "dance" and "classic".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1612,8 +1724,19 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 <img src="images/header_note.png" alt="header note" width="400">
 </div>
 </div>
-<div class="paragraph">
-<p>The genre can only be pop, dance or classic. <code>music play</code> alone will play pop songs as default.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can only select either "pop", "dance" or "classic" as the <code>[GENRE]</code> of the music. <code>music play</code> command without any <code>[GENRE]</code> will play "pop" songs as default.</p>
+</li>
+<li>
+<p>Tired of the same music playing on a loop?  To skip to the next track, input the same command as previously for example, if you have input <code>music play pop</code>,
+input the same command <code>music play pop</code> again to go to the next pop song.</p>
+</li>
+<li>
+<p>Changing of the music <code>[GENRE]</code> or inputting the <code>radio play</code> command, will reset your music playlist back to track number 1.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1622,7 +1745,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music play</code> into the command box, then follows by a <code>genre</code> and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To start off your day with some songs, type <code>music play</code> into the command box, then follows by a <code>[GENRE]</code> and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1630,12 +1753,30 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Playing".<br></p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your <code>[GENRE]</code> is Pop, the result box will display "POP Music 1 Playing".</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_musicplay2.png" alt="UG musicplay2" width="590">
 </div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can repeat <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input to play other  music <code>[GENRE]</code> songs.</p>
+</li>
+<li>
+<p>For example, input <code>music play classic</code> at step 1 to play classical songs instead.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -1654,7 +1795,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p>Maybe the music is getting distracting or you&#8217;re just not in the mood for some tunes.
+<p>Maybe the music is getting a little distracting or you are just not in the mood for some tunes.
 <code>music stop</code> stops the current music track playing so that you can focus on the task at hand.+</p>
 </div>
 <div class="imageblock">
@@ -1667,20 +1808,12 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/header_note.png" alt="header note" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p>This is different from pausing, as it does not allow resuming.</p>
-</div>
-<div class="imageblock">
-<div class="content">
 <img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
 </div>
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To stop the music from playing, type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1688,7 +1821,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Music Stopped".<br></p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> Now you have the silence that you need and the result box will display "Music Stopped".<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1700,49 +1833,20 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/divider.png" alt="divider" width="900">
+<img src="images/header_note.png" alt="header note" width="400">
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="pausing-music-code-music-pause-code"><a class="link" href="#pausing-music-code-music-pause-code">5.8. Pausing music : <code>music pause</code></a></h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/UG_commandheader_musicpause.png" alt="UG commandheader musicpause" width="500">
-</div>
-</div>
-<div class="paragraph">
-<p>Going for a short break and don&#8217;t want to miss that catchy chorus?
-<code>music pause</code> pauses the current music track playing.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>If there is no music currently playing and you try to stop the music player, you may encounter "No music is currently playing" in the result box at your <span class="image"><img src="images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just issue the <code>music stop</code>
+command only, when there is music currently playing.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UG_header_format.png" alt="UG header format" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p>Format: <code>music pause</code></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music pause</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UG_musicpause1.png" alt="UG musicpause1" width="590">
-</div>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Paused".<br></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UG_musicpause2.png" alt="UG musicpause2" width="590">
+<img src="images/UG_musicstop2a.png" alt="UG musicstop2a" width="590">
 </div>
 </div>
 <div class="paragraph">
@@ -1755,15 +1859,15 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="sect2">
-<h3 id="playing-radio-code-radio-play-code"><a class="link" href="#playing-radio-code-radio-play-code">5.9. Playing radio : <code>radio play</code></a></h3>
+<h3 id="playing-radio-code-radio-play-code"><a class="link" href="#playing-radio-code-radio-play-code">5.8. Playing radio : <code>radio play</code></a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_commandheader_radioplay.png" alt="UG commandheader radioplay" width="500">
 </div>
 </div>
 <div class="paragraph">
-<p>Want to listen to some of your favourite tunes? Unify&#8217;s got you covered! Unify&#8217;s <code>music play</code> command plays a music track
-from a specific genre from a list of built in mp3 music. If you had already paused a track, <code>music play</code> resumes playing that track.<br></p>
+<p>Want to hear the latest pop songs or the latest news? Tune in to Unify&#8217;s radio player using the <code>radio play [GENRE]</code> command. There are four different <code>[GENRE]</code> to choose from,
+as "pop", "chinese", "classic" and "news". However, do note that this radio player requires internet connection in order to work!</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1781,10 +1885,10 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 <div class="ulist">
 <ul>
 <li>
-<p>The genre can only be pop, classic, news <code>music play</code> alone will play pop songs as default.</p>
+<p>The genre can only be "pop", "chinese", "classic" or "news" <code>radio play</code> alone will play pop radio station as default.</p>
 </li>
 <li>
-<p>This requires internet connection!</p>
+<p>If your radio player suddenly stops playing, ensure that you are still connected to the internet, as it requires internet connection in order to work.</p>
 </li>
 </ul>
 </div>
@@ -1795,20 +1899,61 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music play</code> into the command box, then follows by a <code>genre</code> and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To play some radio broadcast, type <code>radio play</code> into the command box, then follows by a <code>[GENRE]</code> and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UG_musicplay1.png" alt="UG musicplay1" width="590">
+<img src="images/UG_radioplay1.png" alt="UG radioplay1" width="590">
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your genre is Pop, the result box will display "POP Music Playing".<br></p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> If your <code>[GENRE]</code> is "pop", the result box will display "POP Radio Playing".</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UG_musicplay2.png" alt="UG musicplay2" width="590">
+<img src="images/UG_radioplay2.png" alt="UG radioplay2" width="590">
 </div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unify&#8217;s radio player requires internet connection!</p>
+</li>
+<li>
+<p>Otherwise, your  <span class="image"><img src="images/step2.png" alt="step2" width="70"></span> will have the result box displaying "Not Connected to the Internet".</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_nointernet.png" alt="UG nointernet" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can repeat <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input to play other  radio <code>[GENRE]</code> stations.</p>
+</li>
+<li>
+<p>For example, input <code>radio play classic</code> at step 1 to listen to the classical radio station.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -1820,15 +1965,15 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="sect2">
-<h3 id="stopping-radio-code-radio-stop-code"><a class="link" href="#stopping-radio-code-radio-stop-code">5.10. Stopping radio : <code>radio stop</code></a></h3>
+<h3 id="stopping-radio-code-radio-stop-code"><a class="link" href="#stopping-radio-code-radio-stop-code">5.9. Stopping radio : <code>radio stop</code></a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_commandheader_radiostop.png" alt="UG commandheader radiostop" width="500">
 </div>
 </div>
 <div class="paragraph">
-<p>Maybe the music is getting distracting or you&#8217;re just not in the mood for some tunes.
-<code>music stop</code> stops the current music track playing so that you can focus on the task at hand.+</p>
+<p>Maybe the radio broadcast is getting a little distracting or you are just not in the mood for some tunes.
+<code>radio stop</code> stops the radio player from playing so that you can focus on the task at hand.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1836,15 +1981,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>music stop</code></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/header_note.png" alt="header note" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p>This requires internet connection!</p>
+<p>Format: <code>radio stop</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1853,19 +1990,41 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To stop the radio player from playing, type <code>radio stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UG_musicstop1.png" alt="UG musicstop1" width="590">
+<img src="images/UG_radiostop1.png" alt="UG radiostop1" width="590">
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Music Stopped".<br></p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> Now, the radio player will stop playing the broadcast and you have the silence that you need. The result box will also
+display "Radio Stopped".</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UG_musicstop2.png" alt="UG musicstop2" width="590">
+<img src="images/UG_radiostop2.png" alt="UG radiostop2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the radio player is currently not playing and you try to stop the radio player, you may encounter "No Radio is currently playing" in the result box at your <span class="image"><img src="images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just issue the <code>radio stop</code>
+command only, when the radio playing is currently playing.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_radiostop2a.png" alt="UG radiostop2a" width="590">
 </div>
 </div>
 <div class="paragraph">
@@ -1878,7 +2037,7 @@ from a specific genre from a list of built in mp3 music. If you had already paus
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">5.11. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">5.10. Undoing previous command : <code>undo</code></a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_commandheader_undo.png" alt="UG commandheader undo" width="500">
@@ -1966,7 +2125,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">5.12. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">5.11. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_commandheader_redo.png" alt="UG commandheader redo" width="500">
@@ -2047,10 +2206,52 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect1">
-<h2 id="saving-the-data"><a class="link" href="#saving-the-data">6. Saving the data</a></h2>
+<h2 id="miscellaneous-features"><a class="link" href="#miscellaneous-features">6. Miscellaneous Features</a></h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_miscfeatures.png" alt="UG mainheader miscfeatures" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect2">
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">6.1. Saving the Data</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_savingdata.png" alt="UG header savingdata" width="500">
+</div>
+</div>
 <div class="paragraph">
 <p>Unify knows that your contacts are important and automatically saves them to your hard disk. There is no need to save manually.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="audible-feedback"><a class="link" href="#audible-feedback">6.2. Audible Feedback</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_audiblefeedback.png" alt="UG header audiblefeedback" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Unify knows that speed is essential to you, hence audible feedback is an another key component in giving you that extra confirmation
+that your actions have been executed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unify plays an audible typing sound whenever you are typing.</p>
+</li>
+<li>
+<p>Unify also plays an audible confirmation feedback to your executed commands. Giving you the audible feedback that your command is executed successfully.</p>
+</li>
+<li>
+<p>Unify has an built-in text-to-speech
+technology that is able to read your friend&#8217;s name when you click on their details. Giving you that extra confirmation feedback you needed.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -2082,68 +2283,155 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="paragraph">
 <p> </p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
-</li>
-<li>
-<p><strong>Alias</strong> <code>alias [ALIAS COMMAND]</code></p>
-</li>
-<li>
-<p><strong>Clear</strong> : <code>clear</code></p>
-</li>
-<li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
-</li>
-<li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
-</li>
-<li>
-<p><strong>Email</strong> : <code>email INDEX EMAILADDRESS</code><br>
-e.g. <code>email 2 <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a></code></p>
-</li>
-<li>
-<p><strong>Find</strong> : <code>find PREFIX/KEYWORD [MORE_PREFIX/KEYWORDS]&#8230;&#8203;</code><br>
-e.g. <code>find James Jake</code></p>
-</li>
-<li>
-<p><strong>List</strong> : <code>list</code></p>
-</li>
-<li>
-<p><strong>Help</strong> : <code>help</code></p>
-</li>
-<li>
-<p><strong>Select</strong> : <code>select INDEX</code><br>
-e.g.<code>select 2</code></p>
-</li>
-<li>
-<p><strong>History</strong> : <code>history</code></p>
-</li>
-<li>
-<p><strong>Music</strong> : <code>music [MUSIC COMMAND]</code><br>
-e.g. <code>music stop</code></p>
-</li>
-<li>
-<p><strong>Redo</strong> : <code>redo</code></p>
-</li>
-<li>
-<p><strong>Undo</strong> : <code>undo</code></p>
-</li>
-<li>
-<p><strong>Unalias</strong> <code>unalias ALIAS</code></p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>COMMAND</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>FORMAT</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>EXAMPLE</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Add</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/REMARK i/AVATAR_FILE_PATH [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Loves Tea i/d:/pictures/betsy.png t/friend t/colleague</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Alias</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>alias [ALIAS COMMAND]</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>alias unfriend delete 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Clear</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>clear</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Delete</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>delete INDEX</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>delete 3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Edit</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>edit 2 n/James Lee r/Loves Cake</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Find</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>find PREFIX/KEYWORD [MORE_PREFIX/KEYWORDS]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>find James Jake</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>List</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>list</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Help</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>help</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Select</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>select INDEX</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>select 2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Share</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>share INDEX s/EMAIL</code><br>
+ or <code>share INDEX s/INDEX</code><br>
+ or <code>share INDEX s/EMAIL INDEX</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>share 1 s/cs2103@gmail.com 2</code><br>
+ or <code>share 1 s/2</code><br>
+ or <code>share 1 s/cs2103@gmail.com 2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>History</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>history</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>history</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" rowspan="2"><p class="tableblock"><strong>Music</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>music play [GENRE]</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>music play pop</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>music stop</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>music stop</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" rowspan="2"><p class="tableblock"><strong>Radio</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>radio play [GENRE]</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>radio play pop</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>radio stop</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>radio stop</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Redo</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>redo</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>redo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Undo</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>undo</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>undo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Unalias</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>unalias ALIAS</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>unalias unfriend</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">9. Glossary</a></h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_glossary.png" alt="UG mainheader glossary" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>TERMS</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>EXPLAINATION</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Avatar</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A picture representing a particular person.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Command Line Interface (CLI)</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Is a means of interacting with a computer program where the user (or client) issues commands to the program in the form of successive lines of text (command lines).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Text-To-Speech (TTS)</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A system that converts normal language text into speech; other systems render symbolic linguistic representations like phonetic transcriptions into speech. Or a speech synthesiser</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 05:21:19 +00:00
+Last updated 2017-11-12 08:04:37 +00:00
 </div>
 </div>
 </body>
