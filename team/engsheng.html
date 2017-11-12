@@ -15,30 +15,371 @@
 <h1><span class="image"><img src="../images/engsheng_header.png" alt="engsheng header" width="900"></span></h1>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="span-class-image-img-src-images-engsheng_projectheader-png-alt-engsheng-projectheader-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_projectheader-png-alt-engsheng-projectheader-width-900-span"><span class="image"><img src="../images/engsheng_projectheader.png" alt="engsheng projectheader" width="900"></span></a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>UNIFY</code> is a Command Line Interface AddressBook that helps users manage your contacts efficiently. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.</p>
+<p><code>Unify</code> is a Command Line Interface AddressBook that helps users manage your contacts efficiently. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.</p>
 </div>
 <div class="paragraph">
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/main/hanselblack.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/test/hanselblack.md">Test code</a>]</p>
 </div>
+<div class="paragraph">
+<p> </p>
+</div>
 <div class="sect2">
 <h3 id="span-class-image-img-src-images-engsheng_header_enhancementadded-png-alt-engsheng-header-enhancementadded-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_enhancementadded-png-alt-engsheng-header-enhancementadded-width-900-span"><span class="image"><img src="../images/engsheng_header_enhancementadded.png" alt="engsheng header enhancementadded" width="900"></span></a></h3>
 <div class="paragraph">
-<p>This section provides the list of enhancement that has been added to UNIFY address book.</p>
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/engsheng_header_share.png" alt="engsheng header share" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
 </div>
 <div class="sect3">
-<h4 id="span-class-image-img-src-images-engsheng_header_music-png-alt-engsheng-header-music-width-500-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_music-png-alt-engsheng-header-music-width-500-span"><span class="image"><img src="../images/engsheng_header_music.png" alt="engsheng header music" width="500"></span></a></h4>
+<h4 id="span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span"><span class="image"><img src="../images/engsheng_header_externalbehavior.png" alt="engsheng header externalbehavior" width="900"></span></a></h4>
 
 </div>
-<div class="sect3">
-<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
-<hr>
-<div class="paragraph">
-<p><mark>Start of Extract [from: User Guide]</mark></p>
 </div>
+<div class="sect2">
+<h3 id="sharing-contact-s-details-by-email-code-share-code"><a class="link" href="#sharing-contact-s-details-by-email-code-share-code">Sharing contact&#8217;s details by email : <code>share</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_share.png" alt="UG commandheader share" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Want to share a contact to your colleagues or friends via e-mail?
+Unify&#8217;s <code>share</code> command lets you email the selected contact&#8217;s details to your designated email!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>share INDEX s/EMAIL</code></p>
+</li>
+<li>
+<p><code>share INDEX s/INDEX</code></p>
+</li>
+<li>
+<p><code>share INDEX s/EMAIL INDEX</code> is same as <code>share INDEX s/INDEX EMAIL</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can share the selected contact&#8217;s details to as many email addresses as you wish.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For example, to share to three 3 email addresses,
+use the format <code>share INDEX s/INDEX INDEX INDEX</code> or <code>INDEX s/EMAIL INDEX EMAIL</code>.</p>
+</li>
+<li>
+<p>The <code>INDEX</code> after the "s/" can also be replaced with an <code>EMAIL</code> and it is interchangeable.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>share 1 s/cs2103@gmail.com</code><br>
+Sends the 1st contact&#8217;s details in the address book as an email to <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a>.</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>share 1 s/2</code><br>
+Sends the 1st contact&#8217;s details in the address book as an email to the 2nd contact&#8217;s email in the address book.</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>share 1 s/cs2103@gmail.com 2</code><br>
+Sends the 1st contact&#8217;s details in the address book as an email to both <a href="mailto:cs2103@gmail.com">cs2103@gmail.com</a> and the 2nd contact&#8217;s email in the address book.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The format of the <code>share</code> between email and index</p>
+</li>
+<li>
+<p>If you are unable to find the email that has been sent out to your inbox, try searching for it under the "junk" folder.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure that you have input a valid email address to send to, otherwise the result box will display "Email address is no valid!"
+and the email will not be sent.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_sharewarning.png" alt="UG sharewarning" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> First, find your contacts that you wish to share details about. Type <code>list</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_list1.png" alt="UG list1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons".</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step3.png" alt="step3" width="70"></span> The contact list will display every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_list2.png" alt="UG list2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step4.png" alt="step4" width="70"></span> To start sharing the contact through email, type <code>share</code> into the command box first, then follows by the index of the contact list and your recipient&#8217;s email address or their index in the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_share1.png" alt="UG share1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step5.png" alt="step5" width="70"></span> You are done! The contact details have been sent out as an email to your recipients. The result box will also display "Email Sent!".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_share2.png" alt="UG share2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It requires internet connection to share a contact details by email.</p>
+</li>
+<li>
+<p>Otherwise, your  <span class="image"><img src="../images/step5.png" alt="step5" width="70"></span> will have the result box displaying "Not Connected to the Internet".</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_share2a.png" alt="UG share2a" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/engsheng_header_justification.png" alt="engsheng header justification" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>It is important to give users a way to share their contacts in their address book with another person. Hence, the <code>share</code> command helps user to easily share one of their contact in their address book to another person through email.</p>
+</div>
+<div class="paragraph">
+<p>This is extremely useful when a friend of yours has changed his/her phone number or address, and since you have the latest details about him/her, you can easily share his/her contact to your mutual friends easily.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/engsheng_header_implementation.png" alt="engsheng header implementation" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="share-contacts-by-email-mechanism"><a class="link" href="#share-contacts-by-email-mechanism">Share Contacts by Email Mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>share</code> command takes in the parameter that consists an <code>INDEX</code>, of which is the selected contact&#8217;s details to be shared with.
+Followed by s/<code>INDEX</code> <code>EMAIL</code>, which are the parameters for the recipient email address. This format allows the parameters <code>INDEX</code> <code>EMAIL</code> found are interchangeable.</p>
+</div>
+<div class="paragraph">
+<p>By using the <code>isNumeric(string)</code> method, which returns us a boolean. If it return true, it means that input is an <code>INDEX</code>, otherwise it is an string.
+Next we want to check if those string values are indeed valid email addresses, use the isValidEmailAddress(string) to check whether is it a valid email address.
+This method requires the use of <code>javax.mail</code> api ,as it creates a new <code>InternetAddress</code> object and calls `validate()' method to check if the email address is valid or not.</p>
+</div>
+<div class="paragraph">
+<p>Once, we know the email address are valid. We have to create a new thread to send these emails. Because, if we were to send more than 2 emails,
+the main thread for the UI will be non-responsive.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to change to a different host email address, just simply modify <code>sendEmail.java</code> class as shown below, and change the variable values, such as senderEmail, password, and the host.</p>
+</li>
+<li>
+<p>If your sender&#8217;s email is from <code>Gmail</code>, your host have to be <code>smtp.gmail.com</code></p>
+</li>
+<li>
+<p>If your sender&#8217;s email is from <code>Outlook</code>, your host have to be <code>smtp-mail.outlook.com</code></p>
+</li>
+<li>
+<p>If your sender&#8217;s email is from <code>Hotmail</code>, your host have to be <code>smtp.live.com</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span> senderEmail = <span class="string"><span class="delimiter">&quot;</span><span class="content">unifycs2103@gmail.com</span><span class="delimiter">&quot;</span></span>;
+<span class="predefined-type">String</span> password = <span class="string"><span class="delimiter">&quot;</span><span class="content">CS2103CS2103</span><span class="delimiter">&quot;</span></span>;
+<span class="comment">// For Gmail host</span>
+<span class="predefined-type">String</span> host = <span class="string"><span class="delimiter">&quot;</span><span class="content">smtp.gmail.com</span><span class="delimiter">&quot;</span></span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the share operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DG_seq_share.png" alt="DG seq share" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens inside the <code>ShareCommand</code> when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DG_activitydiagram_share.png" alt="DG activitydiagram share" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies"><a class="link" href="#prerequisites-dependencies">Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The sharing of contacts by email function requires an external library. You have to add <code>compile 'javax.mail:mail:1.4.7'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile <span class="string"><span class="delimiter">'</span><span class="content">javax.mail:mail:1.4.7</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In order for the sharing of contacts feature to work, it requires Internet connection first, as it&#8217;s main function requires to sends an email to the recipients.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> What to use for subject header in email<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Fixed subject header<br>
+<strong>Pros:</strong> Easy to implement. Prevent of abuse of subject header to send negative subject headers<br>
+<strong>Cons:</strong> Always the same subject header<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> Let user input the subject header<br>
+<strong>Pros:</strong> Different subject header can be used for different purpose.<br>
+<strong>Cons:</strong> Can be abused and send negative subject header, leading to a bad reputation for Unify, as the recipients thinks that these offensive subject header is from Unify.</p>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_music-png-alt-engsheng-header-music-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_music-png-alt-engsheng-header-music-width-900-span"><span class="image"><img src="../images/engsheng_header_music.png" alt="engsheng header music" width="900"></span></a></h3>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-2"><a class="link" href="#span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-2"><span class="image"><img src="../images/engsheng_header_externalbehavior.png" alt="engsheng header externalbehavior" width="900"></span></a></h4>
+
 </div>
 </div>
 <div class="sect2">
@@ -137,7 +478,7 @@ input the same command <code>music play pop</code> again to go to the next pop s
 </div>
 <div class="paragraph">
 <p>Maybe the music is getting a little distracting or you are just not in the mood for some tunes.
-<code>music stop</code> stops the current music track playing so that you can focus on the task at hand.+</p>
+<code>music stop</code> stops the current music track playing so that you can focus on the task at hand.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -162,7 +503,7 @@ input the same command <code>music play pop</code> again to go to the next pop s
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> Now you have the silence that you need and the result box will display "Music Stopped".<br></p>
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> Now you have the silence that you need and the result box will display "Music Stopped".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -199,153 +540,992 @@ command only, when there is music currently playing.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><mark>End of Extract</mark></p>
-</div>
-<hr>
-<div class="sect3">
-<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
-<div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
-</div>
+<p> </p>
 </div>
 <div class="sect3">
-<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
-<hr>
+<h4 id="span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span"><span class="image"><img src="../images/engsheng_header_justification.png" alt="engsheng header justification" width="900"></span></a></h4>
 <div class="paragraph">
-<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+<p>Most of us enjoys listening to music while we do our work. Hence, by having a built-in music player, users can enjoy some tunes while they adding, or editing or any other related task in Unify address book.</p>
 </div>
+<div class="paragraph">
+<p>You may ask, "Why can&#8217;t I use other streaming services such as Spotify?" Well, the reason is that this does not require internet connection, and since it is already built-in, it encourages users to use it immediately
+without any second thought. Users would prefer this method as it removes the hassle of requiring multiple clicks to find a music to play. Instead it only requires a single <code>music play</code> command to play some music.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_implementation-png-alt-engsheng-header-implementation-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_implementation-png-alt-engsheng-header-implementation-width-900-span"><span class="image"><img src="../images/engsheng_header_implementation.png" alt="engsheng header implementation" width="900"></span></a></h4>
+
 </div>
 </div>
 <div class="sect2">
-<h3 id="playing-music"><a class="link" href="#playing-music">Playing Music</a></h3>
+<h3 id="music-player-mechanism"><a class="link" href="#music-player-mechanism">Music Player Mechanism</a></h3>
 <div class="paragraph">
-<p>Unify has a built-in background music player.</p>
+<p>The <code>music</code> command is extended with an additional command behind it. For example, <code>music play</code>, has <code>play</code> as the extended command. The <code>play</code> command at the back means that the system will play a music track. While <code>music stop</code> command
+will stop the current music track.</p>
 </div>
 <div class="paragraph">
-<p>The <code>music</code> command is extended with an additional command behind it. For example, <code>music play</code>, has play as the extended command. The <code>play</code> command at the back means that the system will play a music track. While <code>music pause</code> will pause the current music track.</p>
+<p>Both the <code>music play</code> and the <code>music stop</code> commands are executed in the same <code>MusicCommand</code> class. This also makes the commands easier to remember for the user as well, as anything related to <code>music</code> will start with <code>music</code> as a command.</p>
 </div>
 <div class="paragraph">
-<p>All these different actions are executed in the same <code>MusicCommand</code> class. This makes the commands easier to remember for the user as well, as anything related to <code>music</code> will start with <code>music</code> as a command.</p>
-</div>
-<div class="paragraph">
-<p>As shown below, additional extended commands can be added by having an additional case in the switch statement, as the extended commands are handled in a switch statement.</p>
+<p>As shown below, additional extended commands can be added by having an additional case in the switch statement, as the extended commands are handled in a switch statement.
+In addition, the <code>MusicCommand</code> class will create a new <code>music thread</code>, this is to prevent the User Interface from being non-responsive in the current thread. Currently, all music played will be in a loop until it is stopped by the user, through the <code>music stop</code> command.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute() {
-        <span class="type">boolean</span> genreExist = <span class="predefined-type">Arrays</span>.asList(genreList).contains(genre);
+    <span class="type">boolean</span> genreExist = <span class="predefined-type">Arrays</span>.asList(GENRE_LIST).contains(genre);
         <span class="keyword">switch</span> (command) {
         <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">play</span><span class="delimiter">&quot;</span></span>:
-            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
-                mediaPlayer.play();
-                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+            <span class="keyword">if</span> (RadioCommand.isRadioPlaying()) {
+                RadioCommand.stopRadioPlayer();
             }
+            stopMusicPlayer();
             <span class="keyword">if</span> (genreExist) {
-                <span class="predefined-type">String</span> musicFile = <span class="string"><span class="delimiter">&quot;</span><span class="content">audio/music/</span><span class="delimiter">&quot;</span></span> + genre + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content">.mp3</span><span class="delimiter">&quot;</span></span>;
-                MESSAGE_SUCCESS = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Playing</span><span class="delimiter">&quot;</span></span>;
-                <span class="keyword">if</span> (trackNumber &lt; <span class="integer">2</span>) {
-                    trackNumber++;
-                } <span class="keyword">else</span> {
+                <span class="comment">//check if current genre same previous playing music genre</span>
+                <span class="comment">//if different reset track number</span>
+                <span class="keyword">if</span> (!genre.equals(previousGenre)) {
                     trackNumber = <span class="integer">1</span>;
                 }
-                <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                    mediaPlayer.stop();
+                messageSuccess = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music </span><span class="delimiter">&quot;</span></span> + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Playing</span><span class="delimiter">&quot;</span></span>;
+                music = <span class="keyword">new</span> Music(<span class="string"><span class="delimiter">&quot;</span><span class="content">audio/music/</span><span class="delimiter">&quot;</span></span>
+                        + genre + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content">.mp3</span><span class="delimiter">&quot;</span></span>);
+                music.start();
+
+                <span class="keyword">if</span> (trackNumber &lt; maxTrackNumber) {
+                    trackNumber++;
+                } <span class="keyword">else</span> {
+                    <span class="comment">//reset track number back to 1</span>
+                    trackNumber = <span class="integer">1</span>;
                 }
-                <span class="predefined-type">Media</span> sound = <span class="keyword">new</span> <span class="predefined-type">Media</span>(<span class="keyword">new</span> <span class="predefined-type">File</span>(musicFile).toURI().toString());
-                mediaPlayer = <span class="keyword">new</span> MediaPlayer(sound);
-                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-                mediaPlayer.setVolume(<span class="float">2.0</span>);
-                mediaPlayer.play();
-                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+                <span class="comment">//Text to Speech</span>
+                <span class="keyword">new</span> TextToSpeech(messageSuccess).speak();
+                <span class="comment">//set current playing genre as previousGenre</span>
+                previousGenre = genre;
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(messageSuccess);
             } <span class="keyword">else</span> {
-                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, MusicCommand.MESSAGE_USAGE));
             }
+        <span class="comment">//Stop the music that is currently playing</span>
         <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">stop</span><span class="delimiter">&quot;</span></span>:
-            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.stop();
+            <span class="keyword">if</span> (!isMusicPlaying()) {
+                <span class="comment">//Text to Speech</span>
+                <span class="keyword">new</span> TextToSpeech(MESSAGE_NO_MUSIC_PLAYING).speak();
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_NO_MUSIC_PLAYING);
             }
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICSTOP);
-        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">pause</span><span class="delimiter">&quot;</span></span>:
-            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.pause();
-            }
-            MESSAGE_MUSICPAUSE = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Paused</span><span class="delimiter">&quot;</span></span>;
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICPAUSE);
+            stopMusicPlayer();
+            <span class="comment">//Text to Speech</span>
+            <span class="keyword">new</span> TextToSpeech(MESSAGE_STOP).speak();
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_STOP);
+
         <span class="keyword">default</span>:
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, MusicCommand.MESSAGE_USAGE));
         }
-    }</code></pre>
+    }
+}</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>trackNumber</code> has to be less than or equal to the number of each genre tracks you have in the <code>audio/music</code> folder. For example, if <code>trackNumber</code> is 2, it is required at least 2 mp3 files of each genre of music.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p> </p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/MusicList.jpg" alt="MusicList" width="200">
+<img src="../images/header_note.png" alt="header note" width="400">
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to include more music tracks, you also have to change the variable <code>maxTrackNumber = 2</code> to the desired number. For example, if you wish to have 3 music tracks for each genre, you have to change it to <code>maxTrackNumber = 3</code> and ensure that each genre have at least 3 music tracks in the <code>resources/audio/music</code> folder.</p>
+</li>
+<li>
+<p>You are also able to add a new genre of music, however make sure that it too has the equal number of music tracks as the other genres. In addition, you have to update the <code>GENRE_LIST</code> array to include the new genre that you have just added.</p>
+</li>
+<li>
+<p>Adding more music tracks will result in a large .jar file size.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the music operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/MusicSequenceDiagram.png" alt="MusicSequenceDiagram" width="800">
+<img src="../images/DG_seq_music.png" alt="DG seq music" width="900">
 </div>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarize what happens inside the <code>MusicCommand</code> when a user executes a new command:</p>
+<p>The following activity diagram summarises what happens inside the <code>MusicCommand</code> when a user executes a new command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/MusicActivityDiagram.png" alt="MusicActivityDiagram" width="400">
+<img src="../images/DG_activitydiagram_music.png" alt="DG activitydiagram music" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies-2"><a class="link" href="#prerequisites-dependencies-2">Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The music player function requires an external library. You have to add <code>compile group: 'com.googlecode.soundlibs', name: 'jlayer', version: '1.0.1-1'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">com.googlecode.soundlibs</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">jlayer</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.0.1-1</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>trackNumber</code> has to be less than or equal to the number of each genre tracks you have in the <code>resources/audio/music</code> folder. For example, if <code>trackNumber</code> is 2, it is required to have at least 2 mp3 files of each genre of music.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MusicList.jpg" alt="MusicList" width="200">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>resources/audio/music</code> folder cannot be empty.</p>
+</li>
+<li>
+<p>You can only add music tracks that are encoded in .mp3 format.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Which music file to play first<br>
-<strong>Alternative 1 (current choice):</strong> Play the music file that starts with 1 then increase from there<br>
-<strong>Pros:</strong> Easy to implement. Users are able to know what song is coming up next in the track list<br>
-<strong>Cons:</strong> Always start at the same music track first<br>
-<strong>Alternative 2:</strong> Play a random music file<br>
-<strong>Pros:</strong> Has a chance to be different the next time the user starts playing music.<br>
-<strong>Cons:</strong> User does not know which song is going to be played next.<br></p>
+<p><strong>Aspect:</strong> Naming of music tracks<br></p>
 </div>
 <div class="paragraph">
-<p><mark>End of Extract</mark></p>
+<p><strong>Alternative 1 (current choice):</strong> Name begins with the genre followed by track number<br>
+<strong>Pros:</strong> Easy to maintain, as it allows addition of music tracks by adding more mp3 files and a change of only one or two variables in the code.<br>
+<strong>Cons:</strong> Require to have the same exact number of music tracks for each genre<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> Any file name <br>
+<strong>Pros:</strong> Able to hold music track title name, which can be use to display to the user in the result box<br>
+<strong>Cons:</strong> Requires an array to keep track of the music tracks for each genre. More code manipulation required when adding more music tracks<br></p>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Which music file to play first<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Play the music file that starts with 1 then increase from there<br>
+<strong>Pros:</strong> Easy to implement. Users are able to know what song is coming up next in the track list<br>
+<strong>Cons:</strong> Always start at the same music track first<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> Play a random music file<br>
+<strong>Pros:</strong> Has a chance to be different the next time the user starts playing music.<br>
+<strong>Cons:</strong> User does not know which song is going to be played next.</p>
 </div>
 <hr>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="span-class-image-img-src-images-engsheng_header_enhancementproposed-png-alt-engsheng-header-enhancementproposed-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_enhancementproposed-png-alt-engsheng-header-enhancementproposed-width-900-span"><span class="image"><img src="../images/engsheng_header_enhancementproposed.png" alt="engsheng header enhancementproposed" width="900"></span></a></h3>
+<h3 id="span-class-image-img-src-images-engsheng_header_radio-png-alt-engsheng-header-radio-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_radio-png-alt-engsheng-header-radio-width-900-span"><span class="image"><img src="../images/engsheng_header_radio.png" alt="engsheng header radio" width="900"></span></a></h3>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-3"><a class="link" href="#span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-3"><span class="image"><img src="../images/engsheng_header_externalbehavior.png" alt="engsheng header externalbehavior" width="900"></span></a></h4>
 
 </div>
+</div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="playing-radio-code-radio-play-code"><a class="link" href="#playing-radio-code-radio-play-code">Playing radio : <code>radio play</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_radioplay.png" alt="UG commandheader radioplay" width="500">
+</div>
+</div>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p>Want to hear the latest pop songs or the latest news? Tune in to Unify&#8217;s radio player using the <code>radio play [GENRE]</code> command. There are four different <code>[GENRE]</code> to choose from,
+as "pop", "chinese", "classic" and "news". However, do note that this radio player requires internet connection in order to work!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>radio play [GENRE]</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The genre can only be "pop", "chinese", "classic" or "news" <code>radio play</code> alone will play pop radio station as default.</p>
+</li>
+<li>
+<p>If your radio player suddenly stops playing, ensure that you are still connected to the internet, as it requires internet connection in order to work.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> To play some radio broadcast, type <code>radio play</code> into the command box, then follows by a <code>[GENRE]</code> and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_radioplay1.png" alt="UG radioplay1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> If your <code>[GENRE]</code> is "pop", the result box will display "POP Radio Playing".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_radioplay2.png" alt="UG radioplay2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unify&#8217;s radio player requires internet connection!</p>
+</li>
+<li>
+<p>Otherwise, your  <span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> will have the result box displaying "Not Connected to the Internet".</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_nointernet.png" alt="UG nointernet" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can repeat <span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input to play other  radio <code>[GENRE]</code> stations.</p>
+</li>
+<li>
+<p>For example, input <code>radio play classic</code> at step 1 to listen to the classical radio station.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><span class="image"><img src="../images/engsheng_header_contribution.png" alt="engsheng header contribution" width="900"></span></a></h3>
+<h3 id="stopping-radio-code-radio-stop-code"><a class="link" href="#stopping-radio-code-radio-stop-code">Stopping radio : <code>radio stop</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_radiostop.png" alt="UG commandheader radiostop" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Maybe the radio broadcast is getting a little distracting or you are just not in the mood for some tunes.
+<code>radio stop</code> stops the radio player from playing so that you can focus on the task at hand.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>radio stop</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> To stop the radio player from playing, type <code>radio stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_radiostop1.png" alt="UG radiostop1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> Now, the radio player will stop playing the broadcast and you have the silence that you need. The result box will also
+display "Radio Stopped".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_radiostop2.png" alt="UG radiostop2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the radio player is currently not playing and you try to stop the radio player, you may encounter "No Radio is currently playing" in the result box at your <span class="image"><img src="../images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just issue the <code>radio stop</code>
+command only, when the radio playing is currently playing.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_radiostop2a.png" alt="UG radiostop2a" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span-2"><a class="link" href="#span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span-2"><span class="image"><img src="../images/engsheng_header_justification.png" alt="engsheng header justification" width="900"></span></a></h4>
+<div class="paragraph">
+<p>Some users prefers to hear more than a couple of songs that Unify&#8217;s music player could offer, hence radio streaming is a good alternative for users who has internet connection.</p>
+</div>
+<div class="paragraph">
+<p>In addition, this radio player has a radio channel for "news", which gives users some information about current news, weather or even sales promotion.
+This allows users to share good sales promotion that were broadcasted over the radio channel with their friends as they can immediately contact their friends through using Unify. Users can also hear weather forecast from the radio broadcast and plan their activities carefully to avoid the stormy weather.</p>
+</div>
+<div class="paragraph">
+<p>Since the radio palyer is already built-in, it encourages users to use it immediately without any second thought. Users would prefer this method as it removes the hassle of requiring multiple clicks to find a radio station broadcast to play. Instead it only requires a single <code>radio play</code> command to play some radio broadcast over the internet.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_implementation-png-alt-engsheng-header-implementation-width-900-span-2"><a class="link" href="#span-class-image-img-src-images-engsheng_header_implementation-png-alt-engsheng-header-implementation-width-900-span-2"><span class="image"><img src="../images/engsheng_header_implementation.png" alt="engsheng header implementation" width="900"></span></a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="radio-player-mechanism"><a class="link" href="#radio-player-mechanism">Radio Player Mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>radio</code> command is extended with an additional command behind it. For example, <code>radio play</code>, has <code>play</code> as the extended command. The <code>play</code> command at the back means that the system will play a radio broadcast channel. While <code>radio stop</code> command
+will stop the current radio player.</p>
+</div>
+<div class="paragraph">
+<p>Both the <code>radio play</code> and the <code>radio stop</code> commands are executed in the same <code>RadioCommand</code> class. This also makes the commands easier to remember for the user as well, as anything related to <code>radio</code> will start with <code>radio</code> as a command.
+In addition, the <code>RadioCommand</code> class will create a new <code>radio thread</code>, this is to prevent the User Interface from being non-responsive in the current thread. The radio thread will stream endlessly as the broadcast stream is 24h/7 unless it is shutdown.
+Hence, the radio thread will only be closed when the user execute the <code>radio stop</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to include more radio broadcast station, just simply modify <code>radio.java</code> class as shown below, and add new case into the switch statement, with a valid url that streams in .mp3 codec.</p>
+</li>
+<li>
+<p>Do note that only .mp3 stream urls can be used.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> run() {
+        <span class="predefined-type">BufferedInputStream</span> in = <span class="predefined-constant">null</span>;
+        <span class="keyword">try</span> {
+            <span class="keyword">switch</span> (genre) {
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">chinese</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://198.105.214.140:2000/Live?icy=http</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">classic</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://media-sov.musicradio.com/ClassicFMMP3</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">news</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://streams.kqed.org/kqedradio?</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">pop</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            }
+
+            in = <span class="keyword">new</span> <span class="predefined-type">BufferedInputStream</span>(<span class="keyword">new</span> <span class="predefined-type">URL</span>(radioStreamUrl).openStream());
+            player = <span class="keyword">new</span> Player(in);
+            player.play();
+            in.close();
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+            logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Invalid IO for BufferedInputStream: </span><span class="delimiter">&quot;</span></span> + radioStreamUrl);
+        } <span class="keyword">catch</span> (JavaLayerException e) {
+            logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">JavaLayerExeception: Invalid File Type for Radio Player</span><span class="delimiter">&quot;</span></span>);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the radio operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DG_seq_radio.png" alt="DG seq radio" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens inside the <code>RadioCommand</code> when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DG_activitydiagram_radio.png" alt="DG activitydiagram radio" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies-3"><a class="link" href="#prerequisites-dependencies-3">Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The radio streaming function requires an external library. You have to add <code>compile group: 'com.googlecode.soundlibs', name: 'jlayer', version: '1.0.1-1'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">com.googlecode.soundlibs</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">jlayer</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.0.1-1</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>This library is required as it can convert input stream into .mp3 codec immediately.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In order for the radio player to work, it requires Internet connection, as it streams the radio broadcast through the Internet.</p>
+</li>
+<li>
+<p>Remember to check the status of the stream urls. As it is possible but highly unlikely that one of those radio broadcast has shutdown.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_audiblefeedback-png-alt-engsheng-header-audiblefeedback-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_audiblefeedback-png-alt-engsheng-header-audiblefeedback-width-900-span"><span class="image"><img src="../images/engsheng_header_audiblefeedback.png" alt="engsheng header audiblefeedback" width="900"></span></a></h3>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-4"><a class="link" href="#span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-4"><span class="image"><img src="../images/engsheng_header_externalbehavior.png" alt="engsheng header externalbehavior" width="900"></span></a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="audible-feedback"><a class="link" href="#audible-feedback">Audible Feedback</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_audiblefeedback.png" alt="UG header audiblefeedback" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Unify knows that speed is essential to you, hence audible feedback is an another key component in giving you that extra confirmation
+that your actions have been executed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unify plays an audible typing sound whenever you are typing.</p>
+</li>
+<li>
+<p>Unify also plays an audible confirmation feedback to your executed commands. Giving you the audible feedback that your command is executed successfully.</p>
+</li>
+<li>
+<p>Unify has an built-in text-to-speech
+technology that is able to read your friend&#8217;s name when you click on their details. Giving you that extra confirmation feedback you needed.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span-3"><a class="link" href="#span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span-3"><span class="image"><img src="../images/engsheng_header_justification.png" alt="engsheng header justification" width="900"></span></a></h4>
+<div class="paragraph">
+<p>It is very important to give user some form of feedback other than visual feedback. Minor audio cues can make a tremendous difference in user-experience. In Unify,</p>
+</div>
+<div class="paragraph">
+<p>I want the users to feel that they are in control, hence I have added the typing sound that gives user the sense of every input they make is being input successfully, every characters every key press is essential.</p>
+</div>
+<div class="paragraph">
+<p>The next audio cue I have added is the Text-To-Speech feature, specifically, this feature allows Unify to "speak" to the user. Giving a more human-like feedback to the user.
+When a command is executed successfully Unify will announced that it is executed successfully. In addition, when the user selects a contact&#8217;s name, Unify will say out name of the selected contact&#8217;s name.</p>
+</div>
+<div class="paragraph">
+<p>This Text-To-Speech feature was part of the initiative together with the (not yet implemented) Speech-To-Text feature to bring in users who has vision disabilities into using Unify as well. Potentially increasing our user base.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_implementation-png-alt-engsheng-header-implementation-width-900-span-3"><a class="link" href="#span-class-image-img-src-images-engsheng_header_implementation-png-alt-engsheng-header-implementation-width-900-span-3"><span class="image"><img src="../images/engsheng_header_implementation.png" alt="engsheng header implementation" width="900"></span></a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="audible-feedback-mechanism"><a class="link" href="#audible-feedback-mechanism">Audible Feedback Mechanism</a></h3>
+<div class="paragraph">
+<p>Audio feedback are created by using 2 different audio cues. First is the typing sound, that is created by playing a .mp3 sound file using the <code>Audio.java</code> class. You may use this class to play a sound file without looping. You just have to create a new <code>Audio</code>
+object with an <code>audioFileName</code> of which is your .mp3 resource file.</p>
+</div>
+<div class="paragraph">
+<p>The second audio cue comes from the Text-To-Speech feature, which plays an human-like speech back to the user when they have successful execute a command.
+This be easily added for any new commands by creating a new <code>TextToSpeech</code> object with the string <code>word</code> that you want it speak. Next call the <code>TextToSpeech.speak()</code> method to run the Text-To-Speech feature.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>new TextToSpeech("hello").speak();</code> will cause the system to say "hello" when it is executed.</p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies-4"><a class="link" href="#prerequisites-dependencies-4">Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The audio play back function requires an external library. You have to add <code>compile group: 'com.googlecode.soundlibs', name: 'jlayer', version: '1.0.1-1'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">com.googlecode.soundlibs</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">jlayer</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.0.1-1</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>The Text-To-Speech feature requires an external library. You have to add <code>compile 'javax.mail:mail:1.4.7'</code> to your dependencies<br>
+and <code>url "https://oss.sonatype.org/content/repositories/snapshots"</code> to your maven repositories in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">repositories {
+    maven {
+        url <span class="string"><span class="delimiter">&quot;</span><span class="content">https://oss.sonatype.org/content/repositories/snapshots</span><span class="delimiter">&quot;</span></span>
+    }
+}
+dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">org.jvoicexml</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">cmu_us_kal</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.2.3-SNAPSHOT</span><span class="delimiter">'</span></span>
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">org.jvoicexml</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">cmu_time_awb</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.2.3-SNAPSHOT</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> When to use Text-To-Speech audio feedback<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Successful and unsuccessful command execution excluding invalid commands<br>
+<strong>Pros:</strong> Giving audible feedback when users needed it the most, such as confirmation of successful command execution<br>
+<strong>Cons:</strong> Invalid commands have no audio feedback<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> All commands, including invalid commands have audio feedback<br>
+<strong>Pros:</strong> Users able to have audible feedback for every action they take<br>
+<strong>Cons:</strong> Users may find it annoying as every action they take, the system will play an audio cue.<br></p>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="span-class-image-img-src-images-engsheng_header_remarks-png-alt-engsheng-header-remarks-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_remarks-png-alt-engsheng-header-remarks-width-900-span"><span class="image"><img src="../images/engsheng_header_remarks.png" alt="engsheng header remarks" width="900"></span></a></h3>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-5"><a class="link" href="#span-class-image-img-src-images-engsheng_header_externalbehavior-png-alt-engsheng-header-externalbehavior-width-900-span-5"><span class="image"><img src="../images/engsheng_header_externalbehavior.png" alt="engsheng header externalbehavior" width="900"></span></a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">Adding a person: <code>add</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_add.png" alt="UG commandheader add" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Adding a new contact? Unify&#8217;s <code>add</code> command takes a person&#8217;s information and records it in Unify as a contact!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK] [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Still unsure of what fields are required? Not to worry! Unify&#8217;s in-line hints will prompt you on the fields required.
+Simply press <kbd>Tab</kbd> to auto-complete to the next required prefix!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Alias: <code>new</code>, <code>create</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0)
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Loves Tea</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 i/d:/pictures/betsy.png t/criminal</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> Type <code>add</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_add1.png" alt="UG add1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> The result box will display "New person added:" with the contact details.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with the newly added contact at the bottom of the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_add2.png" alt="UG add2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When choosing the right image for your contact, make sure that the image is in .jpg or .png format.</p>
+</li>
+<li>
+<p>For a contact&#8217;s avatar file path, you may specify the full path of the image (ie: d:/pictures/betsy.png)</p>
+</li>
+<li>
+<p>For Windows users, if you are unsure how to get the path of the image click <a href="http://www.howto-connect.com/copy-path-of-a-file-or-folder-in-windows-10/">here</a></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">Editing a person : <code>edit</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_commandheader_edit.png" alt="UG commandheader edit" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>Need to update your girlfriend&#8217;s phone number? Or misspelt your tutor&#8217;s e-mail address?
+Unify&#8217;s <code>edit</code> command lets you edit an existing contact&#8217;s details in the address book.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_format.png" alt="UG header format" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]&#8230;&#8203;</code><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_alias.png" alt="UG header alias" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+Alias: <code>change</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>You can remove the person&#8217;s remarks by typing <code>r/</code> without specifying any remarks after it.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_examples.png" alt="UG header examples" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower t/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+<li>
+<p><code>edit 3 r/Loan me $50</code><br>
+Edits the remarks of the 3rd person to be `Loan me $50.</p>
+</li>
+<li>
+<p><code>edit 3 r/</code><br>
+Remove the remarks of the 3rd person.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_header_stepbystep.png" alt="UG header stepbystep" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><br>
+<span class="image"><img src="../images/step1.png" alt="step1" width="70"></span> You can easily edit a person&#8217;s details by typing <code>edit</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_edit1.png" alt="UG edit1" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step2.png" alt="step2" width="70"></span> Well done! You have successfully edit the person&#8217;s details if you see the result box displayed "Edited person:" with the edited details.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/step3.png" alt="step3" width="70"></span> The details of last updated will be also updated with your system time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_edit2.png" alt="UG edit2" width="590">
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/divider.png" alt="divider" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span-4"><a class="link" href="#span-class-image-img-src-images-engsheng_header_justification-png-alt-engsheng-header-justification-width-900-span-4"><span class="image"><img src="../images/engsheng_header_justification.png" alt="engsheng header justification" width="900"></span></a></h4>
+<div class="paragraph">
+<p>Instead of separating remarks into another command. I have decided to implement it together with <code>add</code> and <code>edit</code> command instead. This streamline the process of adding and editing a remark. Even though, this involves editing existing code base, I believe the outcome is much better than having remarks as a separate command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/engsheng_header_enhancementproposed.png" alt="engsheng header enhancementproposed" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="span-class-image-img-src-images-engsheng_header_proposed_stt-png-alt-engsheng-header-proposed-stt-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_proposed_stt-png-alt-engsheng-header-proposed-stt-width-900-span"><span class="image"><img src="../images/engsheng_header_proposed_stt.png" alt="engsheng header proposed stt" width="900"></span></a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sometimes, users want another form of input. By having Speech-To-Text features implemented into Unify, we are able to give users a another form of input.</p>
+</div>
+<div class="paragraph">
+<p>This feature could be also extremely beneficial to users that suffers from slow typing or prefer to multitask
+and use their speech to execute commands instead. This feature may be also tied together with the existing Text-To-Speech feature to help users who may suffer from some form of disabilities, to give them a hands-free yet full user experience of Unify without any drawbacks.</p>
+</div>
+<div class="paragraph">
+<p>I have tried experimenting with some Speech-To-Text codes, but I do not enough time for it to be implemented in the final product of V1.5 of Unify.</p>
+</div>
+<div class="paragraph">
+<p>The codes can be here [<a href="https://github.com/CS2103AUG2017-W11-B4/main/blob/master/collated/unused/hanselblack.md">Unused code</a>] while the resource files can be found here [<a href="https://github.com/CS2103AUG2017-W11-B4/main/tree/master/unused/resources/edu/cmu/sphinx/models/en-us">Resources</a>]</p>
+</div>
+<div class="paragraph">
+<p>Note that the codes above are using [<a href="https://cmusphinx.github.io/">CMUSphinx Open Source Speech Recognition </a>]</p>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><a class="link" href="#span-class-image-img-src-images-engsheng_header_contribution-png-alt-engsheng-header-contribution-width-900-span"><span class="image"><img src="../images/engsheng_header_contribution.png" alt="engsheng header contribution" width="900"></span></a></h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p>Created template for User Guide step by step design (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/74/commits/d3724bd9bd95a51cf9821906166835419259f050">#74</a>)</p>
 </li>
 <li>
-<p>Enhanced and overhauled the design the User Guide to make it user-friendly and appealing, made every images used in User Guide, except for respective developer screenshot (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/62">#62</a>)</p>
+<p>Enhanced and overhauled the design the User Guide to make it user-friendly and appealing, made every images used in User Guide, except for other developers' screenshots (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/62">#62</a>)</p>
 </li>
 <li>
 <p>Made teaser trailer, to showcase application at README (Pull requests <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/78">#78</a>)</p>
@@ -355,10 +1535,9 @@ The <code>trackNumber</code> has to be less than or equal to the number of each 
 </div>
 </div>
 </div>
-</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 20:37:08 +00:00
+Last updated 2017-11-12 20:59:41 +00:00
 </div>
 </div>
 </body>

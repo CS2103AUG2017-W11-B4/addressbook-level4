@@ -12,7 +12,7 @@
 </head>
 <body class="article">
 <div id="header">
-<h1><span class="image"><img src="images/UG_userguideheader.png" alt="UG userguideheader" width="900"></span></h1>
+<h1><span class="image"><img src="images/DG_developerguideheader.png" alt="DG developerguideheader" width="900"></span></h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -53,9 +53,12 @@
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
 <li><a href="#logging">4.2. Logging</a></li>
 <li><a href="#find-by-person-details">4.3. Find by Person Details</a></li>
-<li><a href="#playing-music">4.4. Playing Music</a></li>
-<li><a href="#aliases">4.5. Aliases</a></li>
-<li><a href="#configuration">4.6. Configuration</a></li>
+<li><a href="#music-player-mechanism">4.4. Music Player Mechanism</a></li>
+<li><a href="#radio-player-mechanism">4.5. Radio Player Mechanism</a></li>
+<li><a href="#share-contacts-by-email-mechanism">4.6. Share Contacts by Email Mechanism</a></li>
+<li><a href="#audible-feedback-mechanism">4.7. Audible Feedback Mechanism</a></li>
+<li><a href="#aliases">4.8. Aliases</a></li>
+<li><a href="#configuration">4.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -80,17 +83,10 @@
 <li><a href="#managing-dependencies">7.4. Managing Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#suggested-programming-tasks-to-get-started">Appendix A: Suggested Programming Tasks to Get Started</a>
-<ul class="sectlevel2">
-<li><a href="#improving-each-component">A.1. Improving each component</a></li>
-<li><a href="#creating-a-new-command-code-remark-code">A.2. Creating a new command: <code>remark</code></a></li>
-</ul>
-</li>
-<li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
+<li><a href="#user-stories">Appendix A: User Stories</a></li>
+<li><a href="#use-cases">Appendix B: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix D: Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -976,128 +972,487 @@ does not have to be aware of new <code>Predicates</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="playing-music"><a class="link" href="#playing-music">4.4. Playing Music</a></h3>
+<h3 id="music-player-mechanism"><a class="link" href="#music-player-mechanism">4.4. Music Player Mechanism</a></h3>
 <div class="paragraph">
-<p>Unify has a built-in background music player.</p>
+<p>The <code>music</code> command is extended with an additional command behind it. For example, <code>music play</code>, has <code>play</code> as the extended command. The <code>play</code> command at the back means that the system will play a music track. While <code>music stop</code> command
+will stop the current music track.</p>
 </div>
 <div class="paragraph">
-<p>The <code>music</code> command is extended with an additional command behind it. For example, <code>music play</code>, has play as the extended command. The <code>play</code> command at the back means that the system will play a music track. While <code>music pause</code> will pause the current music track.</p>
+<p>Both the <code>music play</code> and the <code>music stop</code> commands are executed in the same <code>MusicCommand</code> class. This also makes the commands easier to remember for the user as well, as anything related to <code>music</code> will start with <code>music</code> as a command.</p>
 </div>
 <div class="paragraph">
-<p>All these different actions are executed in the same <code>MusicCommand</code> class. This makes the commands easier to remember for the user as well, as anything related to <code>music</code> will start with <code>music</code> as a command.</p>
-</div>
-<div class="paragraph">
-<p>As shown below, additional extended commands can be added by having an additional case in the switch statement, as the extended commands are handled in a switch statement.</p>
+<p>As shown below, additional extended commands can be added by having an additional case in the switch statement, as the extended commands are handled in a switch statement.
+In addition, the <code>MusicCommand</code> class will create a new <code>music thread</code>, this is to prevent the User Interface from being non-responsive in the current thread. Currently, all music played will be in a loop until it is stopped by the user, through the <code>music stop</code> command.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute() {
-        <span class="type">boolean</span> genreExist = <span class="predefined-type">Arrays</span>.asList(genreList).contains(genre);
+    <span class="type">boolean</span> genreExist = <span class="predefined-type">Arrays</span>.asList(GENRE_LIST).contains(genre);
         <span class="keyword">switch</span> (command) {
         <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">play</span><span class="delimiter">&quot;</span></span>:
-            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
-                mediaPlayer.play();
-                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+            <span class="keyword">if</span> (RadioCommand.isRadioPlaying()) {
+                RadioCommand.stopRadioPlayer();
             }
+            stopMusicPlayer();
             <span class="keyword">if</span> (genreExist) {
-                <span class="predefined-type">String</span> musicFile = <span class="string"><span class="delimiter">&quot;</span><span class="content">audio/music/</span><span class="delimiter">&quot;</span></span> + genre + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content">.mp3</span><span class="delimiter">&quot;</span></span>;
-                MESSAGE_SUCCESS = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Playing</span><span class="delimiter">&quot;</span></span>;
-                <span class="keyword">if</span> (trackNumber &lt; <span class="integer">2</span>) {
-                    trackNumber++;
-                } <span class="keyword">else</span> {
+                <span class="comment">//check if current genre same previous playing music genre</span>
+                <span class="comment">//if different reset track number</span>
+                <span class="keyword">if</span> (!genre.equals(previousGenre)) {
                     trackNumber = <span class="integer">1</span>;
                 }
-                <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                    mediaPlayer.stop();
+                messageSuccess = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music </span><span class="delimiter">&quot;</span></span> + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Playing</span><span class="delimiter">&quot;</span></span>;
+                music = <span class="keyword">new</span> Music(<span class="string"><span class="delimiter">&quot;</span><span class="content">audio/music/</span><span class="delimiter">&quot;</span></span>
+                        + genre + trackNumber + <span class="string"><span class="delimiter">&quot;</span><span class="content">.mp3</span><span class="delimiter">&quot;</span></span>);
+                music.start();
+
+                <span class="keyword">if</span> (trackNumber &lt; maxTrackNumber) {
+                    trackNumber++;
+                } <span class="keyword">else</span> {
+                    <span class="comment">//reset track number back to 1</span>
+                    trackNumber = <span class="integer">1</span>;
                 }
-                <span class="predefined-type">Media</span> sound = <span class="keyword">new</span> <span class="predefined-type">Media</span>(<span class="keyword">new</span> <span class="predefined-type">File</span>(musicFile).toURI().toString());
-                mediaPlayer = <span class="keyword">new</span> MediaPlayer(sound);
-                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-                mediaPlayer.setVolume(<span class="float">2.0</span>);
-                mediaPlayer.play();
-                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_SUCCESS);
+                <span class="comment">//Text to Speech</span>
+                <span class="keyword">new</span> TextToSpeech(messageSuccess).speak();
+                <span class="comment">//set current playing genre as previousGenre</span>
+                previousGenre = genre;
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(messageSuccess);
             } <span class="keyword">else</span> {
-                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, MusicCommand.MESSAGE_USAGE));
             }
+        <span class="comment">//Stop the music that is currently playing</span>
         <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">stop</span><span class="delimiter">&quot;</span></span>:
-            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.stop();
+            <span class="keyword">if</span> (!isMusicPlaying()) {
+                <span class="comment">//Text to Speech</span>
+                <span class="keyword">new</span> TextToSpeech(MESSAGE_NO_MUSIC_PLAYING).speak();
+                <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_NO_MUSIC_PLAYING);
             }
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICSTOP);
-        <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">pause</span><span class="delimiter">&quot;</span></span>:
-            <span class="keyword">if</span> (mediaPlayer != <span class="predefined-constant">null</span> &amp;&amp; mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-                mediaPlayer.pause();
-            }
-            MESSAGE_MUSICPAUSE = genre.toUpperCase() + <span class="string"><span class="delimiter">&quot;</span><span class="content"> Music Paused</span><span class="delimiter">&quot;</span></span>;
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_MUSICPAUSE);
+            stopMusicPlayer();
+            <span class="comment">//Text to Speech</span>
+            <span class="keyword">new</span> TextToSpeech(MESSAGE_STOP).speak();
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_STOP);
+
         <span class="keyword">default</span>:
-            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_USAGE);
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, MusicCommand.MESSAGE_USAGE));
         }
-    }</code></pre>
+    }
+}</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>trackNumber</code> has to be less than or equal to the number of each genre tracks you have in the <code>audio/music</code> folder. For example, if <code>trackNumber</code> is 2, it is required at least 2 mp3 files of each genre of music.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p> </p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/MusicList.jpg" alt="MusicList" width="200">
+<img src="images/header_note.png" alt="header note" width="400">
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to include more music tracks, you also have to change the variable <code>maxTrackNumber = 2</code> to the desired number. For example, if you wish to have 3 music tracks for each genre, you have to change it to <code>maxTrackNumber = 3</code> and ensure that each genre have at least 3 music tracks in the <code>resources/audio/music</code> folder.</p>
+</li>
+<li>
+<p>You are also able to add a new genre of music, however make sure that it too has the equal number of music tracks as the other genres. In addition, you have to update the <code>GENRE_LIST</code> array to include the new genre that you have just added.</p>
+</li>
+<li>
+<p>Adding more music tracks will result in a large .jar file size.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the music operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/MusicSequenceDiagram.png" alt="MusicSequenceDiagram" width="800">
+<img src="images/DG_seq_music.png" alt="DG seq music" width="900">
 </div>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarize what happens inside the <code>MusicCommand</code> when a user executes a new command:</p>
+<p>The following activity diagram summarises what happens inside the <code>MusicCommand</code> when a user executes a new command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/MusicActivityDiagram.png" alt="MusicActivityDiagram" width="400">
+<img src="images/DG_activitydiagram_music.png" alt="DG activitydiagram music" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies"><a class="link" href="#prerequisites-dependencies">4.4.1. Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The music player function requires an external library. You have to add <code>compile group: 'com.googlecode.soundlibs', name: 'jlayer', version: '1.0.1-1'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">com.googlecode.soundlibs</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">jlayer</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.0.1-1</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>trackNumber</code> has to be less than or equal to the number of each genre tracks you have in the <code>resources/audio/music</code> folder. For example, if <code>trackNumber</code> is 2, it is required to have at least 2 mp3 files of each genre of music.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MusicList.jpg" alt="MusicList" width="200">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>resources/audio/music</code> folder cannot be empty.</p>
+</li>
+<li>
+<p>You can only add music tracks that are encoded in .mp3 format.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Which music file to play first<br>
-<strong>Alternative 1 (current choice):</strong> Play the music file that starts with 1 then increase from there<br>
+<p><strong>Aspect:</strong> Naming of music tracks<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Name begins with the genre followed by track number<br>
+<strong>Pros:</strong> Easy to maintain, as it allows addition of music tracks by adding more mp3 files and a change of only one or two variables in the code.<br>
+<strong>Cons:</strong> Require to have the same exact number of music tracks for each genre<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> Any file name <br>
+<strong>Pros:</strong> Able to hold music track title name, which can be use to display to the user in the result box<br>
+<strong>Cons:</strong> Requires an array to keep track of the music tracks for each genre. More code manipulation required when adding more music tracks<br></p>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Which music file to play first<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Play the music file that starts with 1 then increase from there<br>
 <strong>Pros:</strong> Easy to implement. Users are able to know what song is coming up next in the track list<br>
-<strong>Cons:</strong> Always start at the same music track first<br>
-<strong>Alternative 2:</strong> Play a random music file<br>
-<strong>Pros:</strong> Has a chance to be different the next time the user starts playing music.<br>
-<strong>Cons:</strong> User does not know which song is going to be played next.<br>
-=== Sending Email
-The sending email function is an external library and requires internet connection.</p>
+<strong>Cons:</strong> Always start at the same music track first<br></p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> What to use for subject header in email<br>
-<strong>Alternative 1 (current choice):</strong> Fixed subject header<br>
-<strong>Pros:</strong> Easy to implement. Prevent of abuse of subject header to send negative subject headers<br>
-<strong>Cons:</strong> Always the same subject headert<br>
-<strong>Alternative 2:</strong> Let user input the subject header<br>
-<strong>Pros:</strong> Different subject header can be used for different purpose.<br>
-<strong>Cons:</strong> Can be abused and send negative subject header<br></p>
+<p><strong>Alternative 2:</strong> Play a random music file<br>
+<strong>Pros:</strong> Has a chance to be different the next time the user starts playing music.<br>
+<strong>Cons:</strong> User does not know which song is going to be played next.</p>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect2">
-<h3 id="aliases"><a class="link" href="#aliases">4.5. Aliases</a></h3>
+<h3 id="radio-player-mechanism"><a class="link" href="#radio-player-mechanism">4.5. Radio Player Mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>radio</code> command is extended with an additional command behind it. For example, <code>radio play</code>, has <code>play</code> as the extended command. The <code>play</code> command at the back means that the system will play a radio broadcast channel. While <code>radio stop</code> command
+will stop the current radio player.</p>
+</div>
+<div class="paragraph">
+<p>Both the <code>radio play</code> and the <code>radio stop</code> commands are executed in the same <code>RadioCommand</code> class. This also makes the commands easier to remember for the user as well, as anything related to <code>radio</code> will start with <code>radio</code> as a command.
+In addition, the <code>RadioCommand</code> class will create a new <code>radio thread</code>, this is to prevent the User Interface from being non-responsive in the current thread. The radio thread will stream endlessly as the broadcast stream is 24h/7 unless it is shutdown.
+Hence, the radio thread will only be closed when the user execute the <code>radio stop</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to include more radio broadcast station, just simply modify <code>radio.java</code> class as shown below, and add new case into the switch statement, with a valid url that streams in .mp3 codec.</p>
+</li>
+<li>
+<p>Do note that only .mp3 stream urls can be used.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> run() {
+        <span class="predefined-type">BufferedInputStream</span> in = <span class="predefined-constant">null</span>;
+        <span class="keyword">try</span> {
+            <span class="keyword">switch</span> (genre) {
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">chinese</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://198.105.214.140:2000/Live?icy=http</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">classic</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://media-sov.musicradio.com/ClassicFMMP3</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">news</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://streams.kqed.org/kqedradio?</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">pop</span><span class="delimiter">&quot;</span></span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+                radioStreamUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">break</span>;
+            }
+
+            in = <span class="keyword">new</span> <span class="predefined-type">BufferedInputStream</span>(<span class="keyword">new</span> <span class="predefined-type">URL</span>(radioStreamUrl).openStream());
+            player = <span class="keyword">new</span> Player(in);
+            player.play();
+            in.close();
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+            logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Invalid IO for BufferedInputStream: </span><span class="delimiter">&quot;</span></span> + radioStreamUrl);
+        } <span class="keyword">catch</span> (JavaLayerException e) {
+            logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">JavaLayerExeception: Invalid File Type for Radio Player</span><span class="delimiter">&quot;</span></span>);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the radio operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DG_seq_radio.png" alt="DG seq radio" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens inside the <code>RadioCommand</code> when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DG_activitydiagram_radio.png" alt="DG activitydiagram radio" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies-2"><a class="link" href="#prerequisites-dependencies-2">4.5.1. Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The radio streaming function requires an external library. You have to add <code>compile group: 'com.googlecode.soundlibs', name: 'jlayer', version: '1.0.1-1'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">com.googlecode.soundlibs</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">jlayer</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.0.1-1</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>This library is required as it can convert input stream into .mp3 codec immediately.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In order for the radio player to work, it requires Internet connection, as it streams the radio broadcast through the Internet.</p>
+</li>
+<li>
+<p>Remember to check the status of the stream urls. As it is possible but highly unlikely that one of those radio broadcast has shutdown.</p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="share-contacts-by-email-mechanism"><a class="link" href="#share-contacts-by-email-mechanism">4.6. Share Contacts by Email Mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>share</code> command takes in the parameter that consists an <code>INDEX</code>, of which is the selected contact&#8217;s details to be shared with.
+Followed by s/<code>INDEX</code> <code>EMAIL</code>, which are the parameters for the recipient email address. This format allows the parameters <code>INDEX</code> <code>EMAIL</code> found are interchangeable.</p>
+</div>
+<div class="paragraph">
+<p>By using the <code>isNumeric(string)</code> method, which returns us a boolean. If it return true, it means that input is an <code>INDEX</code>, otherwise it is an string.
+Next we want to check if those string values are indeed valid email addresses, use the isValidEmailAddress(string) to check whether is it a valid email address.
+This method requires the use of <code>javax.mail</code> api ,as it creates a new <code>InternetAddress</code> object and calls `validate()' method to check if the email address is valid or not.</p>
+</div>
+<div class="paragraph">
+<p>Once, we know the email address are valid. We have to create a new thread to send these emails. Because, if we were to send more than 2 emails,
+the main thread for the UI will be non-responsive.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to change to a different host email address, just simply modify <code>sendEmail.java</code> class as shown below, and change the variable values, such as senderEmail, password, and the host.</p>
+</li>
+<li>
+<p>If your sender&#8217;s email is from <code>Gmail</code>, your host have to be <code>smtp.gmail.com</code></p>
+</li>
+<li>
+<p>If your sender&#8217;s email is from <code>Outlook</code>, your host have to be <code>smtp-mail.outlook.com</code></p>
+</li>
+<li>
+<p>If your sender&#8217;s email is from <code>Hotmail</code>, your host have to be <code>smtp.live.com</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span> senderEmail = <span class="string"><span class="delimiter">&quot;</span><span class="content">unifycs2103@gmail.com</span><span class="delimiter">&quot;</span></span>;
+<span class="predefined-type">String</span> password = <span class="string"><span class="delimiter">&quot;</span><span class="content">CS2103CS2103</span><span class="delimiter">&quot;</span></span>;
+<span class="comment">// For Gmail host</span>
+<span class="predefined-type">String</span> host = <span class="string"><span class="delimiter">&quot;</span><span class="content">smtp.gmail.com</span><span class="delimiter">&quot;</span></span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the share operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DG_seq_share.png" alt="DG seq share" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens inside the <code>ShareCommand</code> when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DG_activitydiagram_share.png" alt="DG activitydiagram share" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies-3"><a class="link" href="#prerequisites-dependencies-3">4.6.1. Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The sharing of contacts by email function requires an external library. You have to add <code>compile 'javax.mail:mail:1.4.7'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile <span class="string"><span class="delimiter">'</span><span class="content">javax.mail:mail:1.4.7</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In order for the sharing of contacts feature to work, it requires Internet connection first, as it&#8217;s main function requires to sends an email to the recipients.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.6.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> What to use for subject header in email<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Fixed subject header<br>
+<strong>Pros:</strong> Easy to implement. Prevent of abuse of subject header to send negative subject headers<br>
+<strong>Cons:</strong> Always the same subject header<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> Let user input the subject header<br>
+<strong>Pros:</strong> Different subject header can be used for different purpose.<br>
+<strong>Cons:</strong> Can be abused and send negative subject header, leading to a bad reputation for Unify, as the recipients thinks that these offensive subject header is from Unify.</p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="audible-feedback-mechanism"><a class="link" href="#audible-feedback-mechanism">4.7. Audible Feedback Mechanism</a></h3>
+<div class="paragraph">
+<p>Audio feedback are created by using 2 different audio cues. First is the typing sound, that is created by playing a .mp3 sound file using the <code>Audio.java</code> class. You may use this class to play a sound file without looping. You just have to create a new <code>Audio</code>
+object with an <code>audioFileName</code> of which is your .mp3 resource file.</p>
+</div>
+<div class="paragraph">
+<p>The second audio cue comes from the Text-To-Speech feature, which plays an human-like speech back to the user when they have successful execute a command.
+This be easily added for any new commands by creating a new <code>TextToSpeech</code> object with the string <code>word</code> that you want it speak. Next call the <code>TextToSpeech.speak()</code> method to run the Text-To-Speech feature.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>new TextToSpeech("hello").speak();</code> will cause the system to say "hello" when it is executed.</p>
+</div>
+<div class="sect3">
+<h4 id="prerequisites-dependencies-4"><a class="link" href="#prerequisites-dependencies-4">4.7.1. Prerequisites/Dependencies</a></h4>
+<div class="paragraph">
+<p>The audio play back function requires an external library. You have to add <code>compile group: 'com.googlecode.soundlibs', name: 'jlayer', version: '1.0.1-1'</code> to your dependencies in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">com.googlecode.soundlibs</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">jlayer</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.0.1-1</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p>The Text-To-Speech feature requires an external library. You have to add <code>compile 'javax.mail:mail:1.4.7'</code> to your dependencies<br>
+and <code>url "https://oss.sonatype.org/content/repositories/snapshots"</code> to your maven repositories in <code>build.gradle</code> file. as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">repositories {
+    maven {
+        url <span class="string"><span class="delimiter">&quot;</span><span class="content">https://oss.sonatype.org/content/repositories/snapshots</span><span class="delimiter">&quot;</span></span>
+    }
+}
+dependencies {
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">org.jvoicexml</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">cmu_us_kal</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.2.3-SNAPSHOT</span><span class="delimiter">'</span></span>
+    compile group: <span class="string"><span class="delimiter">'</span><span class="content">org.jvoicexml</span><span class="delimiter">'</span></span>, name: <span class="string"><span class="delimiter">'</span><span class="content">cmu_time_awb</span><span class="delimiter">'</span></span>, version: <span class="string"><span class="delimiter">'</span><span class="content">1.2.3-SNAPSHOT</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> When to use Text-To-Speech audio feedback<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Successful and unsuccessful command execution excluding invalid commands<br>
+<strong>Pros:</strong> Giving audible feedback when users needed it the most, such as confirmation of successful command execution<br>
+<strong>Cons:</strong> Invalid commands have no audio feedback<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2:</strong> All commands, including invalid commands have audio feedback<br>
+<strong>Pros:</strong> Users able to have audible feedback for every action they take<br>
+<strong>Cons:</strong> Users may find it annoying as every action they take, the system will play an audio cue.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aliases"><a class="link" href="#aliases">4.8. Aliases</a></h3>
 <div class="paragraph">
 <p>Users can specify aliases that map to other commands, which helps them reduce the amount of typing required,
 and also the cognitive load of memorising exact commands.
@@ -1133,7 +1488,7 @@ and returns the mapped command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Accessing <code>UserPrefs</code> from <code>ParserUtil</code> and other classes<br>
 <strong>Alternative 1 (current choice):</strong> Turn <code>UserPrefs</code> into a Singleton<br>
@@ -1146,7 +1501,7 @@ and returns the mapped command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.6. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1392,641 +1747,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="suggested-programming-tasks-to-get-started"><a class="link" href="#suggested-programming-tasks-to-get-started">Appendix A: Suggested Programming Tasks to Get Started</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Suggested path for new programmers:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in this section <a href="#improving-each-component">Improving a Component</a>.</p>
-</li>
-<li>
-<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. The section <a href="#creating-a-new-command-code-remark-code">Creating a new command: <code>remark</code></a> explains how to go about adding such a feature.</p>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="improving-each-component"><a class="link" href="#improving-each-component">A.1. Improving each component</a></h3>
-<div class="paragraph">
-<p>Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).</p>
-</div>
-<h4 id="code-logic-code-component" class="discrete"><code>Logic</code> component</h4>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at the <a href="#logic-component">Design: Logic Component</a> section before attempting to modify the <code>Logic</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all persons in the list.</p>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
-</li>
-<li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Modify the switch statement in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/590/files">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<h4 id="code-model-code-component" class="discrete"><code>Model</code> component</h4>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at the <a href="#model-component">Design: Model Component</a> section before attempting to modify the <code>Model</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the address book.</p>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> API needs to be updated.</p>
-</li>
-<li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the implementation of <code>deleteTag(Tag)</code> method in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/591/files">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at the <a href="#ui-component">Design: UI Component</a> section before attempting to modify the <code>UI</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use different colors for different tags inside person cards. For example, <code>friends</code> tags can be all in grey, and <code>colleagues</code> tags can be all in red.</p>
-<div class="paragraph">
-<p><strong>Before</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-tag-before.png" alt="getting started ui tag before" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-tag-after.png" alt="getting started ui tag after" width="300">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The tag labels are created inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#initTags(ReadOnlyPerson)</code></a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
-</li>
-<li>
-<p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/592/files">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
-<div class="paragraph">
-<p><strong>Before</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-result-before.png" alt="getting started ui result before" width="200">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-result-after.png" alt="getting started ui result after" width="200">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
-</li>
-<li>
-<p>Refer to <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(event)</code></a> to react to this event appropriately.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/593/files">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Modify the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
-<div class="paragraph">
-<p><strong>Before</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-status-before.png" alt="getting started ui status before" width="500">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-status-after.png" alt="getting started ui status after" width="500">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hints</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
-</li>
-<li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Modify the constructor of <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
-</li>
-<li>
-<p>Use <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
-</li>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/596/files">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Do take a look at the <a href="#storage-component">Design: Storage Component</a> section before attempting to modify the <code>Storage</code> component.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the address book can be saved in a fixed temporary location.</p>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Hint</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the API method in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
-</li>
-<li>
-<p>Implement the logic in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> class.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Solution</p>
-<div class="ulist">
-<ul>
-<li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/594/files">PR</a> for the full solution.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating-a-new-command-code-remark-code"><a class="link" href="#creating-a-new-command-code-remark-code">A.2. Creating a new command: <code>remark</code></a></h3>
-<div class="paragraph">
-<p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
-</div>
-<div class="sect3">
-<h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
-<div class="paragraph">
-<p>Edits the remark for a person specified in the <code>INDEX</code>.<br>
-Format: <code>remark INDEX r/[REMARK]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>remark 1 r/Likes to drink coffee.</code><br>
-Edits the remark for the first person to <code>Likes to drink coffee.</code></p>
-</li>
-<li>
-<p><code>remark 1 r/</code><br>
-Removes the remark for the first person.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="step-by-step-instructions"><a class="link" href="#step-by-step-instructions">A.2.2. Step-by-step Instructions</a></h4>
-<div class="sect4">
-<h5 id="step-1-logic-teach-the-app-to-accept-remark-which-does-nothing"><a class="link" href="#step-1-logic-teach-the-app-to-accept-remark-which-does-nothing">[Step 1] Logic: Teach the app to accept 'remark' which does nothing</a></h5>
-<div class="paragraph">
-<p>Let&#8217;s start by teaching the application how to parse a <code>remark</code> command. We will add the logic of <code>remark</code> later.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/commands/UndoableCommand.java"><code>UndoableCommand</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add <code>RemarkCommandTest</code> that tests that <code>executeUndoableCommand()</code> throws an Exception.</p>
-</li>
-<li>
-<p>Add new test method to <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-2-logic-teach-the-app-to-accept-remark-arguments"><a class="link" href="#step-2-logic-teach-the-app-to-accept-remark-arguments">[Step 2] Logic: Teach the app to accept 'remark' arguments</a></h5>
-<div class="paragraph">
-<p>Let&#8217;s teach the application to parse arguments that our <code>remark</code> command will accept. E.g. <code>1 r/Likes to drink coffee.</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <code>RemarkCommand</code> to take in an <code>Index</code> and <code>String</code> and print those two parameters as the error message.</p>
-</li>
-<li>
-<p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <code>RemarkCommandTest</code> to test the <code>RemarkCommand#equals()</code> method.</p>
-</li>
-<li>
-<p>Add <code>RemarkCommandParserTest</code> that tests different boundary values
-for <code>RemarkCommandParser</code>.</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
-<div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
-</li>
-<li>
-<p>Add FXML annotation in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
-<div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
-</li>
-<li>
-<p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add test for <code>Remark</code>, to test the <code>Remark#equals()</code> method.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>ReadOnlyPerson</code> to support a <code>Remark</code> field</a></h5>
-<div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add three methods <code>setRemark(Remark)</code>, <code>getRemark()</code> and <code>remarkProperty()</code>. Be sure to implement these newly created methods in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a>, which implements the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> interface.</p>
-</li>
-<li>
-<p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
-</li>
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
-<div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a new Xml field for <code>Remark</code>.</p>
-</li>
-<li>
-<p>Be sure to modify the logic of the constructor and <code>toModelType()</code>, which handles the conversion to/from  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Fix <code>validAddressBook.xml</code> such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
-<div class="paragraph">
-<p>Our remark label in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#bindListeners()</code></a> to add the binding for <code>remark</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the remark label.</p>
-</li>
-<li>
-<p>In <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/PersonCardTest.java"><code>PersonCardTest</code></a>, call <code>personWithTags.setRemark(ALICE.getRemark())</code> to test that changes in the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a> 's remark correctly updates the corresponding <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="step-8-logic-implement-code-remarkcommand-execute-code-logic"><a class="link" href="#step-8-logic-implement-code-remarkcommand-execute-code-logic">[Step 8] Logic: Implement <code>RemarkCommand#execute()</code> logic</a></h5>
-<div class="paragraph">
-<p>We now have everything set up&#8230;&#8203; but we still can&#8217;t modify the remarks. Let&#8217;s finish it up by adding in actual logic for our <code>remark</code> command.</p>
-</div>
-<div class="paragraph">
-<p><strong>Main:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a person.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Tests:</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Update <code>RemarkCommandTest</code> to test that the <code>execute()</code> logic works.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="full-solution"><a class="link" href="#full-solution">A.2.3. Full Solution</a></h4>
-<div class="paragraph">
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/599">PR</a> for the step-by-step solution.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix A: User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
@@ -2241,7 +1962,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix B: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
@@ -2443,18 +2164,12 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>1.8.0_60</code> or higher installed.</p>
-</li>
-<li>
-<p>Text to Speech and Speech to Text features should work on Windows 10.</p>
-</li>
-<li>
-<p>Speech to Text should work with any microphone enabled computer.</p>
 </li>
 <li>
 <p>Program should have a clean design, that is still readable with low brightness.</p>
@@ -2469,9 +2184,6 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should be user friendly, such that a young child can use it without any supervision.</p>
 </li>
 <li>
-<p>Should be <a href="#portable-app">portable</a> and easily transferable.</p>
-</li>
-<li>
 <p>Should be able to hold up to 1000 persons without a noticeable <a href="#response-time">sluggishness</a> in performance for typical usage.</p>
 </li>
 <li>
@@ -2479,129 +2191,61 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>{More to be added}</p>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix D: Glossary</a></h2>
 <div class="sectionbody">
-<div id="average-typing-speed" class="paragraph">
-<p>Average Typing Speed</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>40 words per minute</pre>
-</div>
-</div>
-<div id="command-line-interface" class="paragraph">
-<p>Command Line Interface (CLI)
-<br>
-<a href="http://searchwindowsserver.techtarget.com/definition/command-line-interface-CLI">Full Definition</a></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>A user interface to a computer's operating system or an application in which the user responds to a visual prompt by typing in a command on a specified line, receives a response back from the system, and then enters another command, and so forth.</pre>
-</div>
-</div>
-<div id="mainstream-os" class="paragraph">
-<p>Mainstream OS</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Windows, Linux, Unix, OS-X</pre>
-</div>
-</div>
-<div id="natural-language" class="paragraph">
-<p>Natural Language
-<br>
-<a href="http://whatis.techtarget.com/definition/natural-language">Full Definition</a></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>In computing, natural language refers to a human language such as English, Russian, German, or Japanese as distinct from the typically artificial command or programming language with which one usually talks to a computer.</pre>
-</div>
-</div>
-<div id="portable-app" class="paragraph">
-<p>Portable Application</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>A portable application (portable app) is a software product designed to be easily moved from one computing environment to another. They include portable versions of regular applications – such as browsers, for example – as well as specialized apps designed to enhance mobile computing.</pre>
-</div>
-</div>
-<div id="private-contact-detail" class="paragraph">
-<p>Private contact detail</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>A contact detail that is not meant to be shared with others</pre>
-</div>
-</div>
-<div id="response-time" class="paragraph">
-<p>Sluggishness
-<br>
-<a href="https://www.nngroup.com/articles/response-times-3-important-limits/">Response Times: The 3 Important Limits</a></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Respond time of greater than 1 second upon user input</pre>
-</div>
-</div>
-<div id="singleton" class="paragraph">
-<p>Singleton
-<br>
-<a href="https://en.wikipedia.org/wiki/Singleton_pattern">Wikipedia Article</a></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>A class which has only one instance</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>TERMS</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>EXPLANATION</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Average Typing Speed</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">40 words per minute.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Command Line Interface (CLI)</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://searchwindowsserver.techtarget.com/definition/command-line-interface-CLI">Full Definition</a> A user interface to a computer&#8217;s operating system or an application in which the user responds to a visual prompt by typing in a command on a specified line, receives a response back from the system, and then enters another command, and so forth.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Mainstream OS</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows, Linux, Unix, OS-X.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Natural Language</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://whatis.techtarget.com/definition/natural-language">Full Definition</a> In computing, natural language refers to a human language such as English, Russian, German, or Japanese as distinct from the typically artificial command or programming language with which one usually talks to a computer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Portable Application</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A portable application (portable app) is a software product designed to be easily moved from one computing environment to another. They include portable versions of regular applications – such as browsers, for example – as well as specialized apps designed to enhance mobile computing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Private contact detail</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A contact detail that is not meant to be shared with others</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Sluggishness</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://www.nngroup.com/articles/response-times-3-important-limits/">Response Times: The 3 Important Limits</a> Respond time of greater than 1 second upon user input</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Singleton</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/Singleton_pattern">Wikipedia Article</a> A class which has only one instance</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 20:37:08 +00:00
+Last updated 2017-11-12 20:59:40 +00:00
 </div>
 </div>
 </body>
