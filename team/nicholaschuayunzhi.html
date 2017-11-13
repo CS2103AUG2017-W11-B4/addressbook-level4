@@ -727,10 +727,12 @@ but different faces.</p>
 </div>
 <div class="paragraph">
 <p>By having an additional non compulsory field in the <code>add</code> command for <code>Avatar</code> we have made it easy for users to remember how to add an
-<code>Avatar</code> to a contact.
----
-==== Implementation</p>
+<code>Avatar</code> to a contact.</p>
 </div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
@@ -829,7 +831,7 @@ makes more sense for the user (we do not want to offer an invalid index).</p>
 </div>
 <hr>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
 <div class="paragraph">
 <p>We need to bring an instance of the <code>Model</code> into <code>ArgumentsHint</code> and get the number of displayed people from <code>getFilteredPersonList()</code>.
 After which we simply use modulo arithmetic to determine the next index to display. The methods that need to be modified are <code>handleOfferIndex()</code> and
@@ -849,7 +851,7 @@ Like the current implementation, the file will be saved in the data folder.</p>
 </div>
 <hr>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">Implementation</a></h4>
 <div class="paragraph">
 <p>When saving an <code>Avatar</code> in <code>ImageStorage</code>, we add an additional check to see if the argument given is a valid URL.
 After which we save the image as per current implementation.</p>
@@ -887,7 +889,7 @@ After which we save the image as per current implementation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:26:57 +00:00
+Last updated 2017-11-13 14:27:27 +00:00
 </div>
 </div>
 </body>
