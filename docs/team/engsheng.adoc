@@ -7,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 Hi, I am Eng Sheng. Welcome to my project portfolio. I am currently a year 2 student studying Computer Science at NUS. This is one of the few projects that I have done in the university. I had previously worked on larger scale projects as an intern at a private sector company, [http://www.tunitytech.com/[TunityTechnologies]] and at a government sector as well, at [https://www.sla.gov.sg/[Singapore Land Authority]]. I have also done User Acceptance Testing (UAT) with clients from National Gallery Singapore.
 
 If you have any questions or would like to contact me, you can reach me at e0032165@u.nus.edu.
-{sp}
 
 == image:engsheng_projectheader.png[width="900"]
 This is a school project that I have done. It is called "Unify". It is a Command Line Interface AddressBook that helps you manage your contacts efficiently. Unlike conventional Address Books, Unify adopts a Command-Line Interface (CLI).
@@ -19,15 +18,11 @@ It is written in Java, and has about 12 kLoC.
 
 {sp}
 
-=== image:engsheng_header_enhancementadded.png[width="900"]
+=== image:engsheng_header_share.png[width="900"]
 
 {sp}
 
-image::engsheng_header_share.png[width="900"]
-
-{sp}
-
-==== image:engsheng_header_externalbehavior.png[width="900"]
+=== image:engsheng_header_externalbehavior.png[width="900"]
 
 include::../UserGuide.adoc[tag=sharecommand]
 
@@ -53,13 +48,13 @@ image::divider.png[width="900"]
 
 {sp}
 
-==== image:engsheng_header_externalbehavior.png[width="900"]
+=== image:engsheng_header_externalbehavior.png[width="900"]
 
 include::../UserGuide.adoc[tag=musiccommand]
 
 {sp}
 
-==== image:engsheng_header_justification.png[width="900"]
+=== image:engsheng_header_justification.png[width="900"]
 
 Most of us enjoy listening to music while we work. Hence, by having a built-in music player, users can enjoy some tunes while they adding, or editing or any other related task in Unify address book.
 
@@ -67,7 +62,7 @@ You may ask, "Why can't I use other streaming services such as Spotify?" Well, t
 without any second thought. Users would prefer this method as it removes the hassle of requiring multiple clicks to find a music to play. Instead, it only requires a single `music play` command to play some music.
 
 
-==== image:engsheng_header_implementation.png[width="900"]
+=== image:engsheng_header_implementation.png[width="900"]
 
 include::../DeveloperGuide.adoc[tag=musiccommand]
 
@@ -81,13 +76,13 @@ image::divider.png[width="900"]
 
 {sp}
 
-==== image:engsheng_header_externalbehavior.png[width="900"]
+=== image:engsheng_header_externalbehavior.png[width="900"]
 
 include::../UserGuide.adoc[tag=radiocommand]
 
 {sp}
 
-==== image:engsheng_header_justification.png[width="900"]
+=== image:engsheng_header_justification.png[width="900"]
 
 Some users prefer to hear more than a couple of songs that Unify's music player could offer, hence radio streaming is a good alternative for users who have Internet connection.
 
@@ -97,7 +92,7 @@ This allows users to share good sales promotions that were broadcasted over the 
 Since the radio player is already built-in, it encourages users to use it immediately without any second thought. Users would prefer this method as it removes the hassle of requiring multiple clicks to find a radio station broadcast to play. Instead, it only requires a single `radio play` command to play some radio broadcast over the Internet.
 
 
-==== image:engsheng_header_implementation.png[width="900"]
+=== image:engsheng_header_implementation.png[width="900"]
 
 include::../DeveloperGuide.adoc[tag=radiocommand]
 
@@ -111,7 +106,7 @@ image::divider.png[width="900"]
 
 {sp}
 
-==== image:engsheng_header_externalbehavior.png[width="900"]
+=== image:engsheng_header_externalbehavior.png[width="900"]
 
 include::../UserGuide.adoc[tag=audiblefeedback]
 
@@ -119,7 +114,7 @@ image::divider.png[width="900"]
 
 {sp}
 
-==== image:engsheng_header_justification.png[width="900"]
+=== image:engsheng_header_justification.png[width="900"]
 
 It is very important to give the user some form of feedback other than visual feedback. Minor audio cues can make a tremendous difference in user experience.
 
@@ -130,7 +125,7 @@ When a command is executed successfully Unify will announce that it is executed 
 
 This Text-To-Speech feature was part of the initiative together with the (not yet implemented) Speech-To-Text feature to bring in users who have vision disabilities into using Unify as well. Potentially increasing our user base.
 
-==== image:engsheng_header_implementation.png[width="900"]
+=== image:engsheng_header_implementation.png[width="900"]
 
 include::../DeveloperGuide.adoc[tag=audiblefeedback]
 
@@ -144,7 +139,7 @@ image::divider.png[width="900"]
 
 {sp}
 
-==== image:engsheng_header_externalbehavior.png[width="900"]
+=== image:engsheng_header_externalbehavior.png[width="900"]
 
 include::../UserGuide.adoc[tag=addcommand]
 
@@ -152,11 +147,13 @@ include::../UserGuide.adoc[tag=editcommand]
 
 {sp}
 
-==== image:engsheng_header_justification.png[width="900"]
+=== image:engsheng_header_justification.png[width="900"]
 
 Instead of separating remarks into another command. I have decided to implement it together with `add` and `edit` command instead. This streamlines the process of adding and editing a remark. Even though this involves editing existing code base, I believe the outcome is much better than having remarks as a separate command.
 
-image::engsheng_header_enhancementproposed.png[width="900"]
+{sp}
+
+image::divider.png[width="900"]
 
 {sp}
 
