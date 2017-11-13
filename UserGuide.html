@@ -38,18 +38,18 @@
 </ul>
 </li>
 <li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#features">3. Features Format</a>
+<li><a href="#features-format">3. Features Format</a>
 <ul class="sectlevel2">
 <li><a href="#command-format">3.1. Command Format</a></li>
 <li><a href="#tags">3.2. Tags</a></li>
 </ul>
 </li>
-<li><a href="#basic-features">4. Basic Features</a>
+<li><a href="#features">4. Basic Features</a>
 <ul class="sectlevel2">
 <li><a href="#adding-a-person-code-add-code">4.1. Adding a person: <code>add</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">4.2. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code">4.3. Deleting a person : <code>delete</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">4.4. Editing a person : <code>edit</code></a></li>
+<li><a href="#editcommand">4.4. Editing a person : <code>edit</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">4.5. Exiting the program : <code>exit</code></a></li>
 <li><a href="#listing-all-persons-code-list-code">4.6. Listing all persons : <code>list</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">4.7. Listing entered commands : <code>history</code></a></li>
@@ -78,9 +78,10 @@
 <li><a href="#audible-feedback">6.2. Audible Feedback</a></li>
 </ul>
 </li>
-<li><a href="#faq">7. FAQ</a></li>
-<li><a href="#command-summary">8. Command Summary</a></li>
-<li><a href="#glossary">9. Glossary</a></li>
+<li><a href="#upcoming-features-in-future-releases">7. Upcoming Features in Future Releases</a></li>
+<li><a href="#faq">8. FAQ</a></li>
+<li><a href="#command-summary">9. Command Summary</a></li>
+<li><a href="#glossary">10. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -151,10 +152,10 @@ Now you can spend less time in your Address Book, and more time on what matters 
 <p>Everything you need to know about Unify is in this user guide.</p>
 </div>
 <div class="paragraph">
-<p>You are able to quickly navigate the user guide by clicking on the links found in the table of contents at the top of the user guide.</p>
+<p>You can quickly navigate the user guide by clicking on the links found in the table of contents at the top of the user guide.</p>
 </div>
 <div class="paragraph">
-<p>An example of the user guide for the features is shown below. You are able to identify the feature&#8217;s title, description, format and easy to follow step by step instructions.</p>
+<p>An example of the user guide for the features is shown below. You can identify the feature&#8217;s title, description, format and easy to follow step by step instructions.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -168,7 +169,7 @@ Now you can spend less time in your Address Book, and more time on what matters 
 <p>To find the information you need, just look out for these sub-headers in the user guide. These are the few sub-headers you will find in this user guide below.</p>
 </div>
 <div class="paragraph">
-<p>These sub-headers are unique, they are marked with a circle surrounding the first letter of the header. This help you find the information quickly. Just look out for the first letter in the circle and you are able to find what you need to know!</p>
+<p>These sub-headers are unique, they are marked with a circle surrounding the first letter of the header. This help you find the information quickly. Just look out for the first letter in the circle and you can find what you need to know immediately!</p>
 </div>
 <div class="paragraph">
 <p>For example, the letter "F" in the circle represent format. Hence, you just have to look out for the letter "F" in the circle, to find the format quickly.</p>
@@ -318,7 +319,7 @@ This app will not work with earlier versions of Java 8.
 </div>
 </div>
 <div class="sect1">
-<h2 id="features"><a class="link" href="#features">3. Features Format</a></h2>
+<h2 id="features-format"><a class="link" href="#features-format">3. Features Format</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Unify is jam-packed with features and it may be daunting for new users.
@@ -389,7 +390,7 @@ Next time if you want to search for your family members, you can execute the <a 
 </div>
 </div>
 <div class="sect1">
-<h2 id="basic-features"><a class="link" href="#basic-features">4. Basic Features</a></h2>
+<h2 id="features"><a class="link" href="#features">4. Basic Features</a></h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -416,8 +417,23 @@ Adding a new contact? Unify&#8217;s <code>add</code> command takes a person&#821
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK] [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p>
+<p>Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK] [i/AVATAR_FILE_PATH] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can have multiple tags for each of your contacts.</p>
+</li>
+<li>
+<p>Remark, avatar and tag fields are optional! You do not have to fill them if you do not have any remarks, avatar picture, or tags to add currently.<br>
+Don&#8217;t worry! You are still able to add these to your contacts later using the <a href="#editcommand">Edit</a> command.</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -438,20 +454,7 @@ Simply press <kbd>Tab</kbd> to auto-complete to the next required prefix!
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Alias: <code>new</code>, <code>create</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
+<p>Alias: <code>new</code>, <code>create</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -464,7 +467,7 @@ A person can have any number of tags (including 0)
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Loves Tea</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 i/d:/pictures/betsy.png t/criminal</code></p>
+<p><code>add n/Leonard Tan t/friend e/leonard@example.com a/Jurong East #23-24 p/1234567 i/d:/pictures/leonard.png t/classmates</code><br></p>
 </li>
 </ul>
 </div>
@@ -475,7 +478,7 @@ A person can have any number of tags (including 0)
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Type <code>add</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> Simply type <code>add</code> into the command box first, then follow the format as shown above, after which press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -483,10 +486,10 @@ A person can have any number of tags (including 0)
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "New person added:" with the contact details.</p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "New person added:" with the contact details that you have just input.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will be displayed with the newly added contact at the bottom of the list.</p>
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> Your contact list will display the newly added contact at the bottom of the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -495,6 +498,15 @@ A person can have any number of tags (including 0)
 </div>
 <div class="paragraph">
 <p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>Duplicate contact cannot be added! You cannot add a new contact that have same exact details as another contact in your contact list. You may encounter this message
+"This person already exists in the address book" at <span class="image"><img src="images/step2.png" alt="step2" width="70"></span> if you try to do so.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -625,10 +637,19 @@ If you accidentally deleted a contact, Unify&#8217;s <code>undo</code> command c
 <p>Deletes the person at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the most recent listing.</p>
+<p>The <code>INDEX</code> refers to the index number shown in the most recent listing.</p>
 </li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The <code>INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -677,7 +698,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>delete</code> into the command box first, then follow the index of the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>delete</code> into the command box first, then follow the <code>INDEX</code> of the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -708,7 +729,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">4.4. Editing a person : <code>edit</code></a></h3>
+<h3 id="editcommand"><a class="link" href="#editcommand">4.4. Editing a person : <code>edit</code></a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_commandheader_edit.png" alt="UG commandheader edit" width="500">
@@ -732,8 +753,7 @@ Unify&#8217;s <code>edit</code> command lets you edit an existing contact&#8217;
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Alias: <code>change</code></p>
+<p>Alias: <code>change</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -743,7 +763,7 @@ Alias: <code>change</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Edits the person at the specified <code>INDEX</code>. The <code>INDEX</code> refers to the index number shown in the last person listing. The <code>INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
@@ -775,11 +795,11 @@ Edits the phone number and email address of the 1st person to be <code>91234567<
 </li>
 <li>
 <p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+Edits the name of the 2nd person to <code>Betsy Crower</code> and clears all existing tags.</p>
 </li>
 <li>
 <p><code>edit 3 r/Loan me $50</code><br>
-Edits the remarks of the 3rd person to be `Loan me $50.</p>
+Edits the remarks of the 3rd person to `Loan me $50.</p>
 </li>
 <li>
 <p><code>edit 3 r/</code><br>
@@ -814,6 +834,15 @@ Remove the remarks of the 3rd person.</p>
 </div>
 <div class="paragraph">
 <p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_warning.png" alt="header warning" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>You cannot edit a contact to have the same exact details as another contact in your contact list. You may encounter this message
+"This person already exists in the address book" at <span class="image"><img src="images/step2.png" alt="step2" width="70"></span> if you try to do so.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -881,8 +910,7 @@ Remove the remarks of the 3rd person.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Looking to scroll through your entire contact list? Or just want to admire your large network?
+<p>Looking to scroll through your entire contact list? Or just want to admire your large network?
 Unify&#8217;s <code>list</code> command will list of all your contacts!<br></p>
 </div>
 <div class="imageblock">
@@ -891,8 +919,7 @@ Unify&#8217;s <code>list</code> command will list of all your contacts!<br></p>
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Format: <code>list</code><br></p>
+<p>Format: <code>list</code><br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -900,8 +927,7 @@ Format: <code>list</code><br></p>
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Alias: <code>ls</code>, <code>show</code></p>
+<p>Alias: <code>ls</code>, <code>show</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1013,7 +1039,7 @@ lists all the commands that you have entered in reverse chronological order.<br>
 <div class="paragraph">
 <p>Two hands on your keyboard and don&#8217;t want to press the mouse?
 Unify&#8217;s <code>select</code> command provides and alternative to clicking on a contact list.
-It selects the person identified by the index number used in the last contact listing.<br></p>
+It selects the person identified by the <code>INDEX</code> number used in the last contact listing.<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1039,13 +1065,10 @@ It selects the person identified by the index number used in the last contact li
 <div class="ulist">
 <ul>
 <li>
-<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
+<p>The <code>INDEX</code> refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the most recent listing.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+<p>The <code>INDEX</code> <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
@@ -1094,7 +1117,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>select</code> into the command box first, then follow the index of the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> Type <code>select</code> into the command box first, then follow the <code>INDEX</code> of the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1102,7 +1125,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> The result box will display "Selected person:" with the index.</p>
+<p><span class="image"><img src="images/step5.png" alt="step5" width="70"></span> The result box will display "Selected person:" with the <code>INDEX</code>.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/step6.png" alt="step6" width="70"></span> The selected person will be highlighted from the contact list.</p>
@@ -1142,8 +1165,7 @@ user guide for your reference!</p>
 </div>
 </div>
 <div class="paragraph">
-<p><br>
-Format: <code>help</code></p>
+<p>Format: <code>help</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1567,7 +1589,7 @@ You can also click on tags to do a search for that tag. (ie. find t/CLICKED_TAG)
 </div>
 </div>
 <div class="paragraph">
-<p>Want to share a contact to your colleagues or friends via e-mail?
+<p>Want to share a contact to your colleagues or friends via email?
 Unify&#8217;s <code>share</code> command lets you email the selected contact&#8217;s details to your designated email!</p>
 </div>
 <div class="imageblock">
@@ -1591,17 +1613,22 @@ Unify&#8217;s <code>share</code> command lets you email the selected contact&#82
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
 <div class="paragraph">
 <p>You can share the selected contact&#8217;s details to as many email addresses as you wish.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>For example, to share to three 3 email addresses,
+<p>For example, to share a contact with three email addresses,
 use the format <code>share INDEX s/INDEX INDEX INDEX</code> or <code>INDEX s/EMAIL INDEX EMAIL</code>.</p>
 </li>
 <li>
-<p>The <code>INDEX</code> after the "s/" can also be replaced with an <code>EMAIL</code> and it is interchangeable.</p>
+<p>The <code>INDEX</code> after the "s/" can also be replaced with an <code>EMAIL</code>, and it is also interchangeable.</p>
 </li>
 </ul>
 </div>
@@ -1631,31 +1658,12 @@ Sends the 1st contact&#8217;s details in the address book as an email to both <a
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/header_note.png" alt="header note" width="400">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The format of the <code>share</code> between email and index</p>
-</li>
-<li>
-<p>If you are unable to find the email that has been sent out to your inbox, try searching for it under the "junk" folder.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
 <img src="images/header_warning.png" alt="header warning" width="400">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Ensure that you have input a valid email address to send to, otherwise the result box will display "Email address is no valid!"
+<div class="paragraph">
+<p>Ensure that you have input a valid email address to send to, otherwise the result box will display "Email address is not valid!"
 and the email will not be sent.</p>
-</li>
-</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1683,7 +1691,7 @@ and the email will not be sent.</p>
 <p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The result box will display "Listed all persons".</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will display every contacts found in the address book. You can scroll down to view more contacts in the list.</p>
+<p><span class="image"><img src="images/step3.png" alt="step3" width="70"></span> The contact list will display every contact found in the address book. You can scroll down to view more contacts in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1691,7 +1699,7 @@ and the email will not be sent.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> To start sharing the contact through email, type <code>share</code> into the command box first, then follows by the index of the contact list and your recipient&#8217;s email address or their index in the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
+<p><span class="image"><img src="images/step4.png" alt="step4" width="70"></span> To start sharing the contact through email, type <code>share</code> into the command box first, then follows by the <code>INDEX</code> of the contact list and your recipient&#8217;s email address or their index in the contact list, after which press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1717,7 +1725,7 @@ and the email will not be sent.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>It requires internet connection to share a contact details by email.</p>
+<p>This share feature requires an Internet connection!</p>
 </li>
 <li>
 <p>Otherwise, your  <span class="image"><img src="images/step5.png" alt="step5" width="70"></span> will have the result box displaying "Not Connected to the Internet".</p>
@@ -1728,6 +1736,17 @@ and the email will not be sent.</p>
 <div class="content">
 <img src="images/UG_share2a.png" alt="UG share2a" width="590">
 </div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/header_note.png" alt="header note" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>If you are unable to find the email that has been sent out to your inbox, try searching for it under the "junk" folder.</p>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -1746,8 +1765,8 @@ and the email will not be sent.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Want to listen to some of your favourite tunes, but do not have any internet connection currently? Fear not! Unify has got you covered! Unify&#8217;s <code>music play [GENRE]</code> command plays a music track
-from a specific genre from a list of built-in mp3 music. You are able to select from three different genre, such as "pop", "dance" and "classic".</p>
+<p>Want to listen to some of your favourite tunes, but do not have any Internet connection currently? Fear not! Unify has got you covered! Unify&#8217;s <code>music play</code> command plays a music track
+from a specific genre from a list of built-in mp3 music. You can select from three different genres, such as "pop", "dance" and "classic".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1765,14 +1784,17 @@ from a specific genre from a list of built-in mp3 music. You are able to select 
 <div class="ulist">
 <ul>
 <li>
-<p>You can only select either "pop", "dance" or "classic" as the <code>[GENRE]</code> of the music. <code>music play</code> command without any <code>[GENRE]</code> will play "pop" songs as default.</p>
+<p>You can only select either "pop", "dance" or "classic" as the <code>[GENRE]</code> of the music.</p>
 </li>
 <li>
-<p>Tired of the same music playing on a loop?  To skip to the next track, input the same command as previously for example, if you have input <code>music play pop</code>,
-input the same command <code>music play pop</code> again to go to the next pop song.</p>
+<p>If you had input <code>music play</code> command without any <code>[GENRE]</code>. It will play some "pop" music by default.</p>
 </li>
 <li>
-<p>Changing of the music <code>[GENRE]</code> or inputting the <code>radio play</code> command, will reset your music playlist back to track number 1.</p>
+<p>Tired of the same music playing on a loop?  To skip to the next track, input the same command as previously for example, if you had input <code>music play pop</code>,
+input the same command <code>music play pop</code> again to go to the next pop music track.</p>
+</li>
+<li>
+<p>Changing of the music <code>[GENRE]</code> or inputting the <code>radio stop</code> command, will reset your music playlist back to track number 1.</p>
 </li>
 </ul>
 </div>
@@ -1783,7 +1805,7 @@ input the same command <code>music play pop</code> again to go to the next pop s
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To start off your day with some songs, type <code>music play</code> into the command box, then follows by a <code>[GENRE]</code> and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To start off your day with some music, type <code>music play</code> into the command box, then follows by a <code>[GENRE]</code> and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1809,10 +1831,10 @@ input the same command <code>music play pop</code> again to go to the next pop s
 <div class="ulist">
 <ul>
 <li>
-<p>You can repeat <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input to play other  music <code>[GENRE]</code> songs.</p>
+<p>To play a different <code>[GENRE]</code> music track. You can repeat <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input.</p>
 </li>
 <li>
-<p>For example, input <code>music play classic</code> at step 1 to play classical songs instead.</p>
+<p>For example, input <code>music play classic</code> at <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> to play classical music instead.</p>
 </li>
 </ul>
 </div>
@@ -1834,7 +1856,7 @@ input the same command <code>music play pop</code> again to go to the next pop s
 </div>
 <div class="paragraph">
 <p>Maybe the music is getting a little distracting or you are just not in the mood for some tunes.
-<code>music stop</code> stops the current music track playing so that you can focus on the task at hand.</p>
+<code>music stop</code> command stops the current music track playing so that you can focus on the task at hand.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1851,7 +1873,7 @@ input the same command <code>music play pop</code> again to go to the next pop s
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To stop the music from playing, type <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> You can stop the music from playing by typing <code>music stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1859,7 +1881,7 @@ input the same command <code>music play pop</code> again to go to the next pop s
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> Now you have the silence that you need and the result box will display "Music Stopped".</p>
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> Now you have the silence that you need and the result box will also display "Music Stopped".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1874,13 +1896,9 @@ input the same command <code>music play pop</code> again to go to the next pop s
 <img src="images/header_note.png" alt="header note" width="400">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>If there is no music currently playing and you try to stop the music player, you may encounter "No music is currently playing" in the result box at your <span class="image"><img src="images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just issue the <code>music stop</code>
-command only, when there is music currently playing.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>If there is no music currently playing and you try to stop the music player, you may encounter "No music is currently playing" in the result box at <span class="image"><img src="images/step2.png" alt="step2" width="70"></span>.  No worries! It is not a problem at all! Just execute the <code>music stop</code>
+command only when the music player is currently playing.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1904,8 +1922,9 @@ command only, when there is music currently playing.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Want to hear the latest pop songs or the latest news? Tune in to Unify&#8217;s radio player using the <code>radio play [GENRE]</code> command. There are four different <code>[GENRE]</code> to choose from,
-as "pop", "chinese", "classic" and "news". However, do note that this radio player requires internet connection in order to work!</p>
+<p>Want to hear the latest pop songs that everyone is talking about? Or maybe you are interested to hear the news for weather broadcast or potential sales advertisement
+that only happens on a radio channel! Then tune in to Unify&#8217;s radio player using the <code>radio play [GENRE]</code> command. There are currently four different <code>[GENRE]</code> to choose from,
+as "pop", "chinese", "classic" and "news".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1923,10 +1942,13 @@ as "pop", "chinese", "classic" and "news". However, do note that this radio play
 <div class="ulist">
 <ul>
 <li>
-<p>The genre can only be "pop", "chinese", "classic" or "news" <code>radio play</code> alone will play pop radio station as default.</p>
+<p>The genre can only be "pop", "chinese", "classic" or "news".</p>
 </li>
 <li>
-<p>If your radio player suddenly stops playing, ensure that you are still connected to the internet, as it requires internet connection in order to work.</p>
+<p>If you had input <code>radio play</code> command without any <code>[GENRE]</code>. It will play the broadcast from the "pop" genre radio station by default.</p>
+</li>
+<li>
+<p>If your radio player suddenly stops playing, ensure that you are still connected to the Internet, as it requires an Internet connection in order to work.</p>
 </li>
 </ul>
 </div>
@@ -1963,7 +1985,7 @@ as "pop", "chinese", "classic" and "news". However, do note that this radio play
 <div class="ulist">
 <ul>
 <li>
-<p>Unify&#8217;s radio player requires internet connection!</p>
+<p>Unify&#8217;s radio player requires an Internet connection to work!</p>
 </li>
 <li>
 <p>Otherwise, your  <span class="image"><img src="images/step2.png" alt="step2" width="70"></span> will have the result box displaying "Not Connected to the Internet".</p>
@@ -1986,10 +2008,10 @@ as "pop", "chinese", "classic" and "news". However, do note that this radio play
 <div class="ulist">
 <ul>
 <li>
-<p>You can repeat <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input to play other  radio <code>[GENRE]</code> stations.</p>
+<p>To play other  radio <code>[GENRE]</code> stations, you can repeat <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> again with a different <code>[GENRE]</code> as the input.</p>
 </li>
 <li>
-<p>For example, input <code>radio play classic</code> at step 1 to listen to the classical radio station.</p>
+<p>For example, input <code>radio play classic</code> at <span class="image"><img src="images/step1.png" alt="step1" width="70"></span> to listen to the classical radio station.</p>
 </li>
 </ul>
 </div>
@@ -2010,8 +2032,8 @@ as "pop", "chinese", "classic" and "news". However, do note that this radio play
 </div>
 </div>
 <div class="paragraph">
-<p>Maybe the radio broadcast is getting a little distracting or you are just not in the mood for some tunes.
-<code>radio stop</code> stops the radio player from playing so that you can focus on the task at hand.</p>
+<p>Maybe the radio broadcast is getting a little distracting. No worries!
+<code>radio stop</code> command stops the radio player from playing so that you can focus on your task at hand.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2028,7 +2050,7 @@ as "pop", "chinese", "classic" and "news". However, do note that this radio play
 </div>
 <div class="paragraph">
 <p><br>
-<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> To stop the radio player from playing, type <code>radio stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
+<span class="image"><img src="images/step1.png" alt="step1" width="70"></span> You can stop the radio player from playing by typing <code>radio stop</code> into the command box, and press <kbd>Enter</kbd> to execute it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2036,7 +2058,7 @@ as "pop", "chinese", "classic" and "news". However, do note that this radio play
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> Now, the radio player will stop playing the broadcast and you have the silence that you need. The result box will also
+<p><span class="image"><img src="images/step2.png" alt="step2" width="70"></span> The radio player will stop playing the broadcast and you have the silence that you need. The result box will also
 display "Radio Stopped".</p>
 </div>
 <div class="imageblock">
@@ -2052,13 +2074,9 @@ display "Radio Stopped".</p>
 <img src="images/header_note.png" alt="header note" width="400">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>If the radio player is currently not playing and you try to stop the radio player, you may encounter "No Radio is currently playing" in the result box at your <span class="image"><img src="images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just issue the <code>radio stop</code>
-command only, when the radio playing is currently playing.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>If the radio player is currently not playing and you try to stop the radio player, you may encounter "No Radio is currently playing" in the result box at <span class="image"><img src="images/step2.png" alt="step2" width="70"></span>. No worries! It is not a problem at all! Just execute the <code>radio stop</code>
+command only when the radio player is currently playing.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2273,20 +2291,20 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="paragraph">
-<p>Unify knows that speed is essential to you, hence audible feedback is an another key component in giving you that extra confirmation
+<p>Unify knows that speed is important to you, hence audible feedback is another key component in giving you that extra confirmation
 that your actions have been executed.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Unify plays an audible typing sound whenever you are typing.</p>
+<p>An audible typing sound will be played whenever you are typing in the command box.</p>
 </li>
 <li>
-<p>Unify also plays an audible confirmation feedback to your executed commands. Giving you the audible feedback that your command is executed successfully.</p>
+<p>An audible confirmation feedback to your executed commands. Giving you the audible feedback that your command is executed successfully.</p>
 </li>
 <li>
-<p>Unify has an built-in text-to-speech
-technology that is able to read your friend&#8217;s name when you click on their details. Giving you that extra confirmation feedback you needed.</p>
+<p>Unify has a built-in text-to-speech
+feature that is able to read your friend&#8217;s name when you click on their details. Giving you that extra confirmation feedback you needed.</p>
 </li>
 </ul>
 </div>
@@ -2294,7 +2312,35 @@ technology that is able to read your friend&#8217;s name when you click on their
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">7. FAQ</a></h2>
+<h2 id="upcoming-features-in-future-releases"><a class="link" href="#upcoming-features-in-future-releases">7. Upcoming Features in Future Releases</a></h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_mainheader_upcomingfeatures.png" alt="UG mainheader upcomingfeatures" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_header_v2features.png" alt="UG header v2features" width="500">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The speech-to-text feature, is to give users another way of input as well as executing commands hands-free. This will be greatly beneficial to those who want to multitask, as it able to execute multiple commands.</p>
+<div class="paragraph">
+<p>For example, when the user is editing a contact, he/she is able to say "music play pop" to play some music without moving away from his/her current task.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">8. FAQ</a></h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -2306,12 +2352,19 @@ technology that is able to read your friend&#8217;s name when you click on their
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/question.png" alt="question" width="70"></span> How do I transfer my data to another Computer?<br>
-<span class="image"><img src="images/answer.png" alt="answer" width="70"></span> Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<span class="image"><img src="images/answer.png" alt="answer" width="70"></span> Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+</div>
+<div class="paragraph">
+<p> </p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/question.png" alt="question" width="70"></span> Where do I find the latest version of Unify?<br>
+<span class="image"><img src="images/answer.png" alt="answer" width="70"></span> You can find the latest release version <a href="https://github.com/CS2103AUG2017-W11-B4/main/releases">here</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">8. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">9. Command Summary</a></h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -2430,7 +2483,7 @@ technology that is able to read your friend&#8217;s name when you click on their
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">9. Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">10. Glossary</a></h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -2469,7 +2522,7 @@ technology that is able to read your friend&#8217;s name when you click on their
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 06:45:48 +00:00
+Last updated 2017-11-13 09:59:43 +00:00
 </div>
 </div>
 </body>
