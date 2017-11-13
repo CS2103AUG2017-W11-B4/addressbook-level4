@@ -31,6 +31,59 @@ public class CommandBoxIconHandle extends NodeHandle<FontIcon> {
     }
 }
 ```
+###### \java\seedu\address\logic\AutocompleteTest.java
+``` java
+public class AutocompleteTest {
+    @Test
+    public void autocomplete_emptyInput_returnsEmpty() {
+        assertEquals("", autocomplete(""));
+    }
+
+    @Test
+    public void autocomplete_invalidCommand_returnsItself() {
+        assertEquals(
+                "",
+                autocomplete("should-clear-command-input"));
+    }
+
+    @Test
+    public void autocomplete_incompleteCommand_returnsFullCommandAndTrailingSpace() {
+        assertEquals(
+                AddCommand.COMMAND_WORD + " ",
+                autocomplete(AddCommand.COMMAND_WORD.substring(0, AddCommand.COMMAND_WORD.length() - 1)));
+        assertEquals(
+                ListCommand.COMMAND_WORD + " ",
+                autocomplete(ListCommand.COMMAND_WORD.substring(0, ListCommand.COMMAND_WORD.length() - 1)));
+    }
+
+    @Test
+    public void autocomplete_validCommands_returnsParameters() {
+        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD));
+        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD + " "));
+        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD + " n"));
+        assertEquals(AddCommand.COMMAND_WORD + " p/", autocomplete(AddCommand.COMMAND_WORD + " n/"));
+
+        assertEquals(EditCommand.COMMAND_WORD + " 1", autocomplete(EditCommand.COMMAND_WORD));
+        assertEquals(EditCommand.COMMAND_WORD + " 2", autocomplete(EditCommand.COMMAND_WORD + " 1"));
+        assertEquals(EditCommand.COMMAND_WORD + " 1 n/", autocomplete(EditCommand.COMMAND_WORD + " 1 "));
+        assertEquals(EditCommand.COMMAND_WORD + " 1 n/", autocomplete(EditCommand.COMMAND_WORD + " 1 n"));
+        assertEquals(EditCommand.COMMAND_WORD + " 1 p/", autocomplete(EditCommand.COMMAND_WORD + " 1 n/"));
+
+        assertEquals(FindCommand.COMMAND_WORD + " n/", autocomplete(FindCommand.COMMAND_WORD));
+        assertEquals(FindCommand.COMMAND_WORD + " n/", autocomplete(FindCommand.COMMAND_WORD + " n"));
+        assertEquals(FindCommand.COMMAND_WORD + " p/", autocomplete(FindCommand.COMMAND_WORD + " n/"));
+
+        if (!MusicCommand.getIsMusicPlaying()) {
+            assertEquals(MusicCommand.COMMAND_WORD + " play", autocomplete(MusicCommand.COMMAND_WORD));
+            assertEquals(MusicCommand.COMMAND_WORD + " play", autocomplete(MusicCommand.COMMAND_WORD + " sto"));
+        } else {
+            assertEquals(MusicCommand.COMMAND_WORD + " stop", autocomplete(MusicCommand.COMMAND_WORD));
+            assertEquals(MusicCommand.COMMAND_WORD + " stop", autocomplete(MusicCommand.COMMAND_WORD + " sto"));
+        }
+    }
+
+}
+```
 ###### \java\seedu\address\logic\commands\AliasCommandTest.java
 ``` java
 /**
@@ -155,50 +208,6 @@ public class AliasCommandParserTest {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\HintParserTest.java
-``` java
-    @Test
-    public void autocomplete_emptyInput_returnsEmpty() {
-        assertEquals("", autocomplete(""));
-    }
-
-    @Test
-    public void autocomplete_invalidCommand_returnsItself() {
-        assertEquals(
-                "should-not-complete-to-any-commands",
-                autocomplete("should-not-complete-to-any-commands"));
-    }
-
-    @Test
-    public void autocomplete_incompleteCommand_returnsFullCommandAndTrailingSpace() {
-        assertEquals(
-                AddCommand.COMMAND_WORD + " ",
-                autocomplete(AddCommand.COMMAND_WORD.substring(0, AddCommand.COMMAND_WORD.length() - 1)));
-        assertEquals(
-                ListCommand.COMMAND_WORD + " ",
-                autocomplete(ListCommand.COMMAND_WORD.substring(0, ListCommand.COMMAND_WORD.length() - 1)));
-    }
-
-    @Test
-    public void autocomplete_validCommands_returnsParameters() {
-        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD));
-        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD + " "));
-        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD + " n"));
-        assertEquals(AddCommand.COMMAND_WORD + " n/", autocomplete(AddCommand.COMMAND_WORD + " n/"));
-
-        assertEquals(EditCommand.COMMAND_WORD + " ", autocomplete(EditCommand.COMMAND_WORD));
-        assertEquals(EditCommand.COMMAND_WORD + " 1 n/", autocomplete(EditCommand.COMMAND_WORD + " 1"));
-        assertEquals(EditCommand.COMMAND_WORD + " 1 n/", autocomplete(EditCommand.COMMAND_WORD + " 1 n"));
-        assertEquals(EditCommand.COMMAND_WORD + " 1 n/", autocomplete(EditCommand.COMMAND_WORD + " 1 n/"));
-
-        assertEquals(FindCommand.COMMAND_WORD + " n/", autocomplete(FindCommand.COMMAND_WORD));
-        assertEquals(FindCommand.COMMAND_WORD + " n/", autocomplete(FindCommand.COMMAND_WORD + " n"));
-        assertEquals(FindCommand.COMMAND_WORD + " n/", autocomplete(FindCommand.COMMAND_WORD + " n/"));
-
-        assertEquals(MusicCommand.COMMAND_WORD + " play", autocomplete(MusicCommand.COMMAND_WORD));
-        assertEquals(MusicCommand.COMMAND_WORD + " pause", autocomplete(MusicCommand.COMMAND_WORD + " paus"));
-    }
-```
 ###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
     @Test
@@ -270,6 +279,9 @@ public class UnaliasCommandParserTest {
 ```
 ###### \java\seedu\address\model\AliasesTest.java
 ``` java
+/**
+ * Contains unit tests for {@code Aliases}.
+ */
 public class AliasesTest {
     private static final String LIST_COMMAND_ALIAS = "everyone";
     private static final String ADD_COMMAND_ALIAS = "someone";
@@ -381,6 +393,9 @@ public class AliasesTest {
 ```
 ###### \java\seedu\address\ui\CommandBoxIconTest.java
 ``` java
+/**
+ * Contains unit tests for {@code CommandBoxIcon}.
+ */
 public class CommandBoxIconTest extends GuiUnitTest {
 
     private static final CommandInputChangedEvent COMMAND_INPUT_PARTIAL_ADD = new CommandInputChangedEvent("ad");
@@ -420,18 +435,18 @@ public class CommandBoxIconTest extends GuiUnitTest {
     @Test
     public void commandBox_autocomplete() {
         guiRobot.push(KeyCode.TAB);
-        assertEquals(HintParser.autocomplete(""), commandBoxHandle.getInput());
+        assertEquals(Autocomplete.autocomplete(""), commandBoxHandle.getInput());
 
         commandBoxHandle.type(AddCommand.COMMAND_WORD);
         guiRobot.push(KeyCode.TAB);
-        assertEquals(HintParser.autocomplete(AddCommand.COMMAND_WORD), commandBoxHandle.getInput());
+        assertEquals(Autocomplete.autocomplete(AddCommand.COMMAND_WORD), commandBoxHandle.getInput());
     }
 ```
 ###### \java\seedu\address\ui\CommandBoxTest.java
 ``` java
     /**
-     * Types a command that is invalid, then verifies that <br>
-     *      - the command box's style is the same as {@code errorStyleOfCommandBox}.
+     * Types a command that is invalid, then verifies that the command box's style is the same as
+     * {@code errorStyleOfCommandBox}.
      */
     private void assertBehaviorForInvalidCommand() {
         commandBoxHandle.type(COMMAND_THAT_FAILS);
@@ -439,8 +454,8 @@ public class CommandBoxIconTest extends GuiUnitTest {
     }
 
     /**
-     * Types a command that is valid, then verifies that <br>
-     *      - the command box's style is the same as {@code defaultStyleOfCommandBox}.
+     * Types a command that is valid, then verifies that the command box's style is the same as
+     * {@code defaultStyleOfCommandBox}.
      */
     private void assertBehaviorForValidCommand() {
         commandBoxHandle.type(COMMAND_THAT_SUCCEEDS);
