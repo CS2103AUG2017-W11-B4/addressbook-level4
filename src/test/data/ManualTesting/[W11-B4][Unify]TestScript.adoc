@@ -249,6 +249,7 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Hint*|`play plays music`
 |*Autocomplete Input*|`music play`
 |*Result*|`Invalid command format!...`
+|*Note*| If there is music currently playing, the hints will be `stop stops music` and autocomplete input will be `music stop`
 |===
 
 [cols="2*^"]
@@ -359,6 +360,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 |*Hint*|`play plays radio`
 |*Autocomplete Input*|`radio play`
 |*Result*|`Invalid command format!...`
+|*Note*| If there is radio currently playing, the hints will be `stop stops radio` and autocomplete input will be `radio stop`
 |===
 
 [cols="2*^"]
