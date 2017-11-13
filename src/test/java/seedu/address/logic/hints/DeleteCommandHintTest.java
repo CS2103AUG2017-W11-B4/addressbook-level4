@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.hints.DeleteCommandHint;
 
+//@@author nicholaschuayunzhi
 public class DeleteCommandHintTest {
 
     @Test

@@ -7,6 +7,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.hints.AddCommandHint;
 import seedu.address.logic.commands.hints.Hint;
 
+//@@author nicholaschuayunzhi
 public class AddCommandHintTest {
 
     @Test

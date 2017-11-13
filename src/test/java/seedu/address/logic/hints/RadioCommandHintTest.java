@@ -7,6 +7,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.RadioCommand;
 import seedu.address.logic.commands.hints.RadioCommandHint;
 
+//@@author nicholaschuayunzhi
 public class RadioCommandHintTest {
 
     @Test

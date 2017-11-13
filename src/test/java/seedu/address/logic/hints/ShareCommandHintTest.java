@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.hints.ShareCommandHint;
 
+//@@author nicholaschuayunzhi
 public class ShareCommandHintTest {
 
     @Test

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.hints;
 
+//@@author nicholaschuayunzhi
 /**
  * Generates description for List Command
  * Assumes that {@code userInput} are from a List Command.

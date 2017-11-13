@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 
+//@@author nicholaschuayunzhi
 /**
  * Template class for hints that have fixed arguments
  * Specifies autocomplete to return the {@code autoCorrectInput}

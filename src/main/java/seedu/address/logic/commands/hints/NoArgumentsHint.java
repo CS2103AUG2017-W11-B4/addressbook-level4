@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.hints;
 
+//@@author nicholaschuayunzhi
 /**
  * Template class for hints that have no arguments in their command format
  * Specifies autocomplete to return the original {@code userInput}

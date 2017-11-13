@@ -97,8 +97,54 @@ public class PersonPanelHandle extends NodeHandle<Node> {
     }
 }
 ```
+###### \java\seedu\address\commons\util\TextUtilTest.java
+``` java
+public class TextUtilTest extends AddressBookGuiTest {
+
+    private Text helper;
+    @Before
+    public void setup() {
+        helper = new Text();
+    }
+
+    @Test
+    public void compute_text_width() {
+        Font stubFont = new Font(1);
+        double width = computeTextWidth(stubFont, "stub", 0.0D);
+
+        helper.setText("stub");
+        helper.setFont(stubFont);
+
+        helper.setWrappingWidth(0.0D);
+        helper.setLineSpacing(0.0D);
+        double expectedWidth = Math.min(helper.prefWidth(-1.0D), 0.0D);
+        helper.setWrappingWidth((int) Math.ceil(expectedWidth));
+        expectedWidth = Math.ceil(helper.getLayoutBounds().getWidth());
+
+
+        assertEquals(expectedWidth, width, 0);
+
+        Font stubFont2 = new Font(20);
+
+        helper.setText("stub");
+        helper.setFont(stubFont2);
+
+        helper.setWrappingWidth(0.0D);
+        helper.setLineSpacing(0.0D);
+        double expectedWidth2 = Math.min(helper.prefWidth(-1.0D), 0.0D);
+        helper.setWrappingWidth((int) Math.ceil(expectedWidth2));
+        expectedWidth2 = Math.ceil(helper.getLayoutBounds().getWidth());
+
+        double width2 = computeTextWidth(stubFont2, "stub", 0.0D);
+        assertEquals(expectedWidth2, width2, 0);
+    }
+}
+```
 ###### \java\seedu\address\logic\commands\FindCommandTest.java
 ``` java
+/**
+ * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -207,6 +253,818 @@ public class FindCommandTest {
         assertEquals(expectedMessage, commandResult.feedbackToUser);
         assertEquals(expectedList, model.getFilteredPersonList());
         assertEquals(expectedAddressBook, model.getAddressBook());
+    }
+}
+```
+###### \java\seedu\address\logic\hints\AddCommandHintTest.java
+``` java
+public class AddCommandHintTest {
+
+    @Test
+    public void parseTest() {
+        //offer hint
+        AddCommandHint addCommandHint = new AddCommandHint("add", "");
+        assertHintContent(addCommandHint, " n/", "name", "add n/");
+        addCommandHint = new AddCommandHint("add n/ ", " n/ ");
+        assertHintContent(addCommandHint, "p/", "phone", "add n/ p/");
+        addCommandHint = new AddCommandHint("add n/nicholas p/321 e/email@e.com a/address",
+                " n/nicholas p/321 e/email@e.com a/address");
+        assertHintContent(addCommandHint, " r/", "remark (optional)",
+                "add n/nicholas p/321 e/email@e.com a/address r/");
+        //prefix completion
+        addCommandHint = new AddCommandHint("add n", " n");
+        assertHintContent(addCommandHint, "/", "name", "add n/");
+        addCommandHint = new AddCommandHint("add p", " p");
+        assertHintContent(addCommandHint, "/", "phone", "add p/");
+        addCommandHint = new AddCommandHint("add e", " e");
+        assertHintContent(addCommandHint, "/", "email", "add e/");
+
+        //prefix cycle
+        addCommandHint = new AddCommandHint("add i/", " i/");
+        assertHintContent(addCommandHint, "", "avatar file path (optional)", "add n/");
+        addCommandHint = new AddCommandHint("add a/", " a/");
+        assertHintContent(addCommandHint, "", "address", "add r/");
+
+        //exhausted all prefix
+        addCommandHint = new AddCommandHint("add n/nicholas p/321 e/email@e.com a/address t/tag i/picture.png r/remark",
+                " n/nicholas p/321 e/email@e.com a/address t/tag i/picture.png r/remark");
+        assertHintContent(addCommandHint, " ", "",
+                "add n/nicholas p/321 e/email@e.com a/address t/tag i/picture.png r/remark ");
+    }
+
+    /**
+     * parses {@code hint} and checks if the the hint generated has the expected fields
+     */
+    public static void assertHintContent(Hint hint,
+                                         String expectedArgumentHint,
+                                         String expectedDescription,
+                                         String expectedAutocomplete) {
+
+        assertEquals(expectedArgumentHint, hint.getArgumentHint());
+        assertEquals(expectedDescription, hint.getDescription());
+        assertEquals(expectedAutocomplete, hint.autocomplete());
+    }
+}
+```
+###### \java\seedu\address\logic\hints\AliasCommandHintTest.java
+``` java
+public class AliasCommandHintTest {
+    @Test
+    public void aliasCommandHint() {
+        AliasCommandHint aliasCommandHint = new AliasCommandHint("alias", "");
+        assertHint(
+                aliasCommandHint,
+                " shows all aliases",
+                "alias ");
+
+        aliasCommandHint = new AliasCommandHint("alias ", "");
+        assertHint(
+                aliasCommandHint,
+                " - set your new command word",
+                "alias ");
+
+        aliasCommandHint = new AliasCommandHint("alias s", "s");
+        assertHint(
+                aliasCommandHint,
+                " - set your new command word",
+                "alias s ");
+
+        aliasCommandHint = new AliasCommandHint("alias s ", "s");
+        assertHint(
+                aliasCommandHint,
+                " - set what s represents",
+                "alias s ");
+
+        aliasCommandHint = new AliasCommandHint("alias hehe ", "hehe");
+        assertHint(
+                aliasCommandHint,
+                " - set what hehe represents",
+                "alias hehe ");
+
+    }
+
+    /**
+     * parses {@code aliasCommandHint} and checks if the the hint generated has the expected fields
+     */
+    private void assertHint(AliasCommandHint aliasCommandHint,
+                            String expectedDesc,
+                            String expectedAutocomplete) {
+        AddCommandHintTest.assertHintContent(
+                aliasCommandHint,
+                "",
+                expectedDesc,
+                expectedAutocomplete);
+    }
+}
+```
+###### \java\seedu\address\logic\hints\CommandHintTest.java
+``` java
+public class CommandHintTest {
+
+    @Test
+    public void commandHintTest() {
+        CommandHint commandHint = new CommandHint("a", "a");
+        assertHintContent(
+                commandHint,
+                "dd ",
+                "adds a person",
+                "add ");
+
+        commandHint = new CommandHint("ad", "ad");
+        assertHintContent(
+                commandHint,
+                "d ",
+                "adds a person",
+                "add ");
+
+        commandHint = new CommandHint(" ad ", "ad");
+        assertHintContent(
+                commandHint,
+                "d ",
+                "adds a person",
+                "add ");
+
+        commandHint = new CommandHint("find", "find");
+        assertHintContent(
+                commandHint,
+                " ",
+                "finds a person",
+                "find ");
+
+        commandHint = new CommandHint("j", "j");
+        assertHintContent(
+                commandHint,
+                "",
+                " type help for user guide",
+                "");
+
+        commandHint = new CommandHint("edit", "edit");
+        assertHintContent(
+                commandHint,
+                " ",
+                "edits a person",
+                "edit ");
+
+        commandHint = new CommandHint("select", "select");
+        assertHintContent(
+                commandHint,
+                " ",
+                "selects a person",
+                "select ");
+
+        commandHint = new CommandHint("share", "share");
+        assertHintContent(
+                commandHint,
+                " ",
+                "shares a contact via email",
+                "share ");
+
+        commandHint = new CommandHint("clear", "clear");
+        assertHintContent(
+                commandHint,
+                " ",
+                "clears all contacts",
+                "clear ");
+
+        commandHint = new CommandHint("history", "history");
+        assertHintContent(
+                commandHint,
+                " ",
+                "shows command history",
+                "history ");
+
+        commandHint = new CommandHint("exit", "exit");
+        assertHintContent(
+                commandHint,
+                " ",
+                "exits the application",
+                "exit ");
+
+        commandHint = new CommandHint("undo", "undo");
+        assertHintContent(
+                commandHint,
+                " ",
+                "undo previous command",
+                "undo ");
+
+        commandHint = new CommandHint("redo", "redo");
+        assertHintContent(
+                commandHint,
+                " ",
+                "redo command",
+                "redo ");
+
+        commandHint = new CommandHint("help", "help");
+        assertHintContent(
+                commandHint,
+                " ",
+                "shows user guide",
+                "help ");
+
+        commandHint = new CommandHint("music", "music");
+        assertHintContent(
+                commandHint,
+                " ",
+                "plays music",
+                "music ");
+
+        commandHint = new CommandHint("radio", "radio");
+        assertHintContent(
+                commandHint,
+                " ",
+                "plays the radio",
+                "radio ");
+
+        commandHint = new CommandHint("alias", "alias");
+        assertHintContent(
+                commandHint,
+                " ",
+                "sets or show alias",
+                "alias ");
+
+        commandHint = new CommandHint("unalias", "unalias");
+        assertHintContent(
+                commandHint,
+                " ",
+                "removes alias",
+                "unalias ");
+
+        commandHint = new CommandHint("unknown", "unknown");
+        assertHintContent(
+                commandHint,
+                "",
+                " type help for user guide",
+                "");
+    }
+
+
+}
+```
+###### \java\seedu\address\logic\hints\DeleteCommandHintTest.java
+``` java
+public class DeleteCommandHintTest {
+
+    @Test
+    public void parseTest() {
+        //offer index
+        DeleteCommandHint deleteCommandHint = new DeleteCommandHint("delete", "");
+        assertHintContent(deleteCommandHint, " 1", " index", "delete 1");
+
+        deleteCommandHint = new DeleteCommandHint("delete ", " ");
+        assertHintContent(deleteCommandHint, "1", " index", "delete 1");
+        //index cycle
+        deleteCommandHint = new DeleteCommandHint("delete 5", " 5");
+        assertHintContent(deleteCommandHint, "", " index", "delete 6");
+
+        //delete is used for select. TODO: give select command its own hint
+
+        deleteCommandHint = new DeleteCommandHint("select", "");
+        assertHintContent(deleteCommandHint, " 1", " index", "select 1");
+
+        deleteCommandHint = new DeleteCommandHint("select ", " ");
+        assertHintContent(deleteCommandHint, "1", " index", "select 1");
+
+    }
+}
+```
+###### \java\seedu\address\logic\hints\EditCommandHintTest.java
+``` java
+public class EditCommandHintTest {
+
+    @Test
+    public void parseTest() {
+        //offer index
+        EditCommandHint editCommandHint = new EditCommandHint("edit", "");
+        assertHintContent(editCommandHint, " 1", " index", "edit 1");
+
+        //offer hint
+        editCommandHint = new EditCommandHint("edit 5 ", " 5 ");
+        assertHintContent(editCommandHint, "n/", "name", "edit 5 n/");
+        editCommandHint = new EditCommandHint("edit 1 n/nicholas p/321 e/email@e.com a/address",
+                " 1 n/nicholas p/321 e/email@e.com a/address");
+        assertHintContent(editCommandHint, " r/", "remark",
+                "edit 1 n/nicholas p/321 e/email@e.com a/address r/");
+
+        //index cycle
+        editCommandHint = new EditCommandHint("edit 5", " 5");
+        assertHintContent(editCommandHint, "", " index", "edit 6");
+
+
+        //prefix completion
+        editCommandHint = new EditCommandHint("edit 5 n", " 5 n");
+        assertHintContent(editCommandHint, "/", "name", "edit 5 n/");
+        editCommandHint = new EditCommandHint("edit 3 n/ ", " 3 n/ ");
+        assertHintContent(editCommandHint, "p/", "phone", "edit 3 n/ p/");
+        editCommandHint = new EditCommandHint("edit 2 p", " 2 p");
+        assertHintContent(editCommandHint, "/", "phone", "edit 2 p/");
+        editCommandHint = new EditCommandHint("edit 4 e", " 4 e");
+        assertHintContent(editCommandHint, "/", "email", "edit 4 e/");
+
+        //prefix cycle
+        editCommandHint = new EditCommandHint("edit 1 t/", " 1 t/");
+        assertHintContent(editCommandHint, "", "tag", "edit 1 n/");
+        editCommandHint = new EditCommandHint("edit 3 r/", " 3 r/");
+        assertHintContent(editCommandHint, "", "remark", "edit 3 t/");
+
+        //exhausted all prefix
+        editCommandHint = new EditCommandHint("edit 2 n/nicholas p/321 e/email@e.com a/address t/tag r/remark",
+                " 2 n/nicholas p/321 e/email@e.com a/address t/tag r/remark");
+        assertHintContent(editCommandHint, " ", "", "edit 2 n/nicholas p/321 e/email@e.com a/address t/tag r/remark ");
+    }
+
+
+}
+```
+###### \java\seedu\address\logic\hints\FindCommandHintTest.java
+``` java
+public class FindCommandHintTest {
+
+    @Test
+    public void parseTest() {
+        //offer hint
+        FindCommandHint findCommandHint = new FindCommandHint("find", "");
+        assertHintContent(findCommandHint, " n/", "name", "find n/");
+        findCommandHint = new FindCommandHint("find n/ ", " n/ ");
+        assertHintContent(findCommandHint, "p/", "phone", "find n/ p/");
+        findCommandHint = new FindCommandHint("find n/nicholas p/321 e/email@e.com a/address",
+                " n/nicholas p/321 e/email@e.com a/address");
+        assertHintContent(findCommandHint, " r/", "remark",
+                "find n/nicholas p/321 e/email@e.com a/address r/");
+        //prefix completion
+        findCommandHint = new FindCommandHint("find n", " n");
+        assertHintContent(findCommandHint, "/", "name", "find n/");
+
+        findCommandHint = new FindCommandHint("find p", " p");
+        assertHintContent(findCommandHint, "/", "phone", "find p/");
+        findCommandHint = new FindCommandHint("find e", " e");
+        assertHintContent(findCommandHint, "/", "email", "find e/");
+
+        //prefix cycle
+        findCommandHint = new FindCommandHint("find r/", " r/");
+        assertHintContent(findCommandHint, "", "remark", "find t/");
+        findCommandHint = new FindCommandHint("find a/", " a/");
+        assertHintContent(findCommandHint, "", "address", "find r/");
+
+        //exhausted all prefix
+        findCommandHint = new FindCommandHint("find n/nicholas p/321 e/email@e.com a/address t/tag r/remark",
+                " n/nicholas p/321 e/email@e.com a/address t/tag r/remark");
+        assertHintContent(findCommandHint, " ", "", "find n/nicholas p/321 e/email@e.com a/address t/tag r/remark ");
+    }
+}
+```
+###### \java\seedu\address\logic\hints\MusicCommandHintTest.java
+``` java
+public class MusicCommandHintTest {
+
+    @Test
+    public void musicCommandHint() {
+
+        MusicCommand.stopMusicPlayer();
+        MusicCommandHint musicCommandHint;
+        if (!MusicCommand.getIsMusicPlaying()) {
+            musicCommandHint = new MusicCommandHint("music", "");
+            assertHintContent(musicCommandHint,
+                    " play",
+                    " plays music",
+                    "music play");
+
+            musicCommandHint = new MusicCommandHint("music ", "");
+            assertHintContent(musicCommandHint,
+                    "play",
+                    " plays music",
+                    "music play");
+
+            musicCommandHint = new MusicCommandHint("music p", " p");
+            assertHintContent(musicCommandHint,
+                    "lay",
+                    " plays music",
+                    "music play");
+
+            musicCommandHint = new MusicCommandHint("music play po", " play po");
+            assertHintContent(musicCommandHint,
+                    "p",
+                    " plays pop",
+                    "music play pop");
+        } else {
+            musicCommandHint = new MusicCommandHint("music", "");
+            assertHintContent(musicCommandHint,
+                    " stop",
+                    " stops music",
+                    "music stop");
+
+            musicCommandHint = new MusicCommandHint("music ", " ");
+            assertHintContent(musicCommandHint,
+                    "stop",
+                    " stops music",
+                    "music stop");
+
+            musicCommandHint = new MusicCommandHint("music s", " s");
+            assertHintContent(musicCommandHint,
+                    "top",
+                    " stops music",
+                    "music stop");
+
+            musicCommandHint = new MusicCommandHint("music p", " p");
+            assertHintContent(musicCommandHint,
+                    "lay",
+                    " plays music",
+                    "music stop");
+
+            musicCommandHint = new MusicCommandHint("music play po", " play po");
+            assertHintContent(musicCommandHint,
+                    "p",
+                    " plays pop",
+                    "music stop ");
+        }
+
+
+        musicCommandHint = new MusicCommandHint("music play", " play");
+        assertHintContent(musicCommandHint,
+                " pop",
+                " plays pop",
+                "music play pop");
+
+        musicCommandHint = new MusicCommandHint("music play pop", " play pop");
+        assertHintContent(musicCommandHint,
+                "",
+                " plays pop",
+                "music play dance");
+
+        musicCommandHint = new MusicCommandHint("music play dance", " play dance");
+        assertHintContent(musicCommandHint,
+                "",
+                " plays dance tracks",
+                "music play classic");
+
+        musicCommandHint = new MusicCommandHint("music play classic", " play classic");
+        assertHintContent(musicCommandHint,
+                "",
+                " plays the classics",
+                "music play pop");
+
+        musicCommandHint = new MusicCommandHint("music play s", " play s");
+        assertHintContent(musicCommandHint,
+                " pop",
+                " plays pop",
+                "music play pop");
+
+
+        musicCommandHint = new MusicCommandHint("music stop", " stop");
+        assertHintContent(musicCommandHint,
+                "",
+                " stops music",
+                "music stop");
+
+    }
+}
+```
+###### \java\seedu\address\logic\hints\NoArgumentsHintTest.java
+``` java
+public class NoArgumentsHintTest {
+
+    @Test
+    public void helpCommandHintTest() {
+        HelpCommandHint helpCommandHint = new HelpCommandHint("help");
+        assertNoArgHint(helpCommandHint, " shows user guide", "help");
+
+        helpCommandHint = new HelpCommandHint("help ");
+        assertNoArgHint(helpCommandHint, "shows user guide", "help ");
+
+        helpCommandHint = new HelpCommandHint("help s");
+        assertNoArgHint(helpCommandHint, " shows user guide", "help s");
+    }
+
+    @Test
+    public void listCommandHintTest() {
+        ListCommandHint listCommandHint = new ListCommandHint("list");
+        assertNoArgHint(listCommandHint, " lists all contacts", "list");
+
+        listCommandHint = new ListCommandHint("list ");
+        assertNoArgHint(listCommandHint, "lists all contacts", "list ");
+
+        listCommandHint = new ListCommandHint("list s");
+        assertNoArgHint(listCommandHint, " lists all contacts", "list s");
+    }
+
+    @Test
+    public void undoCommandHintTest() {
+        UndoCommandHint undoCommandHint = new UndoCommandHint("undo");
+        assertNoArgHint(undoCommandHint, " undo previous command", "undo");
+
+        undoCommandHint = new UndoCommandHint("undo ");
+        assertNoArgHint(undoCommandHint, "undo previous command", "undo ");
+
+        undoCommandHint = new UndoCommandHint("undo s");
+        assertNoArgHint(undoCommandHint, " undo previous command", "undo s");
+    }
+
+    @Test
+    public void redoCommandHintTest() {
+        RedoCommandHint redoCommandHint = new RedoCommandHint("redo");
+        assertNoArgHint(redoCommandHint, " redo command", "redo");
+
+        redoCommandHint = new RedoCommandHint("redo ");
+        assertNoArgHint(redoCommandHint, "redo command", "redo ");
+
+        redoCommandHint = new RedoCommandHint("redo s");
+        assertNoArgHint(redoCommandHint, " redo command", "redo s");
+    }
+
+    @Test
+    public void historyCommandHintTest() {
+        HistoryCommandHint historyCommandHint = new HistoryCommandHint("history");
+        assertNoArgHint(historyCommandHint, " shows command history", "history");
+
+        historyCommandHint = new HistoryCommandHint("history ");
+        assertNoArgHint(historyCommandHint, "shows command history", "history ");
+
+        historyCommandHint = new HistoryCommandHint("history s");
+        assertNoArgHint(historyCommandHint, " shows command history", "history s");
+    }
+
+    @Test
+    public void exitCommandHintTest() {
+        ExitCommandHint exitCommandHint = new ExitCommandHint("exit");
+        assertNoArgHint(exitCommandHint, " exits the application", "exit");
+
+        exitCommandHint = new ExitCommandHint("exit ");
+        assertNoArgHint(exitCommandHint, "exits the application", "exit ");
+
+        exitCommandHint = new ExitCommandHint("exit s");
+        assertNoArgHint(exitCommandHint, " exits the application", "exit s");
+    }
+
+    @Test
+    public void cleatCommandHintTest() {
+        ClearCommandHint clearCommandHint = new ClearCommandHint("clear");
+        assertNoArgHint(clearCommandHint, " clears all contacts", "clear");
+
+        clearCommandHint = new ClearCommandHint("clear ");
+        assertNoArgHint(clearCommandHint, "clears all contacts", "clear ");
+
+        clearCommandHint = new ClearCommandHint("clear s");
+        assertNoArgHint(clearCommandHint, " clears all contacts", "clear s");
+    }
+
+
+    private void assertNoArgHint(NoArgumentsHint noArgumentsHint, String description, String autocomplete) {
+        assertEquals(description, noArgumentsHint.getDescription());
+        assertEquals(autocomplete, noArgumentsHint.autocomplete());
+    }
+}
+```
+###### \java\seedu\address\logic\hints\RadioCommandHintTest.java
+``` java
+public class RadioCommandHintTest {
+
+    @Test
+    public void radioCommandHint() {
+
+        RadioCommand.stopRadioPlayer();
+        RadioCommandHint radioCommandHint = new RadioCommandHint("radio", "");
+        if (!RadioCommand.getIsRadioPlaying()) {
+            assertHintContent(radioCommandHint,
+                    " play",
+                    " plays radio",
+                    "radio play");
+
+            radioCommandHint = new RadioCommandHint("radio ", "");
+            assertHintContent(radioCommandHint,
+                    "play",
+                    " plays radio",
+                    "radio play");
+
+            radioCommandHint = new RadioCommandHint("radio p", " p");
+            assertHintContent(radioCommandHint,
+                    "lay",
+                    " plays radio",
+                    "radio play");
+
+            radioCommandHint = new RadioCommandHint("radio sto", " sto");
+            assertHintContent(radioCommandHint,
+                    "p",
+                    " stops radio",
+                    "radio play");
+
+            radioCommandHint = new RadioCommandHint("radio play", " play");
+            assertHintContent(radioCommandHint,
+                    " pop",
+                    " plays pop radio",
+                    "radio play pop");
+
+            radioCommandHint = new RadioCommandHint("radio play po", " play po");
+            assertHintContent(radioCommandHint,
+                    "p",
+                    " plays pop radio",
+                    "radio play pop");
+
+            radioCommandHint = new RadioCommandHint("radio play c", " play c");
+            assertHintContent(radioCommandHint,
+                    "hinese",
+                    " plays chinese radio",
+                    "radio play chinese");
+
+
+        } else {
+            assertHintContent(radioCommandHint,
+                    " stop",
+                    " stops radio",
+                    "radio stop");
+
+            radioCommandHint = new RadioCommandHint("radio ", "");
+            assertHintContent(radioCommandHint,
+                    "stop",
+                    " stops radio",
+                    "radio stop");
+
+            radioCommandHint = new RadioCommandHint("radio s", " s");
+            assertHintContent(radioCommandHint,
+                    "top",
+                    " stops radio",
+                    "radio stop");
+
+            radioCommandHint = new RadioCommandHint("radio pla", " pla");
+            assertHintContent(radioCommandHint,
+                    "y",
+                    " plays radio",
+                    "radio stop");
+
+            radioCommandHint = new RadioCommandHint("radio play", " play");
+            assertHintContent(radioCommandHint,
+                    " pop",
+                    " plays pop radio",
+                    "radio play pop");
+
+
+            radioCommandHint = new RadioCommandHint("radio play po", " play po");
+            assertHintContent(radioCommandHint,
+                    "p",
+                    " plays pop radio",
+                    "radio stop");
+
+            radioCommandHint = new RadioCommandHint("radio play c", " play c");
+            assertHintContent(radioCommandHint,
+                    "hinese",
+                    " plays chinese radio",
+                    "radio stop");
+        }
+
+
+        radioCommandHint = new RadioCommandHint("radio play pop", " play pop");
+        assertHintContent(radioCommandHint,
+                "",
+                " plays pop radio",
+                "radio play chinese");
+
+        radioCommandHint = new RadioCommandHint("radio play chinese", " play chinese");
+        assertHintContent(radioCommandHint,
+                "",
+                " plays chinese radio",
+                "radio play classic");
+
+        radioCommandHint = new RadioCommandHint("radio play classic", " play classic");
+        assertHintContent(radioCommandHint,
+                "",
+                " plays classic radio",
+                "radio play news");
+
+        radioCommandHint = new RadioCommandHint("radio play news", " play news");
+        assertHintContent(radioCommandHint,
+                "",
+                " plays news radio",
+                "radio play pop");
+
+        radioCommandHint = new RadioCommandHint("radio play s", " play s");
+        assertHintContent(radioCommandHint,
+                " pop",
+                " plays pop radio",
+                "radio play pop");
+
+        radioCommandHint = new RadioCommandHint("radio stop", " stop");
+        assertHintContent(radioCommandHint,
+                "",
+                " stops radio",
+                "radio stop");
+
+    }
+}
+```
+###### \java\seedu\address\logic\hints\ShareCommandHintTest.java
+``` java
+public class ShareCommandHintTest {
+
+    @Test
+    public void shareCommandHint() {
+        ShareCommandHint shareCommandHint = new ShareCommandHint("share", "");
+        assertHintContent(
+                shareCommandHint,
+                " 1",
+                " index",
+                "share 1");
+
+        shareCommandHint = new ShareCommandHint("share ", "");
+        assertHintContent(
+                shareCommandHint,
+                "1",
+                " index",
+                "share 1");
+
+        shareCommandHint = new ShareCommandHint("share 1", " 1");
+        assertHintContent(
+                shareCommandHint,
+                "",
+                " index",
+                "share 2");
+
+        shareCommandHint = new ShareCommandHint("share 1 ", " 1");
+        assertHintContent(
+                shareCommandHint,
+                "s/",
+                "email or index",
+                "share 1 s/");
+
+        shareCommandHint = new ShareCommandHint("share 1 s", " 1 s");
+        assertHintContent(
+                shareCommandHint,
+                "/",
+                "email or index",
+                "share 1 s/");
+
+        shareCommandHint = new ShareCommandHint("share 1 s/", " 1 s/");
+        assertHintContent(
+                shareCommandHint,
+                "",
+                "email or index",
+                "share 1 s/");
+
+        shareCommandHint = new ShareCommandHint("share 1 s/s", " 1 s/s");
+        assertHintContent(
+                shareCommandHint,
+                " ",
+                "next email or index",
+                "share 1 s/s ");
+
+        shareCommandHint = new ShareCommandHint("share 1 s/s ", " 1 s/s ");
+        assertHintContent(
+                shareCommandHint,
+                "",
+                "next email or index",
+                "share 1 s/s ");
+
+        shareCommandHint = new ShareCommandHint("share 1 s/s s", " 1 s/s s");
+        assertHintContent(
+                shareCommandHint,
+                " ",
+                "next email or index",
+                "share 1 s/s s ");
+    }
+
+}
+```
+###### \java\seedu\address\logic\hints\UnaliasCommandHintTest.java
+``` java
+public class UnaliasCommandHintTest {
+
+    @Test
+    public void unaliasCommandHint() {
+        UnaliasCommandHint unaliasCommandHint = new UnaliasCommandHint("unalias", "");
+        assertHint(
+                unaliasCommandHint,
+                " removes alias",
+                "unalias ");
+
+        unaliasCommandHint = new UnaliasCommandHint("alias ", "");
+        assertHint(
+                unaliasCommandHint,
+                " alias to remove",
+                "alias ");
+
+        unaliasCommandHint = new UnaliasCommandHint("alias s", " s");
+        assertHint(
+                unaliasCommandHint,
+                " removes s from aliases",
+                "alias s ");
+
+
+        unaliasCommandHint = new UnaliasCommandHint("alias aaa ", " aaa ");
+        assertHint(
+                unaliasCommandHint,
+                " removes aaa from aliases",
+                "alias aaa ");
+
+    }
+
+    /**
+     * parses {@code unaliasCommandHint} and checks if the the hint generated has the expected fields
+     */
+    private void assertHint(UnaliasCommandHint unaliasCommandHint,
+                            String expectedDesc,
+                            String expectedAutocomplete) {
+        AddCommandHintTest.assertHintContent(
+                unaliasCommandHint,
+                "",
+                expectedDesc,
+                expectedAutocomplete);
     }
 }
 ```

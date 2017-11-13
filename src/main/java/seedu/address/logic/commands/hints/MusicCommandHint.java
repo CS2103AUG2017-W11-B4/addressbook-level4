@@ -3,6 +3,7 @@ package seedu.address.logic.commands.hints;
 import seedu.address.logic.Autocomplete;
 import seedu.address.logic.commands.MusicCommand;
 
+//@@author nicholaschuayunzhi
 /**
  * Generates hint and tab auto complete for Music command
  * Assumes that {@code userInput} and {@code arguments} provided are from

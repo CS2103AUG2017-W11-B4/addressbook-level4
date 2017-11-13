@@ -5,6 +5,7 @@ import java.util.List;
 import seedu.address.commons.util.HintUtil;
 import seedu.address.logic.parser.Prefix;
 
+//@@author nicholaschuayunzhi
 /**
  * Template class for hints that have arguments in their command format
  * These arguments include prefixes and indices.
