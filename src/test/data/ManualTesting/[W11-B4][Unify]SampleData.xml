@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook>
+    <persons>
+        <name>Alex Yeoh</name>
+        <phone>87438807</phone>
+        <email>alexyeoh@example.com</email>
+        <address>Blk 30 Geylang Street 29, #06-40</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Bernice Yu</name>
+        <phone>99272758</phone>
+        <email>berniceyu@example.com</email>
+        <address>Blk 30 Lorong 3 Serangoon Gardens, #07-18</address>
+        <remark>Likes to swim</remark>
+        <tagged>colleagues</tagged>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Charlotte Oliveiro</name>
+        <phone>93210283</phone>
+        <email>charlotte@example.com</email>
+        <address>Blk 11 Ang Mo Kio Street 74, #11-04</address>
+        <remark></remark>
+        <tagged>neighbours</tagged>
+    </persons>
+    <persons>
+        <name>David Li</name>
+        <phone>91031282</phone>
+        <email>lidavid@example.com</email>
+        <address>Blk 436 Serangoon Gardens Street 26, #16-43</address>
+        <remark>As quick as a leopard.</remark>
+        <tagged>family</tagged>
+    </persons>
+    <persons>
+        <name>Irfan Ibrahim</name>
+        <phone>92492021</phone>
+        <email>irfan@example.com</email>
+        <address>Blk 47 Tampines Street 20, #17-35</address>
+        <remark></remark>
+        <tagged>classmates</tagged>
+    </persons>
+    <persons>
+        <name>Roy Balakrishnan</name>
+        <phone>92624417</phone>
+        <email>royb@example.com</email>
+        <address>Blk 45 Aljunied Street 85, #11-31</address>
+        <remark></remark>
+        <tagged>colleagues</tagged>
+    </persons>
+    <persons>
+        <name>Ahmad Mohamad</name>
+        <phone>84516541</phone>
+        <email>ahmd@example.com</email>
+        <address>Blk 293 Ang Mo Kio Street 76, #05-24</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Lindsey To</name>
+        <phone>95591920</phone>
+        <email>lindsey@example.com</email>
+        <address>Blk 10 Boon Lay Street 24, #15-32</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Gabriella Woo</name>
+        <phone>62421515</phone>
+        <email>gab@example.com</email>
+        <address>Blk 23 Hougang Street 83, #09-40</address>
+        <remark></remark>
+        <tagged>classmates</tagged>
+    </persons>
+    <persons>
+        <name>Burairah Ismail</name>
+        <phone>82882212</phone>
+        <email>burairah@example.com</email>
+        <address>Blk 43 Bukit Panjang Street 79, #05-31</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Sonny Chew</name>
+        <phone>94718214</phone>
+        <email>sonny@example.com</email>
+        <address>9 Tai Seng Court, #14-02</address>
+        <remark>With chance of meatballs.</remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Hansel Ng</name>
+        <phone>97845124</phone>
+        <email>hanselblack@hotmail.com</email>
+        <address>Blk 354 Kent Ridge View 74, #09-14</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Rodger Teoh</name>
+        <phone>63422455</phone>
+        <email>rodgerthat@example.com</email>
+        <address>72 Cairnhill Park</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Ava Kok</name>
+        <phone>98744789</phone>
+        <email>ava@example.com</email>
+        <address>55 Serangoon North Park</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Cedrick Chew</name>
+        <phone>87785522</phone>
+        <email>chewbacca@example.com</email>
+        <address>Blk 434 Geylang Street 87, #12-08</address>
+        <remark></remark>
+        <tagged>classmates</tagged>
+    </persons>
+    <persons>
+        <name>Zack Yeo</name>
+        <phone>95591920</phone>
+        <email>zack@example.com</email>
+        <address>9 Bartley Walk, #18-39</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Low Siew Li Althea</name>
+        <phone>87655396</phone>
+        <email>Althea@example.com</email>
+        <address>67 Jalan Asas</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Teoh King Guat</name>
+        <phone>84564521</phone>
+        <email>tkg@example.com</email>
+        <address>Blk 22 Tampines Street 73, #05-25</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Tiffany Guo</name>
+        <phone>87456321</phone>
+        <email>tiffany@example.com</email>
+        <address>52 Innova Heights</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Umar Hazirah</name>
+        <phone>91249845</phone>
+        <email>umar@example.com</email>
+        <address>Blk 15 Hougang Street 39, #13-15</address>
+        <remark></remark>
+        <tagged>friends</tagged>
+    </persons>
+    <tags>colleagues</tags>
+    <tags>classmates</tags>
+    <tags>neighbours</tags>
+    <tags>family</tags>
+    <tags>friends</tags>
+</addressbook>
