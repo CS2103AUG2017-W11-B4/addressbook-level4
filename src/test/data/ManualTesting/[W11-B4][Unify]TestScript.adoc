@@ -28,12 +28,29 @@ This is the test script for Team W11-B4's address book, Unify.
 == Things to Note
 Hints and auto completion is one of our core features. As commands are being typed, you may check for the hints and autocomplete text.
 
+=== How to test
+Please follow the test cases from top to bottom as some parts are linked.
+We have separated each command into invalid and valid commands. Invalid commands will have a red font colour. Valid commands will have a white font colour.
+Each test case is given in the following format:
+
+[cols="2*^"]
+|===
+|*User Input*|What you are supposed to type as input
+|*Hint*|The hint that follows after the input (will be in dark grey)
+|*Autocomplete Input*|The new user input when you press kbd:[Tab]
+|*Result*|What you see displayed on
+|*Note*|Anything to note about the the test case
+|===
+
+[NOTE]
+Some user input has a white space at the end that may not be very obvious. If you don't seem to be getting the correct output, do check to see if whitespace was specified
+in the user input by highlighting it.
 
 == Basic Commands
 
 === Add Command
 
-==== Incomplete Command
+==== Invalid Command
 
 [cols="2*^"]
 |===
@@ -83,7 +100,7 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Result*|`Invalid command format! ...`
 |===
 
-==== Complete Command
+==== Valid Command
 
 [cols="2*^"]
 |===
@@ -96,16 +113,32 @@ Hints and auto completion is one of our core features. As commands are being typ
 
 [cols="2*^"]
 |===
-|*User Input*|`add n/Nicholas p/12345 e/email@example.com a/address r/remark t/tag`
+|*User Input*|`add n/Wei Wen p/12345 e/email@example.com a/address r/remark t/tag`
 |*Hint*|`{sp}i/avatar file path (optional)`
 |*Autocomplete Input*|`add n/Wei Wen p/12345 e/email@example.com a/address r/remark t/tag i/`
 |*Result*|`New person added: Wei Wen ...`
 |*Note*| Person Wei Wen is added to Unify at index 22. When selected, his details should be the same as input with a default avatar.
 |===
 
+
+===== Testing for Avatar
+To test for avatar, please place a valid file path to a .jpg or .png in the avatar field. For example, `d:/pictures/leonard.png`.
+
+[TIP]
+The input will turn white if all arguments are valid!
+
+[cols="2*^"]
+|===
+|*User Input*|`add n/Hansel p/12345 e/email@example.com a/address r/remark t/tag i/a_valid_image_path.png`
+|*Hint*|``
+|*Autocomplete Input*|`add n/Hansel p/12345 e/email@example.com a/address r/remark t/tag i/a_valid_image_path.png{sp}`
+|*Result*|`New person added: Hansel ...`
+|*Note*| Person Hansel is added to Unify at index 23. When selected, his details should be the same as input with the set avatar.
+|===
+
 === Delete Command
 
-==== Incomplete Command
+==== Invalid Command
 
 [cols="2*^"]
 |===
@@ -123,8 +156,15 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Result*|`Invalid command format!...`
 |===
 
+[cols="2*^"]
+|===
+|*User Input*|`delete 99`
+|*Hint*|`{sp}index`
+|*Autocomplete Input*|`delete 99`
+|*Result*|`The person index provided is invalid`
+|===
 
-==== Complete Command
+==== Valid Command
 
 [cols="2*^"]
 |===
@@ -132,21 +172,12 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Hint*|`{sp}index`
 |*Autocomplete Input*|`delete 23`
 |*Result*|`Deleted Person: Wei Wen...`
-|*Note*| Person Wei Wen is deleted from the address book. Auto complete input will give invalid index 23
-|===
-
-
-[cols="2*^"]
-|===
-|*User Input*|`delete 23`
-|*Hint*|`{sp}index`
-|*Autocomplete Input*|`delete 23`
-|*Result*|`The person index provided is invalid`
+|*Note*| Person Wei Wen is deleted from the address book. Auto complete input will give invalid index 23 even if there are 22 people only. (if you did not add Hansel)
 |===
 
 === Select Command
 
-==== Incomplete Command
+==== Invalid Command
 
 [cols="2*^"]
 |===
@@ -164,7 +195,15 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Result*|`Invalid command format!...`
 |===
 
-==== Complete Command
+[cols="2*^"]
+|===
+|*User Input*|`select 99`
+|*Hint*|`{sp}index`
+|*Autocomplete Input*|`select 99`
+|*Result*|`The person index provided is invalid`
+|===
+
+==== Valid Command
 
 [cols="2*^"]
 |===
@@ -175,17 +214,9 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Note*| Person at index 1, Alex Yeoh will be selected
 |===
 
-[cols="2*^"]
-|===
-|*User Input*|`select 22`
-|*Hint*|`{sp}index`
-|*Autocomplete Input*|`select 23`
-|*Result*|`The person index provided is invalid`
-|===
-
 === Help Command
 
-==== Incomplete Command
+==== Invalid Command
 
 [cols="2*^"]
 |===
@@ -195,7 +226,7 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Result*|`Unknown Command`
 |===
 
-==== Complete Command
+==== Valid Command
 
 [cols="2*^"]
 |===
@@ -208,7 +239,7 @@ Hints and auto completion is one of our core features. As commands are being typ
 
 === History Command
 
-==== Incomplete Command
+==== Invalid Command
 
 [cols="2*^"]
 |===
@@ -218,7 +249,7 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Result*|`Unknown Command`
 |===
 
-==== Complete Command
+==== Valid Command
 
 [cols="2*^"]
 |===
@@ -229,7 +260,360 @@ Hints and auto completion is one of our core features. As commands are being typ
 |*Note*| A list of all previously entered commands will be displayed in the result display.
 |===
 
+=== List Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`l`
+|*Hint*|`ist lists all contacts`
+|*Autocomplete Input*|`list{sp}`
+|*Result*|`Unknown Command`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`list`
+|*Hint*|`{sp}lists all contacts`
+|*Autocomplete Input*|`list{sp}`
+|*Result*|`Listed all persons`
+|*Note*| All contacts will be listed. There will be 21 contacts as we had added Nicholas to the address book.
+|===
+
+=== Edit Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`e`
+|*Hint*|`dit edits a person`
+|*Autocomplete Input*|`edit{sp}`
+|*Result*|`Unknown Command`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`edit`
+|*Hint*|`{sp}1 index`
+|*Autocomplete Input*|`edit 1`
+|*Result*|`Invalid command format!`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 1`
+|*Hint*|`{sp}index`
+|*Autocomplete Input*|`edit 2`
+|*Result*|`At least one field to edit must be provided.`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 1{sp}`
+|*Hint*|`n/name`
+|*Autocomplete Input*|`edit 1 n/`
+|*Result*|`At least one field to edit must be provided.`
+|===
+
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 1 n/`
+|*Hint*|`name`
+|*Autocomplete Input*|`edit 1 p/`
+|*Result*|`Person names should only contain alphanumeric characters and spaces, and it should not be blank.`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 1 n/{sp}`
+|*Hint*|`p/phone`
+|*Autocomplete Input*|`edit 1 n/ p/`
+|*Result*|`Person names should only contain alphanumeric characters and spaces, and it should not be blank.`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 30 n/n`
+|*Hint*|`{sp}p/phone`
+|*Autocomplete Input*|`edit 30 n/n p/phone`
+|*Result*|`The person index provided is invalid.`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 1 p/1234567`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`edit 1 p/1234567 n/`
+|*Result*|`Edited Person: Alex Yeoh Phone: 1234567...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`edit 1 p/87438807 r/Alex Yeohs Remark`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`edit 1 p/87438807 r/Alex Yeohs Remark n/`
+|*Result*|`Edited Person: Alex Yeoh Phone: 87438807...`
+|*Note*|Alex phone number is updated to 87438807 and he has a new remark "Alex Yeohs Remark"
+|===
+
 == Advanced Commands
+
+=== Find Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`f`
+|*Hint*|`ind finds a person`
+|*Autocomplete Input*|`find{sp}`
+|*Result*|`Unknown Command`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`find n/`
+|*Result*|`Invalid command format! ...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`find n/`
+|*Result*|`Invalid command format! ...`
+|===
+
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`find n/`
+|*Hint*|`name`
+|*Autocomplete Input*|`find p/`
+|*Result*|`21 persons listed!`
+|*Note*|This executes a find on people whose name contains "". All people match this criteria, thus 21 people are listed
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find n/1`
+|*Hint*|`{sp}p/phone`
+|*Autocomplete Input*|`find n/1 p/`
+|*Result*|`21 persons listed!`
+|*Note*|This executes a find on people whose name contains "1". No one matches the criteria, thus 0 people listed.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find t/friends`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`find t/friends n/`
+|*Result*|`14 persons listed!`
+|*Note*|This executes a find on people whose tags contain "friends". 14 people match.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find n/a t/friends`
+|*Hint*|`{sp}p/phone`
+|*Autocomplete Input*|`find n/a t/friends p/`
+|*Result*|`10 persons listed!`
+|*Note*|This executes a find on people whose tags contain "friends" and name contains letter "a". 10 people match.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find r/alex`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`find r/alex n/`
+|*Result*|`1 persons listed!`
+|*Note*|This executes a find on people whose remarks contains the word "alex". 1 person matches.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`find r/lex`
+|*Hint*|`{sp}n/name`
+|*Autocomplete Input*|`find r/lex n/`
+|*Result*|`1 persons listed!`
+|*Note*|This executes a find on people whose remarks contains the word "lex". 0 person matches.
+|===
+
+=== Alias Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`al`
+|*Hint*|`as sets or show alias`
+|*Autocomplete Input*|`alias{sp}`
+|*Result*|`Unknown Command`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`alias s`
+|*Hint*|`{sp}- set your new command word`
+|*Autocomplete Input*|`alias s{sp}`
+|*Result*|`Invalid command format! `
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`alias s{sp}`
+|*Hint*|`{sp}- set what s represents `
+|*Autocomplete Input*|`alias s{sp}`
+|*Result*|`Invalid command format! `
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`alias`
+|*Hint*|`shows all aliases`
+|*Autocomplete Input*|`alias{sp}`
+|*Result*|`Aliases: song=music new=add change=edit ls=list ....`
+|*Note*|This command lists all aliases saved in the user preferences.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`alias{sp}`
+|*Hint*|`{sp}- set your new command word`
+|*Autocomplete Input*|`alias{sp}`
+|*Result*|`Aliases: song=music new=add change=edit ls=list ....`
+|*Note*|This command lists all aliases saved in the user preferences. The prompt provided is for the 2nd format of the command.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`alias s list`
+|*Hint*|`{sp}- set what s represents `
+|*Autocomplete Input*|`alias s a{sp}`
+|*Result*|`The alias "s" now points to "list".`
+|*Note*| Now the command s represents list. Hence when you enter s as a command, it will execute the `list` command.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`alias findalex find n/alex`
+|*Hint*|`{sp}- set what findalex represents `
+|*Autocomplete Input*|`alias findalex find n/alex{sp}`
+|*Result*|`The alias "findalex" now points to "find n/alex".`
+|*Note*| Now the command find alex represents a find name of alex. Hence when you enter findalex as a command, it will execute the `find n/alex` and list alex.
+|===
+
+=== Unalias Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`u`
+|*Hint*|`nalias removes alias`
+|*Autocomplete Input*|`unalias{sp}`
+|*Result*|`Unknown Command`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`unalias`
+|*Hint*|`{sp}removes alias`
+|*Autocomplete Input*|`unalias{sp}`
+|*Result*|`Invalid command format!`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`unalias{sp}`
+|*Hint*|`{sp}alias to remove`
+|*Autocomplete Input*|`unalias{sp}`
+|*Result*|`Invalid command format!`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`unalias s`
+|*Hint*|`{sp}removes s from aliases`
+|*Autocomplete Input*|`unalias s{sp}`
+|*Result*|`Deleted alias "s".`
+|*Note*|Previously we had set s as an alias for list. This command deletes this mapping.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`unalias v`
+|*Hint*|`{sp}removes v from aliases`
+|*Autocomplete Input*|`unalias v{sp}`
+|*Result*|`Alias "v" doesn't exist.`
+|*Note*|Alias v does not exist thus there is no mapping to delete. The command input should now turn red and remain unchanged.
+|===
+
+=== Undo Command
+
+==== Set Up Required!
+Before executing this command, execute `delete 21` to remove Nicholas from Unify.
+You should see `Deleted Person: Nicholas Phone: 12345 Email: email@example.com Address: address Remark:  Tags:` in the result display
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`und`
+|*Hint*|`o undo previous command`
+|*Autocomplete Input*|`undo{sp}`
+|*Result*|`Unknown Command`
+|===
+
+==== Valid Command
+
+
+[cols="2*^"]
+|===
+|*User Input*|`undo`
+|*Hint*|`{sp}undo previous command`
+|*Autocomplete Input*|`undo`
+|*Result*|`Undo success!`
+|*Note*|We undo the the delete command on Nicholas! Now he will appear in index 21 as before.
+|===
+
+=== Redo Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`r`
+|*Hint*|`edo redo command`
+|*Autocomplete Input*|`redo{sp}`
+|*Result*|`Unknown Command`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`redo`
+|*Hint*|`{sp}redo command`
+|*Autocomplete Input*|`redo`
+|*Result*|`Redo success!`
+|*Note*|We redo the delete command on Nicholas. Now there are only 20 people in Unify.
+|===
 
 === Music Play Command
 
@@ -430,7 +814,6 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 |*Note*| If there is currently no radio playing and you execute this command, you will get this result instead `No radio is currently playing`
 |===
 
-
 === Share Command
 
 ==== Invalid Command
@@ -495,3 +878,57 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 |*Result*|`Email Sent!`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
 |===
+
+== Final Commands
+
+We have placed testing for these commands at the back for your convenience. These commands will remove data or close the application entirely.
+
+==== Clear Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`c`
+|*Hint*|`lear clears all contacts`
+|*Autocomplete Input*|`clear{sp}`
+|*Result*|`Unknown Command`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`clear`
+|*Hint*|`{sp}clears all contacts`
+|*Autocomplete Input*|`clear`
+|*Result*|`Address book has been cleared!`
+|*Note*|We clear all people from the Unify. A `list` command will show no one in Unify.
+|===
+
+==== Exit Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`ex`
+|*Hint*|`it exits the application`
+|*Autocomplete Input*|`exit{sp}`
+|*Result*|`Unknown Command`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`exit`
+|*Hint*|`exits the application`
+|*Autocomplete Input*|`exit`
+|*Result*| Application closes
+|===
+
+== Thanks for Testing!
+You have come to the end of the test script. Thank you for testing our app!
+If you found any bugs or have any feedback, please raise an issue link:https://github.com/CS2103AUG2017-W11-B4/main/issues[here]
+Alternatively you may link:https://github.com/CS2103AUG2017-W11-B4/main/blob/master/docs/ContactUs.adoc[contact us]
