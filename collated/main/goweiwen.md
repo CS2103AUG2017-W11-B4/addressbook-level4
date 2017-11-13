@@ -1,4 +1,63 @@
 # goweiwen
+###### \java\seedu\address\logic\Autocomplete.java
+``` java
+/**
+ * Utility class for  parsing user input into autocompletions.
+ */
+public class Autocomplete {
+    public static final ArrayList<String> COMMAND_LIST = new ArrayList<String>(Arrays.asList(
+            "add", "alias", "clear", "delete", "edit", "exit", "find", "help", "history", "list",
+            "music", "redo", "remark", "select", "unalias", "undo", "radio", "share"
+    ));
+
+    /**
+     * Parses {@code String input} and returns an appropriate autocompletion
+     */
+    public static String autocomplete(String input) {
+        String[] command;
+
+        try {
+            command = ParserUtil.parseCommandAndArguments(input);
+        } catch (ParseException e) {
+            return "";
+        }
+
+        String commandWord = command[0];
+        String arguments = command[1];
+
+        Hint hint = HintParser.generateHint(input, arguments, commandWord);
+        hint.requireFieldsNonNull();
+        return hint.autocomplete();
+    }
+
+    /**
+     * Parses {@code String command} and returns the closest matching command word, or null if nothing
+     * matches.
+     */
+    public static String autocompleteCommand(String command) {
+        List<String> commands = new ArrayList<String>();
+        // We add from COMMAND_LIST first because we want to autocomplete them first.
+        commands.addAll(COMMAND_LIST);
+        commands.addAll(UserPrefs.getInstance().getAliases().getAllAliases());
+        String[] list = commands.toArray(new String[commands.size()]);
+        return autocompleteFromList(command, list);
+    }
+
+    /**
+     * Parses {@code String input} and returns the closest matching string in {@code String[] strings},
+     * or null if nothing matches.
+     */
+    public static String autocompleteFromList(String input, String[] strings) {
+
+        for (String string : strings) {
+            if (string.startsWith(input)) {
+                return string;
+            }
+        }
+        return null;
+    }
+}
+```
 ###### \java\seedu\address\logic\commands\AliasCommand.java
 ``` java
 /**
@@ -90,7 +149,7 @@ public class UnaliasCommand extends UndoableCommand {
             throw new CommandException(String.format(MESSAGE_NO_SUCH_ALIAS, alias));
         }
         //Text to Speech
-        new TextToSpeech(String.format(MESSAGE_SUCCESS, alias));
+        new TextToSpeech(String.format(MESSAGE_SUCCESS, alias)).speak();;
         return new CommandResult(String.format(MESSAGE_SUCCESS, alias));
     }
 
@@ -135,94 +194,6 @@ public class AliasCommandParser implements Parser<AliasCommand> {
     }
 
 }
-```
-###### \java\seedu\address\logic\parser\HintParser.java
-``` java
-    private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(Arrays.asList(
-        "add", "alias", "clear", "delete", "edit", "exit", "find", "help", "history", "list",
-        "music", "redo", "remark", "select", "unalias", "undo"
-    ));
-
-    /**
-     * Parses {@code String input} and returns an appropriate autocompletion
-     */
-    public static String autocomplete(String input) {
-        String[] command;
-
-        try {
-            command = ParserUtil.parseCommandAndArguments(input);
-        } catch (ParseException e) {
-            return "";
-        }
-
-        userInput = input;
-        commandWord = command[0];
-        arguments = command[1];
-
-        String hint;
-
-        switch (commandWord) {
-
-        case AddCommand.COMMAND_WORD:
-            AddCommandHint addCommandHint = new AddCommandHint(userInput, arguments);
-            addCommandHint.parse();
-            return addCommandHint.autocomplete();
-
-        case EditCommand.COMMAND_WORD:
-            EditCommandHint editCommandHint = new EditCommandHint(userInput, arguments);
-            editCommandHint.parse();
-            return editCommandHint.autocomplete();
-
-        case FindCommand.COMMAND_WORD:
-            FindCommandHint findCommandHint = new FindCommandHint(userInput, arguments);
-            findCommandHint.parse();
-            return findCommandHint.autocomplete();
-
-        case DeleteCommand.COMMAND_WORD:
-        case SelectCommand.COMMAND_WORD:
-            DeleteCommandHint deleteCommandHint = new DeleteCommandHint(userInput, arguments);
-            deleteCommandHint.parse();
-            return deleteCommandHint.autocomplete();
-
-        case MusicCommand.COMMAND_WORD:
-            if (arguments.isEmpty()) {
-                return commandWord + " " + (MusicCommand.isMusicPlaying() ? "pause" : "play");
-            }
-            hint = autocompleteFromList(arguments.trim(), new String[] {"play", "pause", "stop"});
-            return commandWord + (hint != null ? " " + hint : arguments);
-
-        default:
-            hint = autocompleteCommand(commandWord);
-            return hint != null ? hint + " " : input;
-        }
-    }
-
-    /**
-     * Parses {@code String command} and returns the closest matching command word, or null if nothing
-     * matches.
-     */
-    public static String autocompleteCommand(String command) {
-        List<String> commands = new ArrayList<>();
-        // We add from COMMAND_LIST first because we want to autocomplete them first.
-        commands.addAll(COMMAND_LIST);
-        commands.addAll(UserPrefs.getInstance().getAliases().getAllAliases());
-        String[] list = commands.toArray(new String[commands.size()]);
-        return autocompleteFromList(command, list);
-    }
-
-    /**
-     * Parses {@code String input} and returns the closest matching string in {@code String[] strings},
-     * or null if nothing matches.
-     */
-    public static String autocompleteFromList(String input, String[] strings) {
-        for (String string : strings) {
-            if (string.startsWith(input)) {
-                return string;
-            }
-        }
-        return null;
-    }
-
 ```
 ###### \java\seedu\address\logic\parser\ParserUtil.java
 ``` java
@@ -450,6 +421,13 @@ public class Aliases {
 ```
 ###### \java\seedu\address\ui\CommandBox.java
 ``` java
+        // changes command box style to match validity of the input whenever there is a change
+        // to the text of the command box.
+        commandTextField.textProperty().addListener((observable, oldInput, newInput) ->
+                setStyleByValidityOfInput(newInput));
+```
+###### \java\seedu\address\ui\CommandBox.java
+``` java
         case TAB:
             keyEvent.consume();
             autocomplete();
@@ -462,7 +440,7 @@ public class Aliases {
      */
     private void autocomplete() {
         String input = commandTextField.getText();
-        String autocompletion = HintParser.autocomplete(input);
+        String autocompletion = Autocomplete.autocomplete(input);
         commandTextField.textProperty().set(autocompletion);
         commandTextField.positionCaret(autocompletion.length());
     }

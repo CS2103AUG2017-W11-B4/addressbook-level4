@@ -138,15 +138,16 @@ public class FindCommandParser implements Parser<FindCommand> {
 ```
 ###### \java\seedu\address\logic\parser\HintParser.java
 ``` java
+/**
+ * Class that is responsible for generating hints based on user input
+ * Contains one public method generateHint which returns an appropriate hint based on input
+ */
+public class HintParser {
+
     /**
      * Parses {@code String input} and returns an appropriate hint
      */
     public static String generateHint(String input) {
-        //the ordering matters as prefix hints are generated inorder
-        assert LIST_OF_PREFIXES.equals(Arrays.asList(
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_TAG, PREFIX_REMARK, PREFIX_AVATAR, PREFIX_EMPTY));
-
         String[] command;
 
         try {
@@ -155,12 +156,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             return " type help for guide";
         }
 
-        userInput = input;
-        commandWord = command[0];
-        arguments = command[1];
-        String hintContent = generateHintContent();
-
-        return hintContent;
+        String userInput = input;
+        String commandWord = command[0];
+        String arguments = command[1];
+        Hint hint = generateHint(userInput, arguments, commandWord);
+        hint.requireFieldsNonNull();
+        return hint.getArgumentHint() + hint.getDescription();
     }
 
     /**
@@ -168,101 +169,46 @@ public class FindCommandParser implements Parser<FindCommand> {
      * userInput and arguments are referenced to decide whether whitespace should be added to
      * the front of the hint
      */
-    private static String generateHintContent() {
+    public static Hint generateHint(String userInput, String arguments, String commandWord) {
+
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
-            return generateAddHint();
-        case AliasCommand.COMMAND_WORD:
-            return " creates an alias";
+            return new AddCommandHint(userInput, arguments);
         case EditCommand.COMMAND_WORD:
-            return generateEditHint();
+            return new EditCommandHint(userInput, arguments);
         case FindCommand.COMMAND_WORD:
-            return generateFindHint();
+            return new FindCommandHint(userInput, arguments);
         case SelectCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_WORD:
-            return generateDeleteAndSelectHint();
+            return new DeleteCommandHint(userInput, arguments);
+        case ShareCommand.COMMAND_WORD:
+            return new ShareCommandHint(userInput, arguments);
         case ClearCommand.COMMAND_WORD:
-            return " clears address book";
+            return new ClearCommandHint(userInput);
         case ListCommand.COMMAND_WORD:
-            return " lists all people";
+            return new ListCommandHint(userInput);
         case HistoryCommand.COMMAND_WORD:
-            return " show command history";
+            return new HistoryCommandHint(userInput);
         case ExitCommand.COMMAND_WORD:
-            return " exits the app";
-        case HelpCommand.COMMAND_WORD:
-            return " shows user guide";
+            return new ExitCommandHint(userInput);
         case UndoCommand.COMMAND_WORD:
-            return " undo command";
+            return new UndoCommandHint(userInput);
         case RedoCommand.COMMAND_WORD:
-            return " redo command";
+            return new RedoCommandHint(userInput);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommandHint(userInput);
+        case MusicCommand.COMMAND_WORD:
+            return new MusicCommandHint(userInput, arguments);
+        case RadioCommand.COMMAND_WORD:
+            return new RadioCommandHint(userInput, arguments);
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandHint(userInput, arguments);
+        case UnaliasCommand.COMMAND_WORD:
+            return new UnaliasCommandHint(userInput, arguments);
         default:
-            return " type help for guide";
+            return new CommandHint(userInput, commandWord);
         }
     }
-
-    /**
-     * returns a parameter based on {@code prefix}
-     */
-    private static String prefixIntoParameter(Prefix prefix) {
-        switch (prefix.toString()) {
-        case PREFIX_NAME_STRING:
-            return "NAME";
-        case PREFIX_PHONE_STRING:
-            return "PHONE";
-        case PREFIX_ADDRESS_STRING:
-            return "ADDRESS";
-        case PREFIX_EMAIL_STRING:
-            return "EMAIL";
-        case PREFIX_TAG_STRING:
-            return "TAG";
-        case PREFIX_REMARK_STRING:
-            return "REMARK";
-        case PREFIX_EMPTY_STRING:
-            return "KEYWORD";
-        default:
-            return "KEYWORD";
-        }
-    }
-
-    /**
-     * returns a hint specific to the add command
-     */
-    private static String generateAddHint() {
-        AddCommandHint addCommandHint = new AddCommandHint(userInput, arguments);
-        addCommandHint.parse();
-        return addCommandHint.getArgumentHint() + addCommandHint.getDescription();
-
-    }
-
-    /**
-     * returns a hint specific to the edit command
-     */
-    private static String generateEditHint() {
-        EditCommandHint editCommandHint = new EditCommandHint(userInput, arguments);
-        editCommandHint.parse();
-        return editCommandHint.getArgumentHint() + editCommandHint.getDescription();
-    }
-
-    /**
-     * returns a hint specific to the find command
-     */
-    private static String generateFindHint() {
-        FindCommandHint findCommandHint = new FindCommandHint(userInput, arguments);
-        findCommandHint.parse();
-        return findCommandHint.getArgumentHint() + findCommandHint.getDescription();
-    }
-
-    /**
-     * returns a hint specific to the select and delete command
-     */
-    private static String generateDeleteAndSelectHint() {
-
-        DeleteCommandHint deleteCommandHint = new DeleteCommandHint(userInput, arguments);
-        deleteCommandHint.parse();
-        return deleteCommandHint.getArgumentHint() + deleteCommandHint.getDescription();
-
-    }
-
 }
 ```
 ###### \java\seedu\address\model\person\AddressContainsKeywordPredicate.java
@@ -683,8 +629,9 @@ public class ImageStorage {
             width = (width > halfWindowWidth) ? halfWindowWidth : width;
             commandTextField.setPrefWidth(width);
             commandTextField.setAlignment(Pos.CENTER_RIGHT);
-        });
-
+```
+###### \java\seedu\address\ui\CommandBox.java
+``` java
         commandBoxItems.setOnMouseClicked((event) -> {
             commandTextField.requestFocus();
             commandTextField.positionCaret(commandTextField.getText().length());
@@ -694,10 +641,9 @@ public class ImageStorage {
         commandBoxItems.getChildren().add(commandBoxHints.getRoot());
         commandTextField.prefColumnCountProperty().bind(commandTextField.textProperty().length());
 
-        // changes command box style to match validity of the input whenever there is a change
-        // to the text of the command box.
-        commandTextField.textProperty().addListener((observable, oldInput, newInput) ->
-                setStyleByValidityOfInput(newInput));
+```
+###### \java\seedu\address\ui\CommandBox.java
+``` java
 
         // posts a CommandInputChangedEvent whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((observable, oldInput, newInput) ->
