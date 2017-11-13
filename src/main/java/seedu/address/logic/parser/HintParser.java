@@ -40,7 +40,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 //@@author nicholaschuayunzhi
 /**
  * Class that is responsible for generating hints based on user input
- * Contains one public method generateHint which returns an appropriate hint based on input
  */
 public class HintParser {
 

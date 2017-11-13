@@ -7,6 +7,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.MusicCommand;
 import seedu.address.logic.commands.hints.MusicCommandHint;
 
+//@@author nicholaschuayunzhi
 public class MusicCommandHintTest {
 
     @Test

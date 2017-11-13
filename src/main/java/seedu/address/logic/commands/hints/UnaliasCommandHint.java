@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.hints;
 
+//@@author nicholaschuayunzhi
 /**
  * Generates hint and tab auto complete for unalias command
  * Assumes that {@code userInput} and {@code arguments} provided are from

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.hints.UnaliasCommandHint;
 
+//@@author nicholaschuayunzhi
 public class UnaliasCommandHintTest {
 
     @Test

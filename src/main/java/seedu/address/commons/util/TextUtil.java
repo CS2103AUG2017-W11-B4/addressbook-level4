@@ -8,7 +8,7 @@ import javafx.scene.text.TextBoundsType;
  * Helper functions for handling text in JavaFX TextFields
  */
 
-//@@author nicholaschuayunzhi-reused
+//@@author nicholaschuayunzhi
 
 public class TextUtil {
 

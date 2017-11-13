@@ -22,6 +22,7 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Aliases;
 import seedu.address.model.UserPrefs;
 
+//@@author nicholaschuayunzhi
 /**
  * Generates hint and autocompletion for any uncompleted command word
  */

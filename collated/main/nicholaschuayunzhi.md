@@ -15,6 +15,44 @@ public class CommandInputChangedEvent extends BaseEvent {
     }
 }
 ```
+###### \java\seedu\address\commons\util\TextUtil.java
+``` java
+
+public class TextUtil {
+
+    static final Text HELPER;
+    static final double DEFAULT_WRAPPING_WIDTH;
+    static final double DEFAULT_LINE_SPACING;
+    static final String DEFAULT_TEXT;
+    static final TextBoundsType DEFAULT_BOUNDS_TYPE;
+    static {
+        HELPER = new Text();
+        DEFAULT_WRAPPING_WIDTH = HELPER.getWrappingWidth();
+        DEFAULT_LINE_SPACING = HELPER.getLineSpacing();
+        DEFAULT_TEXT = HELPER.getText();
+        DEFAULT_BOUNDS_TYPE = HELPER.getBoundsType();
+    }
+
+    /**
+     * Return's Text Width based on {@code Font font, String text}
+     */
+    public static double computeTextWidth(Font font, String text, double help0) {
+        HELPER.setText(text);
+        HELPER.setFont(font);
+
+        HELPER.setWrappingWidth(0.0D);
+        HELPER.setLineSpacing(0.0D);
+        double d = Math.min(HELPER.prefWidth(-1.0D), help0);
+        HELPER.setWrappingWidth((int) Math.ceil(d));
+        d = Math.ceil(HELPER.getLayoutBounds().getWidth());
+
+        HELPER.setWrappingWidth(DEFAULT_WRAPPING_WIDTH);
+        HELPER.setLineSpacing(DEFAULT_LINE_SPACING);
+        HELPER.setText(DEFAULT_TEXT);
+        return d;
+    }
+}
+```
 ###### \java\seedu\address\logic\commands\AddCommand.java
 ``` java
             toAdd.saveAvatar();
@@ -56,6 +94,1129 @@ public class FindCommand extends Command {
                 && this.predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
+}
+```
+###### \java\seedu\address\logic\commands\hints\AddCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for add command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete add command.
+ */
+public class AddCommandHint extends ArgumentsHint {
+
+    private static final List<Prefix> PREFIXES =
+            Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK,
+            PREFIX_TAG, PREFIX_AVATAR);
+
+
+    private List<Prefix> possiblePrefixesToComplete;
+
+    public AddCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code onTab}
+     * for Add Command
+     */
+    private void parse() {
+        possiblePrefixesToComplete = HintUtil.getUncompletedPrefixes(arguments, PREFIXES);
+
+        Optional<String> prefixCompletionOptional =
+                HintUtil.findPrefixCompletionHint(arguments, possiblePrefixesToComplete);
+
+        // are we completing a hint?
+        // case: add n|/
+        if (prefixCompletionOptional.isPresent()) {
+            handlePrefixCompletion(prefixCompletionOptional.get(), possiblePrefixesToComplete);
+            return;
+        }
+
+        // can we tab through prefixes
+        // case: add n/|
+        Optional<Prefix> endPrefix = HintUtil.findEndPrefix(userInput, PREFIXES);
+        if (endPrefix.isPresent()) {
+            handlePrefixTabbing(endPrefix.get(), PREFIXES, possiblePrefixesToComplete);
+            return;
+        }
+
+        // we should offer a hint
+        // case: add n/* |
+        handleOfferHint(PREFIXES);
+    }
+
+    @Override
+    protected String getDescription(Prefix prefix) {
+        switch (prefix.toString()) {
+        case PREFIX_NAME_STRING:
+            return "name";
+        case PREFIX_PHONE_STRING:
+            return "phone";
+        case PREFIX_ADDRESS_STRING:
+            return "address";
+        case PREFIX_EMAIL_STRING:
+            return "email";
+        case PREFIX_TAG_STRING:
+            return "tag (optional)";
+        case PREFIX_AVATAR_STRING:
+            return "avatar file path (optional)";
+        case PREFIX_REMARK_STRING:
+            return "remark (optional)";
+        default:
+            return "";
+        }
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\AliasCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for alias command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete alias command.
+ */
+public class AliasCommandHint extends Hint {
+
+    public AliasCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        argumentHint = "";
+        parse();
+    }
+
+    @Override
+    public String autocomplete() {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        return userInput + whitespace;
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}
+     * for an Alias Command
+     */
+    private void parse() {
+
+        if (arguments.length() == 0 && !userInput.endsWith(" ")) {
+            description = " shows all aliases";
+            return;
+        }
+        int delimiterPosition = arguments.trim().indexOf(' ');
+
+        if ((delimiterPosition == -1 && userInput.endsWith(" ") && !arguments.isEmpty()) || delimiterPosition > 0) {
+            int fakeDelimiterPosition = (arguments + " pad").trim().indexOf(' ');
+            description = " - set what "
+                    + (arguments + " pad").trim().substring(0, fakeDelimiterPosition).trim() + " represents";
+            return;
+        }
+
+        description = " - set your new command word";
+        return;
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\ArgumentsHint.java
+``` java
+/**
+ * Template class for hints that have arguments in their command format
+ * These arguments include prefixes and indices.
+ * Specifies autocomplete to return {@code onTab}
+ */
+public abstract class ArgumentsHint extends Hint {
+
+    protected String onTab = "";
+
+    protected String getDescription(Prefix p) {
+        return "description";
+    }
+
+    /**
+     * Should be used when prefix is half completed
+     * {@code prefixCompletion} which is auto completed portion of the prefix (ie "/")
+     * {@code possbilePrefixesToComplete} required to parse for prefix to get description TODO: rethink this
+     * updates {@code onTab} to return {@code userInput} auto completed with {@code prefixCompletion}
+     */
+    protected void handlePrefixCompletion(String prefixCompletion, List<Prefix> possiblePrefixesToComplete) {
+        argumentHint = prefixCompletion;
+        Prefix p = HintUtil.findPrefixOfCompletionHint(arguments, possiblePrefixesToComplete);
+        description = getDescription(p);
+        onTab = userInput + argumentHint;
+        LOGGER.info("ArgumentsHint - Handled Prefix Completion");
+    }
+
+    /**
+     * Should be used when prefix is completed and caret is next to prefix (ie: n/|)
+     * {@code currentPrefix} that is completed
+     * {@code possiblePrefixesToComplete, prefixList} to generate the next prefix option on pressing tab
+     * updates {@code onTab} to return {@code userInput} auto completed with the next prefix option
+     */
+    protected void handlePrefixTabbing(Prefix currentPrefix,
+                                       List<Prefix> prefixList,
+                                       List<Prefix> possiblePrefixesToComplete) {
+        argumentHint = "";
+        description = getDescription(currentPrefix);
+        Prefix nextPrefix = generateNextPrefix(currentPrefix, prefixList, possiblePrefixesToComplete);
+        onTab = userInput.substring(0, userInput.length() - 2) + nextPrefix.toString();
+        LOGGER.info("ArgumentsHint - Handled Prefix Tabbing");
+    }
+
+    /**
+     * generates next prefix given {@code currentPrefix} and {@code possiblePrefixesToComplete}\
+     * uses {@code prefixList} as an ordering so that we can cycle through all prefixes in the same order
+     */
+    private Prefix generateNextPrefix(Prefix currentPrefix,
+                                      List<Prefix> prefixList,
+                                      List<Prefix> possiblePrefixesToComplete) {
+        int startIndex = prefixList.indexOf(currentPrefix);
+        for (int i = 0; i < prefixList.size(); i++) {
+            int index = (i + startIndex) % prefixList.size();
+            if (possiblePrefixesToComplete.contains(prefixList.get(index))) {
+                return prefixList.get(index);
+            }
+        }
+        return currentPrefix;
+    }
+
+    /**
+     * Should be used when you want the addressbook to offer the next argument (ie n/nicholas |)
+     * {@code prefixList} to generate the next prefix hint
+     * updates {@code onTab} to return {@code userInput} auto completed with the next prefix hint
+     */
+    protected void handleOfferHint(List<Prefix> prefixList) {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        Prefix offeredPrefix = HintUtil.offerHint(arguments, prefixList);
+        argumentHint = whitespace + offeredPrefix.toString();
+        description = getDescription(offeredPrefix);
+        onTab = userInput + argumentHint;
+        LOGGER.info("ArgumentsHint - Handled Prefix Offer");
+    }
+
+    /**
+     * Should be used when you want the addressbook to offer an index hint (ie delete|)
+     * updates {@code onTab} to return {@code userInput} auto completed with a default index of 1
+     * TODO: default index based on current model
+     */
+    protected void handleOfferIndex(String userInput) {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        argumentHint = whitespace + "1";
+        description = " index";
+        onTab = userInput + argumentHint;
+        LOGGER.info("ArgumentsHint - Handled Index Offer");
+    }
+
+    /**
+     * Should be used when index is written and caret is directly next to index (ie edit 12|)
+     * updates {@code onTab} to return {@code userInput} with an increment to the index
+     * TODO: index update based on current model
+     */
+    protected void handleIndexTabbing(int currentIndex) {
+        argumentHint = "";
+        description = " index";
+        int length = String.valueOf(currentIndex).length();
+
+        int newIndex = currentIndex + 1;
+        onTab = userInput.substring(0, userInput.length() - length) + newIndex;
+        LOGGER.info("ArgumentsHint - Handled Index Tabbing");
+    }
+
+    public String autocomplete() {
+        return onTab;
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\ClearCommandHint.java
+``` java
+/**
+ * Generates description for Clear Command
+ * Assumes that {@code userInput} are from a Clear Command.
+ */
+public class ClearCommandHint extends NoArgumentsHint {
+
+    protected static final String CLEAR_COMMAND_DESC = "clears all contacts";
+
+    public ClearCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = CLEAR_COMMAND_DESC;
+        parse();
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\CommandHint.java
+``` java
+/**
+ * Generates hint and autocompletion for any uncompleted command word
+ */
+public class CommandHint extends Hint {
+
+    protected String autoCompleteCommandWord = "";
+
+    protected String commandWord;
+
+    public CommandHint(String userInput, String commandWord) {
+        this.userInput = userInput;
+        this.commandWord = commandWord;
+        parse();
+    }
+
+    @Override
+    public String autocomplete() {
+        return autoCompleteCommandWord;
+    }
+
+    /**
+     * parses {@code userInput} and {@code commandWord}
+     * sets appropriate {@code argumentHint}, {@code description}
+     * for any uncompleted command word
+     */
+    private void parse() {
+        String autocompleted = Autocomplete.autocompleteCommand(commandWord);
+
+        if (autocompleted == null) {
+            description = " type help for user guide";
+            argumentHint = "";
+        } else {
+            autoCompleteCommandWord = autocompleted + " ";
+            argumentHint = StringUtil.difference(commandWord, autocompleted) + " ";
+            description = getDescription(autocompleted);
+        }
+    }
+
+    private static String getDescription(String commandWord) {
+
+        Aliases aliases = UserPrefs.getInstance().getAliases();
+        String aliasedCommand = aliases.getCommand(commandWord);
+
+        commandWord = aliasedCommand != null ? aliasedCommand : commandWord;
+
+        switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return "adds a person";
+        case EditCommand.COMMAND_WORD:
+            return "edits a person";
+        case FindCommand.COMMAND_WORD:
+            return "finds a person";
+        case SelectCommand.COMMAND_WORD:
+            return "selects a person";
+        case DeleteCommand.COMMAND_WORD:
+            return "deletes a person";
+        case ShareCommand.COMMAND_WORD:
+            return "shares a contact via email";
+        case ClearCommand.COMMAND_WORD:
+            return ClearCommandHint.CLEAR_COMMAND_DESC;
+        case ListCommand.COMMAND_WORD:
+            return ListCommandHint.LIST_COMMAND_DESC;
+        case HistoryCommand.COMMAND_WORD:
+            return HistoryCommandHint.HISTORY_COMMAND_DESC;
+        case ExitCommand.COMMAND_WORD:
+            return ExitCommandHint.EXIT_COMMAND_DESC;
+        case UndoCommand.COMMAND_WORD:
+            return UndoCommandHint.UNDO_COMMAND_DESC;
+        case RedoCommand.COMMAND_WORD:
+            return RedoCommandHint.REDO_COMMAND_DESC;
+        case HelpCommand.COMMAND_WORD:
+            return HelpCommandHint.HELP_COMMAND_DESC;
+        case MusicCommand.COMMAND_WORD:
+            return "plays music";
+        case RadioCommand.COMMAND_WORD:
+            return "plays the radio";
+        case AliasCommand.COMMAND_WORD:
+            return "sets or show alias";
+        case UnaliasCommand.COMMAND_WORD:
+            return "removes alias";
+        default:
+            return "";
+        }
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\DeleteCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for delete command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete delete command.
+ */
+public class DeleteCommandHint extends ArgumentsHint {
+
+    public DeleteCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code onTab}
+     * for Delete Command
+     */
+    private void parse() {
+        //case : delete *|
+        if (!HintUtil.hasIndex(arguments)) {
+            handleOfferIndex(userInput);
+            return;
+        }
+
+        if (Character.isDigit(userInput.charAt(userInput.length() - 1))) {
+            //case delete 1|
+            handleIndexTabbing(HintUtil.getIndex(arguments));
+            return;
+        }
+
+        description = "";
+        argumentHint = "";
+        onTab = userInput;
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\EditCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for edit command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete edit command.
+ */
+public class EditCommandHint extends ArgumentsHint {
+
+    private static final List<Prefix> PREFIXES =
+            Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+
+    private List<Prefix> possiblePrefixesToComplete;
+
+    public EditCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code onTab}
+     * for Edit Command
+     */
+    private void parse() {
+        //case : edit *|
+        if (!HintUtil.hasPreambleIndex(arguments)) {
+            handleOfferIndex(userInput);
+            return;
+        }
+
+        if (HintUtil.hasIndex(arguments) && Character.isDigit(userInput.charAt(userInput.length() - 1))) {
+            handleIndexTabbing(HintUtil.getPreambleIndex(arguments, PREFIXES));
+            return;
+        }
+
+        possiblePrefixesToComplete = HintUtil.getUncompletedPrefixes(arguments, PREFIXES);
+        Optional<String> prefixCompletionOptional =
+                HintUtil.findPrefixCompletionHint(arguments, possiblePrefixesToComplete);
+
+        // are we completing a hint?
+        // case: edit 1 n|/
+        if (prefixCompletionOptional.isPresent()) {
+            handlePrefixCompletion(prefixCompletionOptional.get(), possiblePrefixesToComplete);
+            return;
+        }
+
+        // can we tab through prefixes
+        // case: edit 1 n/|
+        Optional<Prefix> endPrefix = HintUtil.findEndPrefix(userInput, PREFIXES);
+        if (endPrefix.isPresent()) {
+            handlePrefixTabbing(endPrefix.get(), PREFIXES, possiblePrefixesToComplete);
+            return;
+        }
+
+        // we should offer a hint
+        // case: edit 1 n/* |
+        handleOfferHint(PREFIXES);
+    }
+
+    @Override
+    protected String getDescription(Prefix prefix) {
+        switch (prefix.toString()) {
+        case PREFIX_NAME_STRING:
+            return "name";
+        case PREFIX_PHONE_STRING:
+            return "phone";
+        case PREFIX_ADDRESS_STRING:
+            return "address";
+        case PREFIX_EMAIL_STRING:
+            return "email";
+        case PREFIX_REMARK_STRING:
+            return "remark";
+        case PREFIX_TAG_STRING:
+            return "tag";
+        default:
+            return "";
+        }
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\ExitCommandHint.java
+``` java
+/**
+ * Generates description for Exit Command
+ * Assumes that {@code userInput} are from an exit command.
+ */
+public class ExitCommandHint extends NoArgumentsHint {
+
+    protected static final String EXIT_COMMAND_DESC = "exits the application";
+
+    public ExitCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = EXIT_COMMAND_DESC;
+        parse();
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\FindCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for find command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete find command.
+ */
+public class FindCommandHint extends ArgumentsHint {
+
+    private static final List<Prefix> PREFIXES =
+            Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+
+    public FindCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code onTab}
+     * for Find Command
+     */
+    private void parse() {
+        Optional<String> prefixCompletionOptional = HintUtil.findPrefixCompletionHint(arguments, PREFIXES);
+
+        // are we completing a hint?
+        // case: find n|/
+        if (prefixCompletionOptional.isPresent()) {
+            handlePrefixCompletion(prefixCompletionOptional.get(), PREFIXES);
+            return;
+        }
+
+        // can we tab through prefixes
+        // case: find n/|
+        Optional<Prefix> endPrefix = HintUtil.findEndPrefix(userInput, PREFIXES);
+        if (endPrefix.isPresent()) {
+
+            //we can offer duplicates, so offer every other prefix
+            List<Prefix> otherPrefixes =
+                    PREFIXES
+                            .stream()
+                            .filter(p -> !p.equals(endPrefix.get()))
+                            .collect(Collectors.toList());
+
+            handlePrefixTabbing(endPrefix.get(), PREFIXES, otherPrefixes);
+            return;
+        }
+
+        // we should offer a hint
+        // case: find n/* |
+
+        //TODO: never exhaust the prefix offers
+        handleOfferHint(PREFIXES);
+    }
+
+    @Override
+    protected String getDescription(Prefix prefix) {
+        switch (prefix.toString()) {
+        case PREFIX_NAME_STRING:
+            return "name";
+        case PREFIX_PHONE_STRING:
+            return "phone";
+        case PREFIX_ADDRESS_STRING:
+            return "address";
+        case PREFIX_EMAIL_STRING:
+            return "email";
+        case PREFIX_TAG_STRING:
+            return "tag";
+        case PREFIX_REMARK_STRING:
+            return "remark";
+        default:
+            return "";
+        }
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\FixedArgumentsHint.java
+``` java
+/**
+ * Template class for hints that have fixed arguments
+ * Specifies autocomplete to return the {@code autoCorrectInput}
+ * As the arguments are not variable, we can easily help the user autocorrect his input based on the situation.
+ */
+public abstract class FixedArgumentsHint extends Hint {
+
+    protected String autoCorrectInput;
+
+    protected String descriptionFromArg(String arg) {
+        return "";
+    }
+
+    @Override
+    public String autocomplete() {
+        return autoCorrectInput;
+    }
+
+    /**
+     * return the next argument after {@code arg} in {@code args}
+     * asserts that args contains arg
+     */
+    protected String nextArg(String arg, String[] args) {
+        List<String> argsList = Arrays.asList(args);
+        assert argsList.contains(arg);
+
+        int index = argsList.indexOf(arg);
+        return argsList.get((index + 1) % argsList.size());
+    }
+
+    /**
+     * offers argument hint based on {@code arg}
+     * sets tab to return {@code autoCorrectInput}
+     */
+    protected void offerHint(String arg, String autoCorrectInput) {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        argumentHint = whitespace + arg;
+        this.autoCorrectInput = autoCorrectInput;
+        description = descriptionFromArg(arg);
+    }
+
+    /**
+     * returns true if {@code args} contains {@code arg}
+     */
+    protected boolean isValidFixedArg(String arg, String[] args) {
+        for (String s : args) {
+            if (arg.equals(s)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    /**
+     * Should be used when argument is half completed
+     * {@code autoCompletedArg} is the completed argument of {@code arg}
+     * updates {@code autoCorrectInput} with given {@code autoCorrectInput}
+     */
+    protected void handleCompletingArg(String arg, String autoCompletedArg, String autoCorrectInput) {
+        requireNonNull(autoCompletedArg);
+        argumentHint = StringUtil.difference(arg, autoCompletedArg);
+        description = descriptionFromArg(autoCompletedArg);
+        this.autoCorrectInput = autoCorrectInput;
+    }
+    /**
+     * Should be used when argument completed and is cyclable
+     * {@code arg} is the current completed argument
+     * {@code args} is an array of other possible arguments
+     * {@code inputBeforeArg} specifies the userInput before the argument that will remain the same on tab
+     */
+    protected void handleNextArg(String arg, String[] args, String inputBeforeArg) {
+        argumentHint = "";
+        autoCorrectInput = inputBeforeArg + " " + nextArg(arg, args);
+        description = descriptionFromArg(arg);
+    }
+
+    /**
+     * Should be used when arguments are completed and are not cyclable
+     * {@code finalArg} is the last completed argument
+     */
+    protected void handleFinishedArgs(String finalArg) {
+        argumentHint = "";
+        description = descriptionFromArg(finalArg);
+        autoCorrectInput = userInput;
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\HelpCommandHint.java
+``` java
+/**
+ * Generates description for Help Command
+ * Assumes that {@code userInput} are from Help Command.
+ */
+public class HelpCommandHint extends NoArgumentsHint {
+
+    protected static final String HELP_COMMAND_DESC = "shows user guide";
+
+    public HelpCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = HELP_COMMAND_DESC;
+        parse();
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\Hint.java
+``` java
+/**
+ * Hints for inline hint suggestion and tab autocompletion
+ */
+public abstract class Hint {
+
+    protected static final Logger LOGGER = LogsCenter.getLogger(Hint.class);
+
+    protected String argumentHint;
+    protected String description;
+    protected String userInput;
+    protected String arguments;
+
+    /**
+     * returns the new user input when user presses tab
+     */
+    public abstract String autocomplete();
+
+    /**
+     * returns the argument hint of current user input
+     */
+    public String getArgumentHint() {
+        return argumentHint;
+    }
+
+    /**
+     * returns the description of current user input
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * asserts that require info is non null
+     * should be called after parse()
+     */
+    public final void requireFieldsNonNull() {
+        requireNonNull(argumentHint);
+        requireNonNull(description);
+        requireNonNull(userInput);
+        requireNonNull(autocomplete());
+    }
+
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\HistoryCommandHint.java
+``` java
+/**
+ * Generates description for History Command
+ * Assumes that {@code userInput} are from a History Command.
+ */
+public class HistoryCommandHint extends NoArgumentsHint {
+
+    protected static final String HISTORY_COMMAND_DESC = "shows command history";
+
+    public HistoryCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = HISTORY_COMMAND_DESC;
+        parse();
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\ListCommandHint.java
+``` java
+/**
+ * Generates description for List Command
+ * Assumes that {@code userInput} are from a List Command.
+ */
+public class ListCommandHint extends NoArgumentsHint {
+
+    protected static final String LIST_COMMAND_DESC = "lists all contacts";
+
+    public ListCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = LIST_COMMAND_DESC;
+        parse();
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\MusicCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for Music command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete Music command.
+ */
+public class MusicCommandHint extends FixedArgumentsHint {
+
+    private static final String[] ACTION = new String[] {"play", "stop"};
+    private static final String[] GENRE = MusicCommand.GENRE_LIST;
+
+    public MusicCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code autoCorrectInput}
+     * for Music Command
+     */
+    private void parse() {
+
+        String[] args = arguments.trim().split("\\s+");
+
+        String actionArgument = args[0];
+        if (!isValidFixedArg(actionArgument, ACTION)) {
+            //completing an arg?
+            String autoCompletedArg = Autocomplete.autocompleteFromList(actionArgument, ACTION);
+            if (autoCompletedArg == null || actionArgument.isEmpty()) {
+                String autoCorrectHint = (MusicCommand.getIsMusicPlaying()) ? "stop" : "play";
+                offerHint(autoCorrectHint, "music " + autoCorrectHint);
+                return;
+            } else {
+                String autoCorrectInput = "music " + ((!MusicCommand.getIsMusicPlaying()) ? "play" : "stop");
+                handleCompletingArg(actionArgument, autoCompletedArg, autoCorrectInput);
+                return;
+            }
+        }
+
+        if (args.length == 1) {
+            //music play|
+            if (actionArgument.equals("play")) {
+                offerHint("pop", "music play pop");
+            } else {
+                //pause and stop don't need any more args
+                handleFinishedArgs(actionArgument);
+            }
+            return;
+        }
+
+        String genreArgument = args[1];
+
+        if (!isValidFixedArg(genreArgument, GENRE) && actionArgument.equals("play")) {
+            //completing an arg?
+            String autoCompletedArg = Autocomplete.autocompleteFromList(genreArgument, GENRE);
+            if (autoCompletedArg == null || genreArgument.isEmpty()) {
+                offerHint("pop", "music play pop");
+                return;
+            } else {
+                String autoCompletedInput = (MusicCommand.getIsMusicPlaying()) ? "music stop " : "music play "
+                        + autoCompletedArg;
+                handleCompletingArg(genreArgument, autoCompletedArg, autoCompletedInput);
+                return;
+            }
+        }
+
+        //music play|
+        handleNextArg(genreArgument, GENRE, "music play");
+    }
+
+    @Override
+    protected String descriptionFromArg(String arg) {
+        switch (arg) {
+        case "play":
+            return " plays music";
+        case "stop":
+            return " stops music";
+        case "pop":
+            return " plays pop";
+        case "classic":
+            return " plays the classics";
+        case "dance":
+            return " plays dance tracks";
+        default:
+            return "";
+        }
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\NoArgumentsHint.java
+``` java
+/**
+ * Template class for hints that have no arguments in their command format
+ * Specifies autocomplete to return the original {@code userInput}
+ * {@code argumentHint} set to "" as there are no arguments
+ */
+public abstract class NoArgumentsHint extends Hint {
+
+    NoArgumentsHint() {
+        argumentHint = "";
+    }
+
+    /**
+     * parses {@code userInput}
+     * sets appropriate {@code description}
+     * for any No Argument Command
+     */
+    protected void parse() {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        this.description = whitespace + this.description;
+    }
+
+    @Override
+    public String autocomplete() {
+        return userInput;
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\RadioCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for Radio command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete Radio command.
+ */
+public class RadioCommandHint extends FixedArgumentsHint {
+
+    private static final String[] ACTION = new String[] {"play", "stop"};
+    private static final String[] GENRE = RadioCommand.GENRE_LIST;
+
+    public RadioCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code autoCorrectInput}
+     * for Radio Command
+     */
+    private void parse() {
+        String[] args = arguments.trim().split("\\s+");
+
+        String actionArgument = args[0];
+        if (!isValidFixedArg(actionArgument, ACTION)) {
+            //completing an arg?
+            String autoCompletedArg = Autocomplete.autocompleteFromList(actionArgument, ACTION);
+            if (autoCompletedArg == null || actionArgument.isEmpty()) {
+                String autoCorrectHint = (RadioCommand.getIsRadioPlaying()) ? "stop" : "play";
+                offerHint((RadioCommand.getIsRadioPlaying()) ? "stop" : "play", "radio " + autoCorrectHint);
+                return;
+            } else {
+                handleCompletingArg(actionArgument, autoCompletedArg,
+                        "radio " + ((RadioCommand.getIsRadioPlaying()) ? "stop" : "play"));
+                return;
+            }
+        }
+
+        if (args.length == 1) {
+            //radio play|
+            if (actionArgument.equals("play")) {
+                offerHint("pop", "radio play pop");
+            } else {
+                //stop doesn't need any more args
+                handleFinishedArgs(actionArgument);
+            }
+            return;
+        }
+
+        String genreArgument = args[1];
+
+        if (!isValidFixedArg(genreArgument, GENRE) && actionArgument.equals("play")) {
+            //completing an arg?
+            String autoCompletedArg = Autocomplete.autocompleteFromList(genreArgument, GENRE);
+            if (autoCompletedArg == null || genreArgument.isEmpty()) {
+                offerHint("pop", "radio play pop");
+                return;
+            } else {
+                String autoCompletedInput = (RadioCommand.getIsRadioPlaying()) ? "radio stop" : "radio play "
+                        + autoCompletedArg;
+                handleCompletingArg(genreArgument, autoCompletedArg, autoCompletedInput);
+                return;
+            }
+        }
+
+        handleNextArg(genreArgument, GENRE, "radio play");
+    }
+
+    @Override
+    protected String descriptionFromArg(String arg) {
+        switch (arg) {
+        case "play":
+            return " plays radio";
+        case "stop":
+            return " stops radio";
+        case "pop":
+            return " plays pop radio";
+        case "classic":
+            return " plays classic radio";
+        case "chinese":
+            return " plays chinese radio";
+        case "news":
+            return " plays news radio";
+        default:
+            return "";
+        }
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\RedoCommandHint.java
+``` java
+/**
+ * Generates description for Redo Command
+ * Assumes that {@code userInput} are from a Redo Command.
+ */
+public class RedoCommandHint extends NoArgumentsHint {
+
+    protected static final String REDO_COMMAND_DESC = "redo command";
+
+    public RedoCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = REDO_COMMAND_DESC;
+        parse();
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\hints\ShareCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for Share command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete Share command.
+ */
+public class ShareCommandHint extends ArgumentsHint {
+
+    private static final List<Prefix> PREFIXES =
+            Arrays.asList(PREFIX_SHARE);
+
+    public ShareCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        parse();
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}, {@code onTab}
+     * for Share Command
+     */
+    private void parse() {
+        if (!HintUtil.hasPreambleIndex(arguments)) {
+            handleOfferIndex(userInput);
+            return;
+        }
+
+        if (HintUtil.hasIndex(arguments) && Character.isDigit(userInput.charAt(userInput.length() - 1))) {
+            handleIndexTabbing(HintUtil.getPreambleIndex(arguments, PREFIXES));
+            return;
+        }
+
+        List<Prefix> possiblePrefixesToComplete = HintUtil.getUncompletedPrefixes(arguments, PREFIXES);
+
+        Optional<String> prefixCompletionOptional =
+                HintUtil.findPrefixCompletionHint(arguments, possiblePrefixesToComplete);
+
+        // are we completing a hint?
+        // case: share 1 s|/
+        if (prefixCompletionOptional.isPresent()) {
+            handlePrefixCompletion(prefixCompletionOptional.get(), possiblePrefixesToComplete);
+            return;
+        }
+
+        // case: share 1 s/|
+        Optional<Prefix> endPrefix = HintUtil.findEndPrefix(userInput, PREFIXES);
+        if (endPrefix.isPresent()) {
+            handlePrefixTabbing(endPrefix.get(), PREFIXES, possiblePrefixesToComplete);
+            return;
+        }
+
+        // we should offer a hint
+        // case: share 1 s/|
+        handleOfferHint(PREFIXES);
+    }
+
+    @Override
+    protected void handleOfferHint(List<Prefix> prefixList) {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        Prefix offeredPrefix = HintUtil.offerHint(arguments, prefixList);
+        argumentHint = whitespace + offeredPrefix.toString();
+
+        if (offeredPrefix.equals(PREFIX_EMPTY)) {
+            onTab = userInput + whitespace;
+            description = "next email or index";
+        } else {
+            onTab = userInput + argumentHint;
+            description = getDescription(offeredPrefix);
+        }
+        LOGGER.info("ArgumentsHint - Handled Prefix Offer");
+    }
+
+
+    @Override
+    protected String getDescription(Prefix prefix) {
+        switch (prefix.toString()) {
+        case PREFIX_SHARE_STRING:
+            return "email or index";
+        default:
+            return "";
+        }
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\UnaliasCommandHint.java
+``` java
+/**
+ * Generates hint and tab auto complete for unalias command
+ * Assumes that {@code userInput} and {@code arguments} provided are from
+ * an incomplete/complete unalias command.
+ */
+public class UnaliasCommandHint extends Hint {
+
+    public UnaliasCommandHint(String userInput, String arguments) {
+        this.userInput = userInput;
+        this.arguments = arguments;
+        this.argumentHint = "";
+        parse();
+    }
+
+    @Override
+    public String autocomplete() {
+        String whitespace = userInput.endsWith(" ") ? "" : " ";
+        return userInput + whitespace;
+    }
+
+    /**
+     * parses {@code userInput} and {@code arguments}
+     * sets appropriate {@code argumentHint}, {@code description}
+     * for Unalias Command
+     */
+    private void parse() {
+        String[] args = arguments.trim().split("\\s+");
+
+        if (args[0].isEmpty()) {
+
+            if (userInput.endsWith(" ")) {
+                description = " alias to remove";
+            } else {
+                description = " removes alias";
+            }
+        } else {
+            description = " removes " + args[0] + " from aliases";
+        }
+    }
+}
+```
+###### \java\seedu\address\logic\commands\hints\UndoCommandHint.java
+``` java
+/**
+ * Generates description for Undo Command
+ * Assumes that {@code userInput} are from an Undo Command.
+ */
+public class UndoCommandHint extends NoArgumentsHint {
+
+    protected static final String UNDO_COMMAND_DESC = "undo previous command";
+
+    public UndoCommandHint(String userInput) {
+        this.userInput = userInput;
+        this.description = UNDO_COMMAND_DESC;
+        parse();
+    }
 }
 ```
 ###### \java\seedu\address\logic\parser\AddCommandParser.java
@@ -140,7 +1301,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 ``` java
 /**
  * Class that is responsible for generating hints based on user input
- * Contains one public method generateHint which returns an appropriate hint based on input
  */
 public class HintParser {
 

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.hints;
 
+//@@author nicholaschuayunzhi
 /**
  * Generates description for Clear Command
  * Assumes that {@code userInput} are from a Clear Command.

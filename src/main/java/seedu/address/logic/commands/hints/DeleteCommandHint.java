@@ -2,6 +2,7 @@ package seedu.address.logic.commands.hints;
 
 import seedu.address.commons.util.HintUtil;
 
+//@@author nicholaschuayunzhi
 /**
  * Generates hint and tab auto complete for delete command
  * Assumes that {@code userInput} and {@code arguments} provided are from

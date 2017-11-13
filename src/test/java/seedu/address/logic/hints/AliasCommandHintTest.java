@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.hints.AliasCommandHint;
 
+//@@author nicholaschuayunzhi
 public class AliasCommandHintTest {
     @Test
     public void aliasCommandHint() {
