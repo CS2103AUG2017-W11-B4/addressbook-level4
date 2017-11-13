@@ -50,14 +50,14 @@ public class RadioCommand extends Command {
      * Returns true if radio player is currently playing.
      * else return false
      */
-    public static boolean getIsRadioPlaying(){
+    public static boolean getIsRadioPlaying() {
         return isRadioPlaying;
     }
 
     /**
      * set the boolean status of isRadioPlaying static variable
      */
-    public static void setIsRadioPlaying(boolean status){
+    public static void setIsRadioPlaying(boolean status) {
         isRadioPlaying = status;
     }
 
