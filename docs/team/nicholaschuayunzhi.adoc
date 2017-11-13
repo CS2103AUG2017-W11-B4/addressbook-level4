@@ -105,7 +105,9 @@ Pairing an `Avatar` to a contact is an almost mandatory feature of an Address Bo
 
 By having an additional non compulsory field in the `add` command for `Avatar` we have made it easy for users to remember how to add an
 `Avatar` to a contact.
+
 ---
+
 ==== Implementation
 
 #Start of Extract [from: Developer Guide]#
