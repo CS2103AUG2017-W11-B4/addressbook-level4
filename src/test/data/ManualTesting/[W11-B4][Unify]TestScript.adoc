@@ -630,10 +630,10 @@ You should see `Deleted Person: Nicholas Phone: 12345 Email: email@example.com A
 [cols="2*^"]
 |===
 |*User Input*|`music`
-|*Hint*|`play plays music`
+|*Hint*|`{sp}play plays music`
 |*Autocomplete Input*|`music play`
 |*Result*|`Invalid command format!...`
-|*Note*| If there is music currently playing, the hints will be `stop stops music` and autocomplete input will be `music stop`
+|*Note*| If there is music currently playing, the hints will be `{sp}stop stops music` and autocomplete input will be `music stop`
 |===
 
 [cols="2*^"]
@@ -666,7 +666,7 @@ You should see `Deleted Person: Nicholas Phone: 12345 Email: email@example.com A
 [cols="2*^"]
 |===
 |*User Input*|`music play`
-|*Hint*|`pop plays pop`
+|*Hint*|`{sp}pop plays pop`
 |*Autocomplete Input*|`music play pop`
 |*Result*|`POP Music 1 Playing`
 |*Note*| pop1.mp3 will be played. If you repeat this command, pop2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
@@ -676,7 +676,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`music play pop`
-|*Hint*|`plays pop`
+|*Hint*|`{sp}plays pop`
 |*Autocomplete Input*|`music play dance`
 |*Result*|`POP Music 1 Playing`
 |*Note*| pop1.mp3 will be played. If you repeat this command, pop2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
@@ -686,7 +686,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`music play dance`
-|*Hint*|`plays dance tracks`
+|*Hint*|`{sp}plays dance tracks`
 |*Autocomplete Input*|`music play dance`
 |*Result*|`DANCE Music 1 Playing`
 |*Note*| dance1.mp3 will be played. If you repeat this command, dance2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
@@ -696,7 +696,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`music play classic`
-|*Hint*|`plays the classics`
+|*Hint*|`{sp}plays the classics`
 |*Autocomplete Input*|`music play pop`
 |*Result*|`CLASSIC Music 1 Playing`
 |*Note*| classic1.mp3 will be played. If you repeat this command, classic2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
@@ -720,7 +720,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`music stop`
-|*Hint*|`stops music`
+|*Hint*|`{sp}stops music`
 |*Autocomplete Input*|`music stop`
 |*Result*|`Music Stopped`
 |*Note*| If there is currently no music playing and you execute this command, you will get this result instead `No music is currently playing`
@@ -741,10 +741,10 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`radio`
-|*Hint*|`play plays radio`
+|*Hint*|`{sp}play plays radio`
 |*Autocomplete Input*|`radio play`
 |*Result*|`Invalid command format!...`
-|*Note*| If there is radio currently playing, the hints will be `stop stops radio` and autocomplete input will be `radio stop`
+|*Note*| If there is radio currently playing, the hints will be `{sp}stop stops radio` and autocomplete input will be `radio stop`
 |===
 
 [cols="2*^"]
@@ -768,7 +768,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`radio play`
-|*Hint*|`pop plays pop radio`
+|*Hint*|`{sp}pop plays pop radio`
 |*Autocomplete Input*|`radio play pop`
 |*Result*|`POP Radio Playing`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
@@ -777,7 +777,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`radio play pop`
-|*Hint*|`plays pop radio`
+|*Hint*|`{sp}plays pop radio`
 |*Autocomplete Input*|`radio play chinese`
 |*Result*|`POP Radio Playing`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
@@ -786,7 +786,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`radio play chinese`
-|*Hint*|`plays chinese radio`
+|*Hint*|`{sp}plays chinese radio`
 |*Autocomplete Input*|`radio play classic`
 |*Result*|`CHINESE Radio Playing`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
@@ -808,7 +808,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`radio stop`
-|*Hint*|`stops radio`
+|*Hint*|`{sp}stops radio`
 |*Autocomplete Input*|`radio stop`
 |*Result*|`Radio Stopped`
 |*Note*| If there is currently no radio playing and you execute this command, you will get this result instead `No radio is currently playing`
@@ -821,7 +821,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share`
-|*Hint*|`1 index`
+|*Hint*|`{sp}1 index`
 |*Autocomplete Input*|`share 1 `
 |*Result*|`Invalid command format!...`
 |===
@@ -829,7 +829,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share 1`
-|*Hint*|`index`
+|*Hint*|`{sp}index`
 |*Autocomplete Input*|`share 2 `
 |*Result*|`Invalid command format!...`
 |===
@@ -837,7 +837,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share -1 s/`
-|*Hint*|`email or index`
+|*Hint*|{sp}`email or index`
 |*Autocomplete Input*|`share -1 s/1`
 |*Result*|`Invalid command format!...`
 |===
@@ -845,7 +845,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share 1 s/re`
-|*Hint*|`next email or index`
+|*Hint*|{sp}`next email or index`
 |*Autocomplete Input*|`share 1 s/re `
 |*Result*|`Email address is not valid`
 |===
@@ -855,7 +855,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share 1 s/example@hotmail.com`
-|*Hint*|`next email or index`
+|*Hint*|{sp}`next email or index`
 |*Autocomplete Input*|`share 1 s/example@hotmail.com `
 |*Result*|`Email Sent!`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
@@ -864,7 +864,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share 1 s/1`
-|*Hint*|`next email or index`
+|*Hint*|{sp}`next email or index`
 |*Autocomplete Input*|`share 1 s/1 `
 |*Result*|`Email Sent!`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
@@ -873,7 +873,7 @@ In this case, the max will be 2. Hence, if you were to repeat this command the 3
 [cols="2*^"]
 |===
 |*User Input*|`share 1 s/1 example@gmail.com`
-|*Hint*|`next email or index`
+|*Hint*|{sp}`next email or index`
 |*Autocomplete Input*|`share 1 s/1 example@gmail.com `
 |*Result*|`Email Sent!`
 |*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
