@@ -135,9 +135,9 @@ add a new contact to the address book, they can type any of <code>add</code>, <c
 we allow users to define their own aliases if the default ones are not memorable enough.</p>
 </div>
 <div class="paragraph">
-<p>We do not
-provide short-form aliases (e.g. <code>a</code> as an alias for <code>add</code>) by default as we feel having a powerful
-autocompletion feature completely eclipses any uses for cryptic short-form commands.</p>
+<p>We do not provide short-form aliases (e.g. <code>a</code> as an alias for <code>add</code>) by default as we feel having a
+powerful autocompletion feature completely eclipses any uses for cryptic short-form commands. If the
+user feels short-form aliases are required, they can add them themselves.</p>
 </div>
 </div>
 <div class="sect3">
@@ -151,33 +151,22 @@ autocompletion feature completely eclipses any uses for cryptic short-form comma
 <div class="sect2">
 <h3 id="aliases"><a class="link" href="#aliases">Aliases</a></h3>
 <div class="paragraph">
-<p>Users can specify aliases that map to other commands, which helps them reduce the amount of typing required,
-and also the cognitive load of memorising exact commands.
-For example, <code>alias show list</code> will map <code>show</code> to the <code>list</code> command. When the user types <code>show</code> in the
-command box, the result will be the same as when he types <code>list</code>.</p>
-</div>
-<div class="paragraph">
-<p>To remove an alias, users can use the
-<code>unalias</code> command. For example, <code>unalias show</code> will remove the mapping for <code>show</code>.
-<code>unalias</code>,</p>
-</div>
-<div class="paragraph">
-<p>We implement this feature by adding a new <code>Aliases</code> class to the <code>UserPrefs</code> model. Since <code>UserPrefs</code> is saved
+<p>We implement aliases by adding a new <code>Aliases</code> class to the <code>UserPrefs</code> model. Since <code>UserPrefs</code> is saved
 to file, aliases will persist through application restarts.</p>
 </div>
 <div class="paragraph">
 <p><code>Aliases</code> contains a <code>HashMap&lt;String, String&gt;</code> which maps <code>alias &#8594; command</code>. This allows us to find the
-matching command in amortized O(1) time. By default, <code>Aliases</code> contains a map of short-forms for frequently
-used commands. For example, <code>a &#8594; add</code>, <code>d &#8594; delete</code>, <code>l &#8594; list</code>, etc.</p>
+matching command in amortized O(1) time. By default, <code>Aliases</code> contains a map of synonyms for frequently
+used commands. For example, <code>new &#8594; add</code>, <code>remove &#8594; delete</code>, <code>show &#8594; list</code>, etc.</p>
 </div>
 <div class="paragraph">
 <p>We added a new parser, <code>parseCommandAndArguments</code> in <code>ParserUtil</code> that parses user input into a <code>commandWord</code> and <code>arguments</code>, which
-<code>AddressBookParser</code>, uses. To allow access to the <code>UserPrefs</code> instance in <code>ParserUtil</code>, we changed <code>UserPrefs</code>
+<code>AddressBookParser</code> uses. To allow access to the <code>UserPrefs</code> instance in <code>ParserUtil</code>, we changed <code>UserPrefs</code>
 into a <a href="#singleton">Singleton</a>. <code>parseCommandAndArguments</code> refers to the <code>Aliases</code> instance inside <code>UserPrefs</code>
 and returns the mapped command.</p>
 </div>
 <div class="paragraph">
-<p>This sequence diagram shows how <code>parseCommandAndArguments</code> work:</p>
+<p>This simplified sequence diagram shows how <code>parseCommandAndArguments</code> work:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -195,7 +184,6 @@ and returns the mapped command.</p>
 <strong>Pros:</strong> Less coupling. Follows Law of Demeter.<br>
 <strong>Cons:</strong> Heavy changes to code base to pass the instance downstream.<br></p>
 </div>
-<hr>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -203,9 +191,169 @@ and returns the mapped command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-alias-2"><a class="link" href="#enhancement-added-alias-2">Enhancement Added: Alias</a></h3>
+<h3 id="enhancement-added-command-box-validation"><a class="link" href="#enhancement-added-command-box-validation">Enhancement Added: Command Box Validation</a></h3>
 <div class="sect3">
 <h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Don&#8217;t fret! Unify offers inline hints to prompt you what to type next,</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_Hints.png" alt="UG Hints" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>and will validate your input and display icons matching your command as you type.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_Validation.png" alt="UG Validation" width="300">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>In order to familiarise new users to the command-line interface, we validate commands as the users type.
+This allows them to know if their commands are incorrect before they press enter. This is only helpful
+for users able to touch-type. As our target audience is computing students, we can safely assume a majority
+of the users will benefit from this feature.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="command-box-validation"><a class="link" href="#command-box-validation">Command Box Validation</a></h3>
+<div class="paragraph">
+<p>We validate the user&#8217;s command as he is typing, which allows real-time feedback to the user on whether
+their command is valid.</p>
+</div>
+<div class="paragraph">
+<p>This is done by listening to the <code>TextField</code> associated to <code>CommandBox</code>. Whenever there is a change in
+input of the <code>TextField</code>, we call <code>setStyleByValidityOfInput</code>. As we have a reference to the <code>LogicMangager</code>
+(which is used for undo/redo), we can just run <code>LogicManager#parse</code> to check if the current input is valid,
+and style the input box accordingly.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Listen to <code>CommandBox</code> input&#8217;s changes<br>
+<strong>Alternative 1 (current choice):</strong> Listen directly to <code>commandTextField</code>.<br>
+<strong>Pros:</strong> No coupling with <code>EventsCenter</code>.<br>
+<strong>Cons:</strong> Inconsistent with implementation of other features (e.g. hints, command box icon).<br>
+<strong>Alternative 2:</strong> Subscribe to <code>CommandInputChangedEvent</code>.<br>
+<strong>Pros:</strong> Easily extensible as logic can be extracted into another class.<br>
+<strong>Cons:</strong> Adds additional dependency to <code>EventsCenter</code>.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-command-box-icon"><a class="link" href="#enhancement-added-command-box-icon">Enhancement Added: Command Box Icon</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Don&#8217;t fret! Unify offers inline hints to prompt you what to type next,</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_Hints.png" alt="UG Hints" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>and will validate your input and display icons matching your command as you type.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UG_Validation.png" alt="UG Validation" width="300">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>As with input validation, this feature is introduced to give users a hint of what their command will
+do, before they execute it. Besides helping users use the command-line more effectively, it also helps
+to make the user interface more polished, as these icons are present in most search boxes (e.g. internet
+browsers display the page&#8217;s icon, macOS&#8217;s Spotlight displays the application&#8217;s icon).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="command-box-icon"><a class="link" href="#command-box-icon">Command Box Icon</a></h3>
+<div class="paragraph">
+<p>In addition to styling the command box, we also show the user icons matching their command on the right
+of the command box.</p>
+</div>
+<div class="paragraph">
+<p>We leverage a third-party library called <a href="https://github.com/aalmiray/ikonli">Ikonli</a>. We add a new
+JavaFX component, <code>CommandBoxIcon</code>, which subscribes to <code>CommandInputChangedEvent</code> and calls
+<code>parseCommandAndArguments</code>, and passes the returned <code>commandWord</code> into <code>parseIconCode</code>, which then returns
+an <code>Ikon</code>, which we display.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Where to get icons<br>
+<strong>Alternative 1 (current choice):</strong> Use <code>Ikonli</code>, a third-party library.<br>
+<strong>Pros:</strong> Easy to implement.<br>
+<strong>Cons:</strong> Adds additional third-party dependency.<br>
+<strong>Alternative 2:</strong> Embed them as images or icons.<br>
+<strong>Pros:</strong> Easy to customize, as icons are all embedded images.<br>
+<strong>Cons:</strong> Reinvents the wheel.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-autocomplete"><a class="link" href="#enhancement-added-autocomplete">Enhancement Added: Autocomplete</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: User Guide]</mark></p>
@@ -261,16 +409,52 @@ too! Simply press <kbd>Tab</kbd> whenever you&#8217;re unsure what to type next.
 </div>
 <hr>
 <div class="sect3">
-<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
 <div class="paragraph">
 <p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocomplete"><a class="link" href="#autocomplete">Autocomplete</a></h3>
+<div class="paragraph">
+<p>We implement autocompletion by introducing a new class: <code>Autocomplete</code>. This class contains all the
+utility methods required for obtaining an appropriate autocompletion from a given user input. The
+main method is <code>autocomplete(String input)</code>. This takes in the user&#8217;s input and attempts to generate
+a hint from it. As we need to display the autocompletion in the command box hints, this reduces
+duplicated code required for producing the autocompletion.</p>
+</div>
+<div class="paragraph">
+<p>There are several other utility methods in the class, such as <code>autocompleteFromList</code>, which takes in
+an input and an array of strings, and returns the first command that contains input as a prefix, or
+<code>autocompleteCommand</code>, which takes in a command word and compares it with a list of all commands and
+aliases, and autocompletes the command.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when a user presses <code>Tab</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AutocompleteActivityDiagram.png" alt="AutocompleteActivityDiagram" width="400">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Degree of coupling between Autocomplete and Hints.<br>
+<strong>Alternative 1 (current choice):</strong> Share logic by coupling both classes.<br>
+<strong>Pros:</strong> Minimize code duplication, as logic can be shared.<br>
+<strong>Cons:</strong> Increases coupling. Difficult to stub in testing.<br>
+<strong>Alternative 2:</strong> Implement the logic in both classes.<br>
+<strong>Pros:</strong> Less coupling.<br>
+<strong>Cons:</strong> Increase chance of regression if only one class is changed.<br></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -283,9 +467,21 @@ too! Simply press <kbd>Tab</kbd> whenever you&#8217;re unsure what to type next.
 
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="enhancement-proposed-history-substring-search"><a class="link" href="#enhancement-proposed-history-substring-search">Enhancement Proposed: History Substring Search</a></h3>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p>Currently, when pressing <code>Up</code> or <code>Down</code> in the command box, we can cycle through our previously typed
+commands, irregardless of what is typed in the command box. One possible enhancement is changing it so
+it only cycles through commands that contain whatever is in the command box as a substring (i.e. like
+<a href="https://github.com/zsh-users/zsh-history-substring-search">zsh-history-substring-search</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-composite-aliases"><a class="link" href="#enhancement-proposed-composite-aliases">Enhancement Proposed: Composite Aliases</a></h3>
+<div class="paragraph">
+<p>The alias feature currently implemented only allows users to create aliases for one partial or full
+command. One possible enhancement is to allow users to delimit commands in their aliases with semicolons,
+like: <code>alias delete3 delete 1; delete 1; delete 1</code>. This will allow users to perform repetitive tasks
+quickly, with just one command.</p>
 </div>
 </div>
 <div class="sect2">
@@ -297,10 +493,23 @@ too! Simply press <kbd>Tab</kbd> whenever you&#8217;re unsure what to type next.
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Taught the team to use Git&#8217;s interactive rebase feature, and streamlined our Git history to a linear
+and more readable format.</p>
 </li>
 <li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Fix issues related to font embedding in JavaFX CSS (Pull request: <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/15" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/15</a>)</p>
+</li>
+<li>
+<p>Update repo badges to Unify&#8217;s repo (Pull request: <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/21" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/21</a>)</p>
+</li>
+<li>
+<p>Update <code>.gitignore</code> to remove generated files (Pull request: <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/23" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/23</a>)</p>
+</li>
+<li>
+<p>Refactor Alias feature to match SOLID principles (Pull requests: <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/24" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/24</a>, <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/42" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/42</a>, <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/101" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/101</a>)</p>
+</li>
+<li>
+<p>Rewrite UserGuide to be friendlier (Pull request: <a href="https://github.com/CS2103AUG2017-W11-B4/main/pull/52" class="bare">https://github.com/CS2103AUG2017-W11-B4/main/pull/52</a>)</p>
 </li>
 </ul>
 </div>
@@ -310,7 +519,7 @@ too! Simply press <kbd>Tab</kbd> whenever you&#8217;re unsure what to type next.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:57:26 +00:00
+Last updated 2017-11-13 11:15:49 +00:00
 </div>
 </div>
 </body>

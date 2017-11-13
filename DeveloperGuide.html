@@ -57,12 +57,15 @@
 <li><a href="#radio-player-mechanism">4.5. Radio Player Mechanism</a></li>
 <li><a href="#share-contacts-by-email-mechanism">4.6. Share Contacts by Email Mechanism</a></li>
 <li><a href="#audible-feedback-mechanism">4.7. Audible Feedback Mechanism</a></li>
-<li><a href="#aliases">4.8. Aliases</a></li>
-<li><a href="#listening-for-input-change">4.9. Listening for Input Change</a></li>
-<li><a href="#displaying-inline-hints">4.10. Displaying Inline Hints</a></li>
-<li><a href="#hints-and-autocomplete-parsing">4.11. Hints and AutoComplete Parsing</a></li>
-<li><a href="#avatar">4.12. Avatar</a></li>
-<li><a href="#configuration">4.13. Configuration</a></li>
+<li><a href="#command-box-validation">4.8. Command Box Validation</a></li>
+<li><a href="#command-box-icon">4.9. Command Box Icon</a></li>
+<li><a href="#aliases">4.10. Aliases</a></li>
+<li><a href="#autocomplete">4.11. Autocomplete</a></li>
+<li><a href="#listening-for-input-change">4.12. Listening for Input Change</a></li>
+<li><a href="#displaying-inline-hints">4.13. Displaying Inline Hints</a></li>
+<li><a href="#hints-and-autocomplete-parsing">4.14. Hints and Autocomplete Parsing</a></li>
+<li><a href="#avatar">4.15. Avatar</a></li>
+<li><a href="#configuration">4.16. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1454,35 +1457,76 @@ dependencies {
 </div>
 </div>
 <div class="sect2">
-<h3 id="aliases"><a class="link" href="#aliases">4.8. Aliases</a></h3>
+<h3 id="command-box-validation"><a class="link" href="#command-box-validation">4.8. Command Box Validation</a></h3>
 <div class="paragraph">
-<p>Users can specify aliases that map to other commands, which helps them reduce the amount of typing required,
-and also the cognitive load of memorising exact commands.
-For example, <code>alias show list</code> will map <code>show</code> to the <code>list</code> command. When the user types <code>show</code> in the
-command box, the result will be the same as when he types <code>list</code>.</p>
+<p>We validate the user&#8217;s command as he is typing, which allows real-time feedback to the user on whether
+their command is valid.</p>
 </div>
 <div class="paragraph">
-<p>To remove an alias, users can use the
-<code>unalias</code> command. For example, <code>unalias show</code> will remove the mapping for <code>show</code>.
-<code>unalias</code>,</p>
+<p>This is done by listening to the <code>TextField</code> associated to <code>CommandBox</code>. Whenever there is a change in
+input of the <code>TextField</code>, we call <code>setStyleByValidityOfInput</code>. As we have a reference to the <code>LogicMangager</code>
+(which is used for undo/redo), we can just run <code>LogicManager#parse</code> to check if the current input is valid,
+and style the input box accordingly.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Listen to <code>CommandBox</code> input&#8217;s changes<br>
+<strong>Alternative 1 (current choice):</strong> Listen directly to <code>commandTextField</code>.<br>
+<strong>Pros:</strong> No coupling with <code>EventsCenter</code>.<br>
+<strong>Cons:</strong> Inconsistent with implementation of other features (e.g. hints, command box icon).<br>
+<strong>Alternative 2:</strong> Subscribe to <code>CommandInputChangedEvent</code>.<br>
+<strong>Pros:</strong> Easily extensible as logic can be extracted into another class.<br>
+<strong>Cons:</strong> Adds additional dependency to <code>EventsCenter</code>.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="command-box-icon"><a class="link" href="#command-box-icon">4.9. Command Box Icon</a></h3>
+<div class="paragraph">
+<p>In addition to styling the command box, we also show the user icons matching their command on the right
+of the command box.</p>
 </div>
 <div class="paragraph">
-<p>We implement this feature by adding a new <code>Aliases</code> class to the <code>UserPrefs</code> model. Since <code>UserPrefs</code> is saved
+<p>We leverage a third-party library called <a href="https://github.com/aalmiray/ikonli">Ikonli</a>. We add a new
+JavaFX component, <code>CommandBoxIcon</code>, which subscribes to <code>CommandInputChangedEvent</code> and calls
+<code>parseCommandAndArguments</code>, and passes the returned <code>commandWord</code> into <code>parseIconCode</code>, which then returns
+an <code>Ikon</code>, which we display.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.9.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Where to get icons<br>
+<strong>Alternative 1 (current choice):</strong> Use <code>Ikonli</code>, a third-party library.<br>
+<strong>Pros:</strong> Easy to implement.<br>
+<strong>Cons:</strong> Adds additional third-party dependency.<br>
+<strong>Alternative 2:</strong> Embed them as images or icons.<br>
+<strong>Pros:</strong> Easy to customize, as icons are all embedded images.<br>
+<strong>Cons:</strong> Reinvents the wheel.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aliases"><a class="link" href="#aliases">4.10. Aliases</a></h3>
+<div class="paragraph">
+<p>We implement aliases by adding a new <code>Aliases</code> class to the <code>UserPrefs</code> model. Since <code>UserPrefs</code> is saved
 to file, aliases will persist through application restarts.</p>
 </div>
 <div class="paragraph">
 <p><code>Aliases</code> contains a <code>HashMap&lt;String, String&gt;</code> which maps <code>alias &#8594; command</code>. This allows us to find the
-matching command in amortized O(1) time. By default, <code>Aliases</code> contains a map of short-forms for frequently
-used commands. For example, <code>a &#8594; add</code>, <code>d &#8594; delete</code>, <code>l &#8594; list</code>, etc.</p>
+matching command in amortized O(1) time. By default, <code>Aliases</code> contains a map of synonyms for frequently
+used commands. For example, <code>new &#8594; add</code>, <code>remove &#8594; delete</code>, <code>show &#8594; list</code>, etc.</p>
 </div>
 <div class="paragraph">
 <p>We added a new parser, <code>parseCommandAndArguments</code> in <code>ParserUtil</code> that parses user input into a <code>commandWord</code> and <code>arguments</code>, which
-<code>AddressBookParser</code>, uses. To allow access to the <code>UserPrefs</code> instance in <code>ParserUtil</code>, we changed <code>UserPrefs</code>
+<code>AddressBookParser</code> uses. To allow access to the <code>UserPrefs</code> instance in <code>ParserUtil</code>, we changed <code>UserPrefs</code>
 into a <a href="#singleton">Singleton</a>. <code>parseCommandAndArguments</code> refers to the <code>Aliases</code> instance inside <code>UserPrefs</code>
 and returns the mapped command.</p>
 </div>
 <div class="paragraph">
-<p>This sequence diagram shows how <code>parseCommandAndArguments</code> work:</p>
+<p>This simplified sequence diagram shows how <code>parseCommandAndArguments</code> work:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1490,7 +1534,7 @@ and returns the mapped command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.10.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Accessing <code>UserPrefs</code> from <code>ParserUtil</code> and other classes<br>
 <strong>Alternative 1 (current choice):</strong> Turn <code>UserPrefs</code> into a Singleton<br>
@@ -1504,7 +1548,44 @@ and returns the mapped command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listening-for-input-change"><a class="link" href="#listening-for-input-change">4.9. Listening for Input Change</a></h3>
+<h3 id="autocomplete"><a class="link" href="#autocomplete">4.11. Autocomplete</a></h3>
+<div class="paragraph">
+<p>We implement autocompletion by introducing a new class: <code>Autocomplete</code>. This class contains all the
+utility methods required for obtaining an appropriate autocompletion from a given user input. The
+main method is <code>autocomplete(String input)</code>. This takes in the user&#8217;s input and attempts to generate
+a hint from it. As we need to display the autocompletion in the command box hints, this reduces
+duplicated code required for producing the autocompletion.</p>
+</div>
+<div class="paragraph">
+<p>There are several other utility methods in the class, such as <code>autocompleteFromList</code>, which takes in
+an input and an array of strings, and returns the first command that contains input as a prefix, or
+<code>autocompleteCommand</code>, which takes in a command word and compares it with a list of all commands and
+aliases, and autocompletes the command.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when a user presses <code>Tab</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AutocompleteActivityDiagram.png" alt="AutocompleteActivityDiagram" width="400">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.11.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Degree of coupling between Autocomplete and Hints.<br>
+<strong>Alternative 1 (current choice):</strong> Share logic by coupling both classes.<br>
+<strong>Pros:</strong> Minimize code duplication, as logic can be shared.<br>
+<strong>Cons:</strong> Increases coupling. Difficult to stub in testing.<br>
+<strong>Alternative 2:</strong> Implement the logic in both classes.<br>
+<strong>Pros:</strong> Less coupling.<br>
+<strong>Cons:</strong> Increase chance of regression if only one class is changed.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listening-for-input-change"><a class="link" href="#listening-for-input-change">4.12. Listening for Input Change</a></h3>
 <div class="paragraph">
 <p>When the <code>CommandTextField</code> detects a change in its input, it will raise a <code>CommandInputChangedEvent</code>.
 The <code>CommandInputChangedEvent</code> will contain <code>currentInput</code> of the <code>CommandTextField</code>.</p>
@@ -1527,7 +1608,7 @@ The <code>CommandInputChangedEvent</code> will contain <code>currentInput</code>
 <p>Components that adjust based on change in input, for example inline hints, can simply subscribe to this event.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.9.1. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.12.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to inform other components on input change<br>
 <strong>Alternative 1 (current choice):</strong> Raise an event<br>
@@ -1541,9 +1622,9 @@ The <code>CommandInputChangedEvent</code> will contain <code>currentInput</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="displaying-inline-hints"><a class="link" href="#displaying-inline-hints">4.10. Displaying Inline Hints</a></h3>
+<h3 id="displaying-inline-hints"><a class="link" href="#displaying-inline-hints">4.13. Displaying Inline Hints</a></h3>
 <div class="sect3">
-<h4 id="inspiration"><a class="link" href="#inspiration">4.10.1. Inspiration</a></h4>
+<h4 id="inspiration"><a class="link" href="#inspiration">4.13.1. Inspiration</a></h4>
 <div class="paragraph">
 <p>We wish to display hints similar to how Apple&#8217;s Spotlight displays their completion and hints.</p>
 </div>
@@ -1554,7 +1635,7 @@ The <code>CommandInputChangedEvent</code> will contain <code>currentInput</code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="inline-hint-terms"><a class="link" href="#inline-hint-terms">4.10.2. Terms</a></h4>
+<h4 id="inline-hint-terms"><a class="link" href="#inline-hint-terms">4.13.2. Terms</a></h4>
 <div class="paragraph">
 <p>As of v1.5, an inline hint consists of a concatenation of an argument hint and a description.
 An argument hint is an inline suggestion for the next letters to type. For example <strong>add |</strong> n/, n/ being the argument hint.
@@ -1570,7 +1651,7 @@ A description would describe the details of the current command you are typing.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="how-we-implemented-it"><a class="link" href="#how-we-implemented-it">4.10.3. How we implemented it</a></h4>
+<h4 id="how-we-implemented-it"><a class="link" href="#how-we-implemented-it">4.13.3. How we implemented it</a></h4>
 <div class="paragraph">
 <p>In <code>JavaFX</code> it is not possible to have a prompt text next to user&#8217;s input in a <code>TextField</code>.</p>
 </div>
@@ -1612,7 +1693,7 @@ We clamp the size of the <code>CommandTextField</code> to half of the window siz
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.10.4. Design Considerations</a></h4>
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">4.13.4. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Calculating displacement of hints to simulate inline hints<br>
 <strong>Alternative 1 (current choice):</strong> Put two resizeable <code>TextFields</code> side by side. Let the <code>HBox</code> handle the displacement<br>
@@ -1633,7 +1714,7 @@ We clamp the size of the <code>CommandTextField</code> to half of the window siz
 </div>
 </div>
 <div class="sect2">
-<h3 id="hints-and-autocomplete-parsing"><a class="link" href="#hints-and-autocomplete-parsing">4.11. Hints and AutoComplete Parsing</a></h3>
+<h3 id="hints-and-autocomplete-parsing"><a class="link" href="#hints-and-autocomplete-parsing">4.14. Hints and Autocomplete Parsing</a></h3>
 <div class="paragraph">
 <p>Inline hints and tab autocompletion of user input is encapsulated by a <code>Hint</code> object.
 A <code>Hint</code> object will take in the current user input and/or other arguments (depending on the implementation of the concrete Hint).</p>
@@ -1655,7 +1736,7 @@ subclasses <code>FixedArgumentsHint</code>, <code>NoArgumentsHint</code>, <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="why-separate-argument-hints-and-description"><a class="link" href="#why-separate-argument-hints-and-description">4.11.1. Why separate argument hints and description</a></h4>
+<h4 id="why-separate-argument-hints-and-description"><a class="link" href="#why-separate-argument-hints-and-description">4.14.1. Why separate argument hints and description</a></h4>
 <div class="paragraph">
 <p>For explanation on what argument hints and description are, click <a href="#inline-hint-terms">here</a>.</p>
 </div>
@@ -1693,7 +1774,7 @@ subclasses <code>FixedArgumentsHint</code>, <code>NoArgumentsHint</code>, <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="avatar"><a class="link" href="#avatar">4.12. Avatar</a></h3>
+<h3 id="avatar"><a class="link" href="#avatar">4.15. Avatar</a></h3>
 <div class="paragraph">
 <p>When users add a contact, they have an option to specify an avatar for the person. If entered with a valid
 path to a .jpg or .png, the image is stored under <code>data/images/avatars/</code> with a unique string id using Java&#8217;s <code>UUID</code>.</p>
@@ -1711,7 +1792,7 @@ The activity diagram when a person is selected is shown below.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.12.1. Design Considerations</a></h4>
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">4.15.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to save image<br>
 <strong>Alternative 1 (current choice):</strong> Duplicate image is saved with a unique string id under data<br>
@@ -1728,7 +1809,7 @@ The activity diagram when a person is selected is shown below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.13. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.16. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2746,7 +2827,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:57:26 +00:00
+Last updated 2017-11-13 11:15:49 +00:00
 </div>
 </div>
 </body>
