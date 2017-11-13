@@ -30,6 +30,7 @@ public class RadioCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Radio Playing";
     public static final String MESSAGE_NO_INTERNET = "Not Connected to the Internet";
 
+    private static boolean isRadioPlaying = false;
     private static Radio radio;
 
     private String command;
@@ -49,13 +50,17 @@ public class RadioCommand extends Command {
      * Returns true if radio player is currently playing.
      * else return false
      */
-    public static boolean isRadioPlaying() {
-        if (radio == null) {
-            return false;
-        } else {
-            return true;
-        }
+    public static boolean getIsRadioPlaying(){
+        return isRadioPlaying;
     }
+
+    /**
+     * set the boolean status of isRadioPlaying static variable
+     */
+    public static void setIsRadioPlaying(boolean status){
+        isRadioPlaying = status;
+    }
+
     /**
      * Stops radio playing in the player
      */
@@ -73,12 +78,14 @@ public class RadioCommand extends Command {
         case "play":
             if (genreExist) {
                 if (InternetConnectionCheck.isConnectedToInternet()) {
-                    if (MusicCommand.isMusicPlaying()) {
+                    if (MusicCommand.getIsMusicPlaying()) {
                         MusicCommand.stopMusicPlayer();
+                        MusicCommand.setIsMusicPlaying(false);
                     }
                     stopRadioPlayer();
                     radio = new Radio(genre);
                     radio.start();
+                    RadioCommand.setIsRadioPlaying(true);
 
                     String printedSuccessMessage = genre.toUpperCase() + " " + MESSAGE_SUCCESS;
                     //Text to Speech
@@ -91,10 +98,11 @@ public class RadioCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RadioCommand.MESSAGE_USAGE));
             }
         case "stop":
-            if (isRadioPlaying()) {
+            if (getIsRadioPlaying()) {
                 radio.stop();
                 //Text to Speech
                 new TextToSpeech(MESSAGE_STOP).speak();
+                RadioCommand.setIsRadioPlaying(false);
                 return new CommandResult(MESSAGE_STOP);
             } else {
                 //Text to Speech
