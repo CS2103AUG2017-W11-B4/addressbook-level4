@@ -52,7 +52,7 @@ public class AutocompleteTest {
         assertEquals(FindCommand.COMMAND_WORD + " n/", autocomplete(FindCommand.COMMAND_WORD + " n"));
         assertEquals(FindCommand.COMMAND_WORD + " p/", autocomplete(FindCommand.COMMAND_WORD + " n/"));
 
-        if (!MusicCommand.isMusicPlaying()) {
+        if (!MusicCommand.getIsMusicPlaying()) {
             assertEquals(MusicCommand.COMMAND_WORD + " play", autocomplete(MusicCommand.COMMAND_WORD));
             assertEquals(MusicCommand.COMMAND_WORD + " play", autocomplete(MusicCommand.COMMAND_WORD + " sto"));
         } else {

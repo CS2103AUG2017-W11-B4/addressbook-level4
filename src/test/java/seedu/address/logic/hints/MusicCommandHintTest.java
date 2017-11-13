@@ -14,7 +14,7 @@ public class MusicCommandHintTest {
 
         MusicCommand.stopMusicPlayer();
         MusicCommandHint musicCommandHint;
-        if (!MusicCommand.isMusicPlaying()) {
+        if (!MusicCommand.getIsMusicPlaying()) {
             musicCommandHint = new MusicCommandHint("music", "");
             assertHintContent(musicCommandHint,
                     " play",

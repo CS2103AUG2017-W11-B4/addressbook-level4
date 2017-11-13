@@ -14,7 +14,7 @@ public class RadioCommandHintTest {
 
         RadioCommand.stopRadioPlayer();
         RadioCommandHint radioCommandHint = new RadioCommandHint("radio", "");
-        if (!RadioCommand.isRadioPlaying()) {
+        if (!RadioCommand.getIsRadioPlaying()) {
             assertHintContent(radioCommandHint,
                     " play",
                     " plays radio",
