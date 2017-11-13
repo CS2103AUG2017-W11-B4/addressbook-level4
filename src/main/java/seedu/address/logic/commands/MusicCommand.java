@@ -30,13 +30,11 @@ public class MusicCommand extends Command {
     public static final String MESSAGE_STOP = "Music Stopped";
     private static final int maxTrackNumber = 2;
 
-    private static String messagePause = "Music Paused";
-
     private static String messageSuccess = "Music Playing";
-    private static MediaPlayer mediaPlayer;
     private static int trackNumber = 1;
     private static String previousGenre = "";
     private static Music music;
+    private static boolean isMusicPlaying = false;
 
     private String command;
     private String genre = "pop";
@@ -50,16 +48,20 @@ public class MusicCommand extends Command {
         this.command = command;
     }
 
+
     /**
      * Returns true if music player is currently playing.
      * else return false
      */
-    public static boolean isMusicPlaying() {
-        if (music == null) {
-            return false;
-        } else {
-            return true;
-        }
+    public static boolean getIsMusicPlaying() {
+        return isMusicPlaying;
+    }
+
+    /**
+     * set the boolean status of isMusicPlaying static variable
+     */
+    public static void setIsMusicPlaying(boolean status) {
+        isMusicPlaying = status;
     }
 
     /**
@@ -76,8 +78,9 @@ public class MusicCommand extends Command {
         boolean genreExist = Arrays.asList(GENRE_LIST).contains(genre);
         switch (command) {
         case "play":
-            if (RadioCommand.isRadioPlaying()) {
+            if (RadioCommand.getIsRadioPlaying()) {
                 RadioCommand.stopRadioPlayer();
+                RadioCommand.setIsRadioPlaying(false);
             }
             stopMusicPlayer();
             if (genreExist) {
@@ -101,17 +104,19 @@ public class MusicCommand extends Command {
                 new TextToSpeech(messageSuccess).speak();
                 //set current playing genre as previousGenre
                 previousGenre = genre;
+                setIsMusicPlaying(true);
                 return new CommandResult(messageSuccess);
             } else {
                 return new CommandResult(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MusicCommand.MESSAGE_USAGE));
             }
         //Stop the music that is currently playing
         case "stop":
-            if (!isMusicPlaying()) {
+            if (!getIsMusicPlaying()) {
                 //Text to Speech
                 new TextToSpeech(MESSAGE_NO_MUSIC_PLAYING).speak();
                 return new CommandResult(MESSAGE_NO_MUSIC_PLAYING);
             }
+            setIsMusicPlaying(false);
             stopMusicPlayer();
             //Text to Speech
             new TextToSpeech(MESSAGE_STOP).speak();

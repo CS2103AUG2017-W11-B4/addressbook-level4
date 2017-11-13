@@ -33,11 +33,11 @@ public class MusicCommandHint extends FixedArgumentsHint {
             //completing an arg?
             String autoCompletedArg = Autocomplete.autocompleteFromList(actionArgument, ACTION);
             if (autoCompletedArg == null || actionArgument.isEmpty()) {
-                String autoCorrectHint = (MusicCommand.isMusicPlaying()) ? "stop" : "play";
+                String autoCorrectHint = (MusicCommand.getIsMusicPlaying()) ? "stop" : "play";
                 offerHint(autoCorrectHint, "music " + autoCorrectHint);
                 return;
             } else {
-                String autoCorrectInput = "music " + ((!MusicCommand.isMusicPlaying()) ? "play" : "stop");
+                String autoCorrectInput = "music " + ((!MusicCommand.getIsMusicPlaying()) ? "play" : "stop");
                 handleCompletingArg(actionArgument, autoCompletedArg, autoCorrectInput);
                 return;
             }
@@ -63,7 +63,7 @@ public class MusicCommandHint extends FixedArgumentsHint {
                 offerHint("pop", "music play pop");
                 return;
             } else {
-                String autoCompletedInput = (MusicCommand.isMusicPlaying()) ? "music stop " : "music play "
+                String autoCompletedInput = (MusicCommand.getIsMusicPlaying()) ? "music stop " : "music play "
                         + autoCompletedArg;
                 handleCompletingArg(genreArgument, autoCompletedArg, autoCompletedInput);
                 return;

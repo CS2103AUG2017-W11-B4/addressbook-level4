@@ -32,12 +32,12 @@ public class RadioCommandHint extends FixedArgumentsHint {
             //completing an arg?
             String autoCompletedArg = Autocomplete.autocompleteFromList(actionArgument, ACTION);
             if (autoCompletedArg == null || actionArgument.isEmpty()) {
-                String autoCorrectHint = (RadioCommand.isRadioPlaying()) ? "stop" : "play";
-                offerHint((RadioCommand.isRadioPlaying()) ? "stop" : "play", "radio " + autoCorrectHint);
+                String autoCorrectHint = (RadioCommand.getIsRadioPlaying()) ? "stop" : "play";
+                offerHint((RadioCommand.getIsRadioPlaying()) ? "stop" : "play", "radio " + autoCorrectHint);
                 return;
             } else {
                 handleCompletingArg(actionArgument, autoCompletedArg,
-                        "radio " + ((RadioCommand.isRadioPlaying()) ? "stop" : "play"));
+                        "radio " + ((RadioCommand.getIsRadioPlaying()) ? "stop" : "play"));
                 return;
             }
         }
@@ -62,7 +62,7 @@ public class RadioCommandHint extends FixedArgumentsHint {
                 offerHint("pop", "radio play pop");
                 return;
             } else {
-                String autoCompletedInput = (RadioCommand.isRadioPlaying()) ? "radio stop" : "radio play "
+                String autoCompletedInput = (RadioCommand.getIsRadioPlaying()) ? "radio stop" : "radio play "
                         + autoCompletedArg;
                 handleCompletingArg(genreArgument, autoCompletedArg, autoCompletedInput);
                 return;
