@@ -58,7 +58,11 @@
 <li><a href="#share-contacts-by-email-mechanism">4.6. Share Contacts by Email Mechanism</a></li>
 <li><a href="#audible-feedback-mechanism">4.7. Audible Feedback Mechanism</a></li>
 <li><a href="#aliases">4.8. Aliases</a></li>
-<li><a href="#configuration">4.9. Configuration</a></li>
+<li><a href="#listening-for-input-change">4.9. Listening for Input Change</a></li>
+<li><a href="#displaying-inline-hints">4.10. Displaying Inline Hints</a></li>
+<li><a href="#hints-and-autocomplete-parsing">4.11. Hints and AutoComplete Parsing</a></li>
+<li><a href="#avatar">4.12. Avatar</a></li>
+<li><a href="#configuration">4.13. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1498,10 +1502,235 @@ and returns the mapped command.</p>
 <strong>Pros:</strong> Less coupling. Follows Law of Demeter.<br>
 <strong>Cons:</strong> Heavy changes to code base to pass the instance downstream.<br></p>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.9. Configuration</a></h3>
+<h3 id="listening-for-input-change"><a class="link" href="#listening-for-input-change">4.9. Listening for Input Change</a></h3>
+<div class="paragraph">
+<p>When the <code>CommandTextField</code> detects a change in its input, it will raise a <code>CommandInputChangedEvent</code>.
+The <code>CommandInputChangedEvent</code> will contain <code>currentInput</code> of the <code>CommandTextField</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">CommandInputChangedEvent</span> <span class="directive">extends</span> BaseEvent {
+
+    <span class="directive">public</span> <span class="directive">final</span> <span class="predefined-type">String</span> currentInput;
+
+    <span class="directive">public</span> CommandInputChangedEvent(<span class="predefined-type">String</span> newCurrentInput) {
+        currentInput = newCurrentInput;
+    }
+
+    <span class="comment">//... mandatory event logic</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Components that adjust based on change in input, for example inline hints, can simply subscribe to this event.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.9.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to inform other components on input change<br>
+<strong>Alternative 1 (current choice):</strong> Raise an event<br>
+<strong>Pros:</strong> Easy to implement. Less coupling with other components<br>
+<strong>Cons:</strong> Many Events raised which crowds logging. <br>
+<strong>Alternative 2:</strong> Add other component&#8217;s method directly to <code>CommandTextField</code> text property listener<br>
+<strong>Pros:</strong> No events raised. Has access to <code>CommandTextField</code> instance<br>
+<strong>Cons:</strong> Increases coupling. Difficult to pass instance of other components to <code>CommandTextField</code><br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="displaying-inline-hints"><a class="link" href="#displaying-inline-hints">4.10. Displaying Inline Hints</a></h3>
+<div class="sect3">
+<h4 id="inspiration"><a class="link" href="#inspiration">4.10.1. Inspiration</a></h4>
+<div class="paragraph">
+<p>We wish to display hints similar to how Apple&#8217;s Spotlight displays their completion and hints.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AppleSpotlightSuggestions.jpg" alt="AppleSpotlightSuggestions" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="inline-hint-terms"><a class="link" href="#inline-hint-terms">4.10.2. Terms</a></h4>
+<div class="paragraph">
+<p>As of v1.5, an inline hint consists of a concatenation of an argument hint and a description.
+An argument hint is an inline suggestion for the next letters to type. For example <strong>add |</strong> n/, n/ being the argument hint.
+A description would describe the details of the current command you are typing.</p>
+</div>
+<div class="paragraph">
+<p>Please refer to the illustration below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/InlineHintsArgumentAndDescription.png" alt="InlineHintsArgumentAndDescription" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-we-implemented-it"><a class="link" href="#how-we-implemented-it">4.10.3. How we implemented it</a></h4>
+<div class="paragraph">
+<p>In <code>JavaFX</code> it is not possible to have a prompt text next to user&#8217;s input in a <code>TextField</code>.</p>
+</div>
+<div class="paragraph">
+<p>In Unify, we have two <code>JavaFX</code> <code>TextFields</code> side by side. The input is keyed in the <code>CommandTextField</code> <code>TextField</code> while the inline hints are set in the <code>CommandBoxHints</code> <code>TextField</code>. These <code>TextFields</code> are placed in <code>HBox</code> and thus will not overlap.</p>
+</div>
+<div class="paragraph">
+<p>At the start, the <code>CommandTextField</code> will be empty and length 0.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/InlineHintsStart.png" alt="InlineHintsStart" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>As the user keys in the input <code>CommandTextField</code> will grow based on the text keyed in with the the help of <code>TextUtil</code> methods. As the <code>CommandTextField</code> grows, the <code>HBox</code> will automatically push the <code>CommandBoxHints</code> to the right.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/InlineHintsTextFieldGrow.png" alt="InlineHintsTextFieldGrow" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We clamp the size of the <code>CommandTextField</code> to half of the window size so that we have sufficient room for the hints.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/InlineHintsWindowSize.png" alt="InlineHintsWindowSize" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.10.4. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Calculating displacement of hints to simulate inline hints<br>
+<strong>Alternative 1 (current choice):</strong> Put two resizeable <code>TextFields</code> side by side. Let the <code>HBox</code> handle the displacement<br>
+<strong>Pros:</strong> We have control on how big the <code>TextFields</code> can be.<br>
+<strong>Cons:</strong>  Difficult to test the resize calculation as font rendered is different according to OS. Difficult to implement as we have to account for user clicking/tabbing into the <code>CommandBoxHints</code><br>
+<strong>Alternative 2:</strong> Overlay a label over the <code>CommandTextField</code>. The label will contain the user input + the inline hint <br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/InlineHintsOverlay.png" alt="InlineHintsOverlay" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Pros:</strong> Easy to implement.<br>
+<strong>Cons:</strong> Hints and Text mis-align when user input exceeds the length of the <code>TextField</code>, unable to find work around.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hints-and-autocomplete-parsing"><a class="link" href="#hints-and-autocomplete-parsing">4.11. Hints and AutoComplete Parsing</a></h3>
+<div class="paragraph">
+<p>Inline hints and tab autocompletion of user input is encapsulated by a <code>Hint</code> object.
+A <code>Hint</code> object will take in the current user input and/or other arguments (depending on the implementation of the concrete Hint).</p>
+</div>
+<div class="paragraph">
+<p>Inline hints can be accessed from <code>getArgumentHint()</code> and <code>getDescription()</code>.
+The next user input on tab can be accessed from <code>autocomplete()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Different commands have similar command format. Hence we separate some of the <code>Hints</code> to inherit from
+subclasses <code>FixedArgumentsHint</code>, <code>NoArgumentsHint</code>, <code>ArgumentsHint</code> to reuse the same logic.</p>
+</div>
+<div class="paragraph">
+<p>The inheritance diagram is shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/HintsClassDiagram.png" alt="HintsClassDiagram" width="800">
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-separate-argument-hints-and-description"><a class="link" href="#why-separate-argument-hints-and-description">4.11.1. Why separate argument hints and description</a></h4>
+<div class="paragraph">
+<p>For explanation on what argument hints and description are, click <a href="#inline-hint-terms">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>We separate the hint like so for 2 reasons:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We can style the text differently (for v2.0)</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <code>CommandTextField</code> our argument hints should be the same size as our input while our description, which can get quite lengthy, can be smaller in size</p>
+</li>
+<li>
+<p>We can also have the description displayed in a separate component</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The <code>autocomplete()</code> output and argument hints are closely related.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For many commands, we would want to autocomplete the argument hint. (eg. completing to the next prefix)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="avatar"><a class="link" href="#avatar">4.12. Avatar</a></h3>
+<div class="paragraph">
+<p>When users add a contact, they have an option to specify an avatar for the person. If entered with a valid
+path to a .jpg or .png, the image is stored under <code>data/images/avatars/</code> with a unique string id using Java&#8217;s <code>UUID</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Avatar</code> will store the unique string id with its file format (eg UUID.png) as its value.<br></p>
+</div>
+<div class="paragraph">
+<p>For contacts who were not given an <code>Avatar</code>. Their <code>Avatar</code> field will be an empty string. When selected, these people will have a default avatar.
+The activity diagram when a person is selected is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GetAvatarActivityDiagram.png" alt="GetAvatarActivityDiagram" width="800">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.12.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to save image<br>
+<strong>Alternative 1 (current choice):</strong> Duplicate image is saved with a unique string id under data<br>
+<strong>Pros:</strong> Application is easily portable - all image files stored in data folder<br>
+<strong>Cons:</strong> Many images are created after multiple testing. (images won&#8217;t have the same name)<br>
+<strong>Alternative 2:</strong> The absolute file path of the image is saved. When avatar needs to be displayed, the image will be fetched from there.<br>
+<strong>Pros:</strong> Easy to implement.<br>
+<strong>Cons:</strong> Application is not portable. If the jar and data files are transferred to a different computer, the <code>Avatar</code> loaded will be the default one.<br>
+<strong>Alternative 3:</strong> Use online link to images<br>
+<strong>Pros:</strong> Easy to implement.<br>
+<strong>Cons:</strong> Application is not portable as it requires internet connection<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="link" href="#configuration">4.13. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2245,7 +2474,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 06:21:50 +00:00
+Last updated 2017-11-13 06:45:48 +00:00
 </div>
 </div>
 </body>
