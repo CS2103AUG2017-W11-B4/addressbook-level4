@@ -231,3 +231,265 @@ Hints and auto completion is one of our core features. As commands are being typ
 
 == Advanced Commands
 
+=== Music Play Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`mu`
+|*Hint*|`sic plays music`
+|*Autocomplete Input*|`music`
+|*Result*|`Unknown Command`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music`
+|*Hint*|`play plays music`
+|*Autocomplete Input*|`music play`
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music play p`
+|*Hint*|`op plays pop`
+|*Autocomplete Input*|`music stop`
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music play d`
+|*Hint*|`ance plays dance tracks`
+|*Autocomplete Input*|`music stop`
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music play class`
+|*Hint*|`ic plays the classics`
+|*Autocomplete Input*|`music stop`
+|*Result*|`Invalid command format!...`
+|===
+
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`music play`
+|*Hint*|`pop plays pop`
+|*Autocomplete Input*|`music play pop`
+|*Result*|`POP Music 1 Playing`
+|*Note*| pop1.mp3 will be played. If you repeat this command, pop2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
+In this case, the max will be 2. Hence, if you were to repeat this command the 3rd time it will play back pop1.mp3. However, if you were to playing another genre such as classic or dance and you play pop, the track number will be reset to 1. Hence pop1.mp3 will be played.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music play pop`
+|*Hint*|`plays pop`
+|*Autocomplete Input*|`music play dance`
+|*Result*|`POP Music 1 Playing`
+|*Note*| pop1.mp3 will be played. If you repeat this command, pop2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
+In this case, the max will be 2. Hence, if you were to repeat this command the 3rd time it will play back pop1.mp3. However, if you were to playing another genre such as classic or dance and you play pop, the track number will be reset to 1. Hence pop1.mp3 will be played.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music play dance`
+|*Hint*|`plays dance tracks`
+|*Autocomplete Input*|`music play dance`
+|*Result*|`DANCE Music 1 Playing`
+|*Note*| dance1.mp3 will be played. If you repeat this command, dance2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
+In this case, the max will be 2. Hence, if you were to repeat this command the 3rd time it will play back dance1.mp3. However, if you were to playing another genre such as classic or pop and you play dance, the track number will be reset to 1. Hence dance1.mp3 will be played.
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`music play classic`
+|*Hint*|`plays the classics`
+|*Autocomplete Input*|`music play pop`
+|*Result*|`CLASSIC Music 1 Playing`
+|*Note*| classic1.mp3 will be played. If you repeat this command, classic2.mp3 will be played. The track number will increase until it hits the max track number then it resets it back to 1.
+In this case, the max will be 2. Hence, if you were to repeat this command the 3rd time it will play back dance1.mp3. However, if you were to playing another genre such as dance or pop and you play classic, the track number will be reset to 1. Hence classic1.mp3 will be played.
+|===
+
+=== Music Stop Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`music s`
+|*Hint*|`top stops music`
+|*Autocomplete Input*|`music stop`
+|*Result*|`Invalid command format!...`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`music stop`
+|*Hint*|`stops music`
+|*Autocomplete Input*|`music stop`
+|*Result*|`Music Stopped`
+|*Note*| If there is currently no music playing and you execute this command, you will get this result instead `No music is currently playing`
+|===
+
+=== Radio Play Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`rad`
+|*Hint*|`io plays the radio`
+|*Autocomplete Input*|`radio `
+|*Result*|`Unknown Command`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`radio`
+|*Hint*|`play plays radio`
+|*Autocomplete Input*|`radio play`
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`radio pl`
+|*Hint*|`ay plays  radio`
+|*Autocomplete Input*|`radio play`
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`radio play po`
+|*Hint*|`p plays pop radio`
+|*Autocomplete Input*|`radio play`
+|*Result*|`Invalid command format!...`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`radio play`
+|*Hint*|`pop plays pop radio`
+|*Autocomplete Input*|`radio play pop`
+|*Result*|`POP Radio Playing`
+|*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`radio play pop`
+|*Hint*|`plays pop radio`
+|*Autocomplete Input*|`radio play chinese`
+|*Result*|`POP Radio Playing`
+|*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`radio play chinese`
+|*Hint*|`plays chinese radio`
+|*Autocomplete Input*|`radio play classic`
+|*Result*|`CHINESE Radio Playing`
+|*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
+|===
+
+=== Radio Stop Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`radio st`
+|*Hint*|`op stops radio`
+|*Autocomplete Input*|`radio stop `
+|*Result*|`Invalid command format!...`
+|===
+
+==== Valid Command
+[cols="2*^"]
+|===
+|*User Input*|`radio stop`
+|*Hint*|`stops radio`
+|*Autocomplete Input*|`radio stop`
+|*Result*|`Radio Stopped`
+|*Note*| If there is currently no radio playing and you execute this command, you will get this result instead `No radio is currently playing`
+|===
+
+
+=== Share Command
+
+==== Invalid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`share`
+|*Hint*|`1 index`
+|*Autocomplete Input*|`share 1 `
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`share 1`
+|*Hint*|`index`
+|*Autocomplete Input*|`share 2 `
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`share -1 s/`
+|*Hint*|`email or index`
+|*Autocomplete Input*|`share -1 s/1`
+|*Result*|`Invalid command format!...`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`share 1 s/re`
+|*Hint*|`next email or index`
+|*Autocomplete Input*|`share 1 s/re `
+|*Result*|`Email address is not valid`
+|===
+
+==== Valid Command
+
+[cols="2*^"]
+|===
+|*User Input*|`share 1 s/example@hotmail.com`
+|*Hint*|`next email or index`
+|*Autocomplete Input*|`share 1 s/example@hotmail.com `
+|*Result*|`Email Sent!`
+|*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`share 1 s/1`
+|*Hint*|`next email or index`
+|*Autocomplete Input*|`share 1 s/1 `
+|*Result*|`Email Sent!`
+|*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
+|===
+
+[cols="2*^"]
+|===
+|*User Input*|`share 1 s/1 example@gmail.com`
+|*Hint*|`next email or index`
+|*Autocomplete Input*|`share 1 s/1 example@gmail.com `
+|*Result*|`Email Sent!`
+|*Note*| This required Internet connection if not the result will be `Not Connected to the Internet`
+|===
